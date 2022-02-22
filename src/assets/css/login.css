@@ -1,0 +1,197 @@
+body {
+  font-family: 'Nunito', sans-serif;
+}
+header.login.register {
+  background-image: url(../images/bg-register.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+}
+header.login .opacity {
+  height: 805px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+header.login .desc {
+  border-right: 1px solid white;
+  margin-top: 107px;
+}
+header.login .form-register {
+  margin-top: 107px;
+}
+header.login h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 85px;
+  margin-bottom: 93px;
+}
+header.login .opacity .dont-have {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 33px;
+  text-decoration: none;
+  color: #fff;
+}
+header.login .btn-signup {
+  margin-top: 25px;
+  padding: 23px 149px;
+  background-color: #151b1b;
+  color: #32DBC6;
+  font-weight: 900;
+  font-size: 24px;
+  border-radius: 10px;
+}
+header.login .btn-signup:hover {
+  background-color: #32DBC6;
+  color: #151b1b;
+}
+.login .form-register {
+  margin-left: 15%;
+}
+.login .form-register input, .form-register .btn {
+  width: 95%;
+  padding: 23px 0;
+  border-radius: 10px;
+  margin: 17px 0;
+  font-weight: 900;
+  font-size: 24px;
+}
+.login .form-register input {
+  padding-left: 20px;
+  background: rgba(255, 255, 255, 0.26);
+  color: #fff;
+  border: none;
+}
+.login .form-register input:focus {
+  outline: none;
+}
+.login .form-register input::placeholder {
+  color: #fff;
+}
+.login .form-register a {
+  text-decoration: none;
+  color: #fff;
+  font-family: 'Mulish', sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 49px;
+}
+.login .form-register a.forgot {
+  display: block;
+  margin-bottom: 49px;
+}
+.login .form-register .login {
+  color: #fff;
+  background-color: #32DBC6;
+}
+.login .form-register .login:hover {
+  background-color: #EBEFD0;
+  color: #085F63;
+}
+.login .form-register .google {
+  color: black;
+  background-color: #fff;
+  text-align: center;
+}
+.login .form-register .google:hover {
+  background-color: #EBEFD0;
+  color: #085F63;
+}
+.login .dot {
+  text-align: end;
+}
+.login .dot.top {
+  margin-right: -22px;
+  margin-top: -3px;
+}
+.login .dot.bottom {    
+  margin-right: -23px;
+  margin-top: 148px;
+}
+.login .dot.bottom.signup {
+  margin-top: 135px;
+}
+
+@media all and (max-width: 1150px) {
+  .login .form-register {
+    margin-left: 15%;
+  }
+}
+@media all and (max-width: 990px) {
+  header.login h1 {
+    margin-bottom: 15px;
+    font-size: 43px;
+  }
+  .login .left-section {
+    width: 80%;
+  }
+  .login .reverse-top {
+    width: 100%;
+  }
+  .login .form-register input, .form-register .btn {
+    width: 100%;
+    padding: 12px 0;
+  }
+  .login .form-register input {
+    padding-left: 10px;
+  }
+  header.login .opacity .dont-have {
+    font-size: 15px;
+  }
+  header.login .opacity .btn {
+    width: 100%;
+    padding: 15px 0;
+  }
+  header.login .btn-signup {
+    box-shadow: 0px 4px 3px 0px rgba(50,219,198,0.75);
+    -webkit-box-shadow: 0px 4px 3px 0px rgba(50,219,198,0.75);
+    -moz-box-shadow: 0px 4px 3px 0px rgba(50,219,198,0.75);
+  }
+  .login .dot.bottom {
+    margin-top: 165px;
+  }
+}
+@media all and (max-width: 768px) {
+  .login .left-section {
+    margin: auto;
+  }
+  header.login h1 {
+    font-size: 35px;
+    margin: auto;
+  }
+  header.login .opacity .reverse-top {
+    display: none !important;
+  }
+  header.login .opacity .reverse-bottom {
+    display: block !important;
+  }
+  header.login .opacity {
+    height: 900px;
+  }
+  header.login .opacity .row {
+    text-align: center;
+  }
+  header.login .desc {
+    border: none;
+    margin-top: 20px;
+  }
+  .login .dot {
+    display: none;
+  }
+  header.login .form-register {
+    margin: auto;
+    margin-top: 10px;
+    margin-left: 0;
+    font-size: 25px;
+  }
+  .login .form-register {
+    display: flex;
+    justify-content: center;
+  }
+  .login .form-register input, .form-register input:focus {
+    text-align: center;
+  }
+  .login .form-register a.forgot {
+    display: inline;
+  }
+}
