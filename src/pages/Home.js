@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react'
 import '../assets/css/home.css'
-import Navigation from '../components/NavAfter';
+import Navigation from '../components/NavAfterLogin';
 import Footer from "../components/Footer";
 import merapi from '../assets/images/merapi.png';
 import telukBogam from '../assets/images/kallimantan.png';
