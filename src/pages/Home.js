@@ -40,58 +40,58 @@ export default class Home extends Component {
     return (
       <>
       <Navigation />
-      <header class="header-homepage home">
-        <div class="opacity">
-          <div class="container">
+      <header className="header-homepage home">
+        <div className="opacity">
+          <div className="container">
             <h1>Explore and <br/> Travel</h1>
             <p>Vehicle Finder</p>
-            <div class="line"></div>
-            <form class="col-sm-12 col-lg-6">
-              <div class="row">
-                <div class="col-sm-6">
-                  <select class="option-form">
+            <div className="line"></div>
+            <form className="col-sm-12 col-lg-6">
+              <div className="row">
+                <div className="col-sm-6">
+                  <select className="option-form">
                     <option>Location</option>
                     <option></option>
                   </select>
                 </div>
-                <div class="col-sm-6">
-                  <select class="option-form">
+                <div className="col-sm-6">
+                  <select className="option-form">
                     <option>Type</option>
                     <option></option>
                   </select>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-sm-6">
-                  <select class="option-form">
+              <div className="row">
+                <div className="col-sm-6">
+                  <select className="option-form">
                     <option>Payment</option>
                     <option></option>
                   </select>
                 </div>
-                <div class="col-sm-6">
-                  <label for="date" class="date-section">
-                    <input type="date" class="option-form" id="date" />
+                <div className="col-sm-6">
+                  <label for="date" className="date-section">
+                    <input type="date" className="option-form" id="date" />
                   </label>
                 </div>
               </div>
-              <button class="btn btn-green" aria-label="explore">Explore</button>
+              <button className="btn btn-green" aria-label="explore">Explore</button>
             </form>
           </div>
         </div>
       </header>
       
-      <main class="container home">
-        <section class="destination">
-          <div class="d-flex justify-content-between align-items-center head">
+      <main className="container home">
+        <section className="destination">
+          <div className="d-flex justify-content-between align-items-center head">
             <h2>Popular in town</h2>
-            <a href="more-detail.html" class="view-all">View all <i class="fa-solid fa-angle-right"></i></a>
+            <a href="more-detail.html" className="view-all">View all <i className="fa-solid fa-angle-right"></i></a>
           </div>
-          <div class="row">
+          <div className="row">
             {this.state.data.map((item) => {
-              return <div class="col-6 col-lg-3 mb-3 text-center">
+              return <div className="col-6 col-lg-3 mb-3 text-center">
                 <a href="#" className='d-inline-block position-relative'>
-                  <img class="img-fluid" src={item.image} alt={item.location} />
-                  <div class="highlight position-absolute start-0">
+                  <img className="img-fluid" src={item.image} alt={item.location} />
+                  <div className="highlight position-absolute start-0">
                     <h5>{item.location}</h5>
                     <span>{item.region}</span>
                   </div>
@@ -101,27 +101,27 @@ export default class Home extends Component {
           </div>
         </section>
 
-        <section class="testimoni mt-5">
+        <section className="testimoni mt-5">
           <h2>Testimonials</h2>
-          <div class="row">
-            <div class="col-12 col-lg-6 mt-5 left-testi">
-              <div class="comment">
-                <div class="stars">
+          <div className="row">
+            <div className="col-12 col-lg-6 mt-5 left-testi">
+              <div className="comment">
+                <div className="stars">
                   {[...Array(5)].map(() => <FaStar />)}
                 </div>
                 <p>”It was the right decision to rent vehicle here, I spent less money and enjoy the trip. It was an amazing experience to have a ride for wildlife trip!”</p>
               </div>
-              <div class="profile">
+              <div className="profile">
                 <h5>Edward Newgate</h5>
                 <span>Founder Circle</span>
               </div>
             </div>
-            <div class="col-12 col-lg-6 mt-5 profile">
-              <div class="image">
+            <div className="col-12 col-lg-6 mt-5 profile">
+              <div className="image">
                 <img src={user} alt="Edward" />
-                <div class="ms-auto next-prev">
-                  <button class="btn disabled next" aria-label="next"><GrFormPrevious /></button>
-                  <button class="btn prev" aria-label="previous"><GrFormNext /></button>
+                <div className="ms-auto next-prev">
+                  <button className="btn disabled next" aria-label="next"><GrFormPrevious /></button>
+                  <button className="btn prev" aria-label="previous"><GrFormNext /></button>
                 </div>
               </div>
             </div>

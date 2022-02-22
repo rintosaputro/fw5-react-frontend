@@ -8,34 +8,34 @@ import {FaTwitter, FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube} from 'reac
 export default class Signup extends Component {
   render() {
     return (
-      <main class="row signup-page">
-        <div class="col col-sm-5 col-md-6 img-section">
+      <main className="row signup-page">
+        <div className="col col-sm-5 col-md-6 img-section">
         </div>
-        <div class="col-12 col-sm-7 col-md-6 pt-5 form-section">
-          <div class="opacity">
-            <form class="d-flex flex-column justify-content-center align-items-center">
-              <h2 class="my-5 container header-sign">Sign Up</h2>
+        <div className="col-12 col-sm-7 col-md-6 pt-5 form-section">
+          <div className="opacity">
+            <form className="d-flex flex-column justify-content-center align-items-center">
+              <h2 className="my-5 container header-sign">Sign Up</h2>
               <input type="text" placeholder="Name" />
               <input type="email" placeholder="Email" />
               <input type="password" placeholder="Password" />
-              <a href="/login.html" class="btn mt-5 signup">Sign Up</a>
-              <div class="row d-flex align-items-center another">
-                <div class="col"><hr /></div>
-                <div class="col-5 text-muted text-center text-another">or try another way</div>
-                <div class="col"><hr /></div>
+              <a href="/login.html" className="btn mt-5 signup">Sign Up</a>
+              <div className="row d-flex align-items-center another">
+                <div className="col"><hr /></div>
+                <div className="col-5 text-muted text-center text-another">or try another way</div>
+                <div className="col"><hr /></div>
               </div>
-              <a href="#" class="btn my-5 google"><img src={google} alt="google" /> Sign Up With Google</a>
-              <a href="/login.html" class="btn login">Login</a> <br />
+              <a href="#" className="btn my-5 google"><img src={google} alt="google" /> Sign Up With Google</a>
+              <a href="/login.html" className="btn login">Login</a> <br />
             </form>
       
-            <footer class="bg-light container pt-5">
+            <footer className="bg-light container pt-5">
               <div>
                 <img src={logo} alt="logo" width="20px" />
-                <p class="description">Plan and book your perfect trip with expert advice, travel tips for vehicle information from us</p>
+                <p className="description">Plan and book your perfect trip with expert advice, travel tips for vehicle information from us</p>
                 <p>©2020 Vehicle Rental Center. All rights reserved</p>
               </div>
-              <div class="row social">
-                <ul class="list-group">
+              <div className="row social">
+                <ul className="list-group">
                 <li> <a href="#"><FaTwitter /></a> </li>
                 <li><a href="#"><FaFacebookF /></a></li>
                 <li><a href="#"><FaInstagram /></a> </li>

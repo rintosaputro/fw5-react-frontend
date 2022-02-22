@@ -15,7 +15,7 @@
 .signup-page form h2.header-sign {
   width: 90%;
 }
-.signup-page input, .btn, .another {
+.signup-page input, .signup-page .btn, .signup-page .another {
   width: 86%;
   height: 79px;
   border-radius: 10px;
@@ -47,17 +47,17 @@
 .signup-page .text-another {
   font-size: 20px;
 }
-.signup-page .signup:hover, .login:hover, .google:hover {
+.signup-page .signup:hover, .signup-page .login:hover,.signup-page .google:hover {
   box-shadow: -3px -4px 26px -5px rgba(50, 219, 198, 0.53);
   -webkit-box-shadow: -3px -4px 26px -5px rgba(50, 219, 198, 0.53);
   -moz-box-shadow: -3px -4px 26px -5px rgba(50, 219, 198, 0.53);
 }
-.signup-page .google, .login, .signup {
+.signup-page .google, .signup-page .login, .signup-page .signup {
   box-shadow: -3px -4px 26px -5px rgba(0,0,0,0.53);
   -webkit-box-shadow: -3px -4px 26px -5px rgba(0,0,0,0.53);
   -moz-box-shadow: -3px -4px 26px -5px rgba(0,0,0,0.53);
 }
-.signup-page .google:hover, .login:hover, .signup:hover {
+.signup-page .google:hover, .signup-page .login:hover,.signup-page .signup:hover {
   background-color: #EBEFD0;
   color: #085F63;
 }
