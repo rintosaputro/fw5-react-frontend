@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
+import Footer from '../components/Footer'
 import '../assets/css/forgot-password.css'
-import {GrPrevious} from 'react-icons/gr'
+import {IoChevronBack} from 'react-icons/io5'
 
 export default class ForgotPassword extends Component {
   render() {
     return (
-      <header className='forgot'>
+      <div className='forgot'>
+      <header>
         <div className="opacity">
           <div className="container">
             <a className="back" href="/login.html">
-              <GrPrevious />
+              <IoChevronBack />
               <span>Back</span>
             </a>
             <h1 className="text-center">Don`t worry, we got your back!</h1>
@@ -23,6 +25,9 @@ export default class ForgotPassword extends Component {
           </div>
         </div>
       </header>
+      
+      <Footer />
+      </div>
     )
   }
 }
