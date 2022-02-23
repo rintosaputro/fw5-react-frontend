@@ -5,7 +5,7 @@ import {FiMail} from 'react-icons/fi'
 import logo from '../assets/images/logo.png'
 import photo from '../assets/images/profile.png'
 
-export default class NavAfter extends Component {
+export default class NavAfterLogin extends Component {
   render() {
     return (
       <div>

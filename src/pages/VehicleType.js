@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import NavAfter from '../components/NavAfterLogin';
+// import NavAfter from '../components/NavAfterLogin';
 import '../assets/css/vehicle-type.css'
 import DataVehicle from '../components/DataVehicle';
 import ProductHighlight from '../components/ProductHighlight';
@@ -29,7 +29,6 @@ export default class VehicleType extends Component {
   render() {
     return (      
       <div className='vehicle-type'>
-        <NavAfter />
         <form className="container d-flex position-relative">
           <input className="form-control" type="search" placeholder="Search vehicle (ex. cars, cars name)" />
           <button type="submit" className="btn position-absolute end-0" aria-label="search button">

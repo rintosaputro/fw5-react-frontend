@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react'
 import '../assets/css/home.css'
-import Navigation from '../components/NavAfterLogin';
+// import Navigation from '../components/NavAfterLogin';
 import Footer from "../components/Footer";
 import merapi from '../assets/images/merapi.png';
 import telukBogam from '../assets/images/kallimantan.png';
@@ -39,7 +39,6 @@ export default class Home extends Component {
   render() {
     return (
       <>
-      <Navigation />
       <header className="header-homepage home">
         <div className="opacity">
           <div className="container">

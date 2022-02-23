@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import logo from "../assets/images/logo.png"
 
-export default class Navigation extends Component {
+export default class NavBeforeLogin extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-white fixed-top">
