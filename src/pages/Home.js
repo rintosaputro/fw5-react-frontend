@@ -128,7 +128,7 @@ export default class Home extends Component {
         </section>
       </main>
 
-      <Footer />
+      {/* <Footer />   */}
       </>
     )
   }

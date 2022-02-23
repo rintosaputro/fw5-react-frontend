@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react'
 import '../assets/css/login.css'
-import Footer from "../components/Footer";
 import dot from '../assets/images/dot-register.png'
 import google from '../assets/images/google.png'
 
@@ -62,8 +61,6 @@ export default class Login extends Component {
             </div>
           </div>
         </header>
-
-        <Footer />
       </>
     )
   }

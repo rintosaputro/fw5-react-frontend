@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Footer from '../components/Footer'
 import '../assets/css/forgot-password.css'
 import {IoChevronBack} from 'react-icons/io5'
 
@@ -25,8 +24,6 @@ export default class ForgotPassword extends Component {
           </div>
         </div>
       </header>
-      
-      <Footer />
       </div>
     )
   }

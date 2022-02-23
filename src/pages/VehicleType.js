@@ -5,7 +5,6 @@ import DataVehicle from '../components/DataVehicle';
 import ProductHighlight from '../components/ProductHighlight';
 import {BiSearchAlt2} from 'react-icons/bi'
 import {IoChevronForward} from 'react-icons/io5'
-import Footer from '../components/Footer';
 
 export default class VehicleType extends Component {
 
@@ -40,8 +39,6 @@ export default class VehicleType extends Component {
         {this.product('Cars', '#', DataVehicle.cars)}
         {this.product('Motorbike', '#', DataVehicle.motorbike)}
         {this.product('Bike', '#', DataVehicle.bike)}
-
-        <Footer />
       </div>
     )
   }

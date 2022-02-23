@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import '../assets/css/vehicle-type.css'
-import NavAfterLogin from '../components/NavAfterLogin'
-import Footer from '../components/Footer'
 import ProductHighlight from '../components/ProductHighlight'
 import DataVehicle from '../components/DataVehicle'
 
@@ -16,7 +14,6 @@ export default class VehiclePopular extends Component {
   render() {
     return (
       <div className='vehicle-type'>
-        <NavAfterLogin />
         <section className='container'>
           <div className="head">
             <h2>Popular in town</h2>
@@ -30,7 +27,6 @@ export default class VehiclePopular extends Component {
           </div>
           <p class="text-center text-muted py-5">There is no vehicle left</p>
         </section>
-        <Footer />
       </div>
     )
   }
