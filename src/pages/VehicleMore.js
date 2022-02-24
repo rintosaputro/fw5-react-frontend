@@ -7,18 +7,19 @@ import { useSearchParams } from 'react-router-dom';
 export default function VehicleMore() {
   const [vehicle, setVehilcle] = useState([])
   const [page, setPage] = useState({})
+  
+  const [searchParams] = useSearchParams()
 
   useEffect(() => {
-    getVehicle()
-  }, [])
+    const params = searchParams.get('type') || searchParams.get('search')
+    getVehicle(params)
+  }, [searchParams])
 
-  const [searchParams] = useSearchParams()
-  const getVehicle = async () => {
-    const params = searchParams.get('type')
+  const getVehicle = async (params) => {
     const url = params ? `http://localhost:5000/popular?limit=8&search=${params}` : 'http://localhost:5000/popular?limit=8'
     const {data} = await axios.get(url)
     setVehilcle(data.results) 
-    setPage(data.pageInfo)
+    setPage(data.pageInfo) 
   }
 
   const nextPage = async () => {
@@ -37,13 +38,13 @@ export default function VehicleMore() {
         <div className='row'>
           {vehicle.map(data => {
             const props = {image: data.image, location: data.location, brand: data.brand, id: data.idVehicle}
-            return <ProductHighlight props={props} />
+            return <ProductHighlight key={props.id} props={props} />
           })}
         </div>
         <div className='my-4 text-center'>
           {page.next ?
             <button onClick={nextPage} className='btn btn-success w-50'>Next</button> :
-            <p class="text-center text-muted py-5">There is no vehicle left</p>    
+            <p className="text-center text-muted py-5">There is no vehicle left</p>    
           }
         </div>
         

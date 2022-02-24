@@ -12,7 +12,6 @@ const VehicleType = () => {
   const [motorbike, setMotorBike] = useState([])
   const [bike, setBike] = useState([])
 
-
   useEffect(() => {
     getVehicle(setPopularTown)
     getVehicle(setCars, 'cars')
@@ -20,15 +19,16 @@ const VehicleType = () => {
     getVehicle(setBike, 'bike')
   },[])
 
-  const getVehicle = async (setData, type) => {
-    const url = type ? `http://localhost:5000/popular?search=${type}&limit=4` : `http://localhost:5000/popular?limit=4`
+  const getVehicle = async (setData, type, limit = 4) => {
+    const url = type ? `http://localhost:5000/popular?search=${type}&limit=${limit}` : `http://localhost:5000/popular?limit=${limit}`
     const {data} = await axios.get(url)
     setData(data.results)
-  }
+  }  
+  
 
   const product = (head, arr, type, link ) => {
     return (
-      <section className='container'>
+      <section className='container' id='parrent'>
         <div className="d-flex justify-content-between head">
           <h2>{head}</h2>
           <Link  to={type ? `/vehicle?type=${type}` : `/vehicle`} className="view-all">View all <IoChevronForward /></Link>
@@ -46,12 +46,11 @@ const VehicleType = () => {
   return (      
     <div className='vehicle-type'>
       <form className="container d-flex position-relative">
-        <input className="form-control" type="search" placeholder="Search vehicle (ex. cars, cars name)" />
+        <input className="form-control" name='search' type="search" placeholder="Search vehicle (ex. cars, cars name)" />
         <button type="submit" className="btn position-absolute end-0" aria-label="search button">
           <i className="search-icon"><BiSearchAlt2 /></i>
         </button>
       </form>
-
       {product('Popular in town', popularTown)}
       {product('Cars', cars, 'cars')}
       {product('Motorbike', motorbike, 'motorbike')}
