@@ -115,6 +115,8 @@ body {
 
 .vehicle-detail .prev, .vehicle-detail .next, .vehicle-detail .plus, .vehicle-detail .minus {
   font-size: 40px;
+  height: auto;
+  width: 75px;
 }
 .vehicle-detail .carousel img {
   width: 100%;

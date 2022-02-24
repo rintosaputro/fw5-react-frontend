@@ -49,15 +49,16 @@ body {
 .vehicle-type nav input.form-control {
   padding-left: 8px;
 }
-.vehicle-type nav input.form-control:focus,
+/* .vehicle-type nav input.form-control:focus,
 .vehicle-type nav input.form-control:hover {
   padding-right: 45px;
-}
+} */
 .vehicle-type nav form button {
-  height: 0;
+  height: fit-content;
 }
 .vehicle-type nav form .search-icon {
-  font-size: 15px;
+  font-size: 25px;
+  vertical-align: baseline;
   padding-right: 0;
   color: #B8BECD;
 }
