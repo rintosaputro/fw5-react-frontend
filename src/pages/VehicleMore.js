@@ -32,7 +32,7 @@ export default function VehicleMore() {
     <div className='vehicle-type'>
       <section className='container'>
         <div className="head">
-          <h2>Popular in town</h2>
+          <h2>{searchParams.get('type') || searchParams.get('search') || 'Popular in town'}</h2>
           <p className="text-muted text-center">Click item to see details and reservation</p>
         </div>
         <div className='row'>
