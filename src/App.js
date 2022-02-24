@@ -6,12 +6,13 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
 import VehicleType from "./pages/VehicleType";
-import VehiclePopular from "./pages/VehiclePopular";
+import VehicleMore from "./pages/VehicleMore";
 import VehicleDetail from "./pages/VehicleDetail";
 
 export default class App extends Component {
   state = {
-    isLogged: true
+    isLogged: true,
+    moreDetail: ''
   }
 
   render() {
@@ -35,17 +36,13 @@ export default class App extends Component {
           <Route path="vehicle/type" element={
             <Layout isLogin={isLogged}><VehicleType /></Layout>
           } />
-          <Route path="vehicle/popular" element={
-            <Layout isLogin={isLogged} vehiclePopular={true}><VehiclePopular /></Layout>
+          <Route path={`vehicle`} element={
+            <Layout isLogin={isLogged} vehicleMore={true}><VehicleMore /></Layout>
           } />
           <Route path="vehicle/:id" element={
             <Layout isLogin={isLogged}><VehicleDetail /></Layout>
           } />
         </Routes>
-        {/* <VehiclePopular /> */}
-        {/* <VehicleType /> */}
-        {/* <ForgotPassword /> */}
-        {/* <Signup /> */}
         {/* {!this.state.isLogged && <Login isLogin={(value) => this.setState({isLogged: value})} />} */}
         {/* {this.state.isLogged ? (<> <NavAfterLogin />  <Home /></>) : (<> <NavBeforeLogin /> <Home /> </>)} */}
       </BrowserRouter>

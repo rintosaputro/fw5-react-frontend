@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {default as axios} from 'axios';
 import '../assets/css/home.css'
 import user from '../assets/images/user-homepage.png'
@@ -66,13 +66,12 @@ const Home = () => {
       <section className="destination">
         <div className="d-flex justify-content-between align-items-center head">
           <h2>Popular in town</h2>
-          <Link to='/vehicle/popular' class="view-all">View all <IoChevronForward /></Link>
+          <Link to='/vehicle' className="view-all">View all <IoChevronForward /></Link>
         </div>
         <div className="row">
-          {/* {shohVehicle()} */}
-          {vehicle.map((data, index) => {
+          {vehicle.map((data) => {
             const props = {image: data.image, location: data.location, brand: data.brand, id: data.idVehicle}
-            return <ProductHighlight props={props} />
+            return <ProductHighlight key={props.id} props={props} />
           })}
         </div>
       </section>
@@ -83,7 +82,7 @@ const Home = () => {
           <div className="col-12 col-lg-6 mt-5 left-testi">
             <div className="comment">
               <div className="stars">
-                {[...Array(5)].map(() => <FaStar />)}
+                {[...Array(5)].map((data,index) => <span key={index}><FaStar /></span>)}
               </div>
               <p>”It was the right decision to rent vehicle here, I spent less money and enjoy the trip. It was an amazing experience to have a ride for wildlife trip!”</p>
             </div>
@@ -104,8 +103,6 @@ const Home = () => {
         </div>
       </section>
     </main>
-
-    {/* <Footer />   */}
     </>
   )
 }

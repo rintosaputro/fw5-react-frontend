@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react'
 import '../assets/css/login.css'
 import dot from '../assets/images/dot-register.png'

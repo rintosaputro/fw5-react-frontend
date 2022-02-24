@@ -1,9 +1,10 @@
-import React, { Component, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../assets/css/vehicle-type.css'
 import ProductHighlight from '../components/ProductHighlight'
 import {default as axios} from 'axios';
+import { useSearchParams } from 'react-router-dom';
 
-export default function VehiclePopular() {
+export default function VehicleMore() {
   const [vehicle, setVehilcle] = useState([])
   const [page, setPage] = useState({})
 
@@ -11,9 +12,12 @@ export default function VehiclePopular() {
     getVehicle()
   }, [])
 
+  const [searchParams] = useSearchParams()
   const getVehicle = async () => {
-    const {data} = await axios.get('http://localhost:5000/popular?limit=8')
-    setVehilcle(data.results)
+    const params = searchParams.get('type')
+    const url = params ? `http://localhost:5000/popular?limit=8&search=${params}` : 'http://localhost:5000/popular?limit=8'
+    const {data} = await axios.get(url)
+    setVehilcle(data.results) 
     setPage(data.pageInfo)
   }
 
@@ -21,7 +25,6 @@ export default function VehiclePopular() {
     const {data} = await axios.get(page.next)
     setVehilcle([...vehicle, ...data.results])
     setPage(data.pageInfo)
-    console.log(data.results)
   }
 
   return (
@@ -48,32 +51,3 @@ export default function VehiclePopular() {
     </div>
   )
 }
-
-// export default class VehiclePopular extends Component {
-//   vehicle = (dataVehicle) => {
-//     return dataVehicle.map(data => {
-//       const props = {image: data.image, text1: data.text1, text2: data.text2}
-//       return <ProductHighlight props={props} />
-//     })
-//   }
-
-//   render() {
-//     return (
-//       <div className='vehicle-type'>
-//         <section className='container'>
-//           <div className="head">
-//             <h2>Popular in town</h2>
-//             <p className="text-muted text-center">Click item to see details and reservation</p>
-//           </div>
-//           <div className='row'>
-//             {this.vehicle(DataVehicle.popularInTown)}
-//             {this.vehicle(DataVehicle.cars)}
-//             {this.vehicle(DataVehicle.motorbike)}
-//             {this.vehicle(DataVehicle.bike)}
-//           </div>
-//           <p class="text-center text-muted py-5">There is no vehicle left</p>
-//         </section>
-//       </div>
-//     )
-//   }
-// }

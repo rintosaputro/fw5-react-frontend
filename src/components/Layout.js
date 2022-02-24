@@ -6,10 +6,10 @@ import Footer from './Footer'
 
 export default class Layout extends Component {
   render() {
-    const {noNavbar, signup, isLogin, vehiclePopular, children} = this.props
+    const {noNavbar, signup, isLogin, vehicleMore, children} = this.props
     return (
       <div>
-        {!noNavbar && (vehiclePopular ? <NavPopular /> : (isLogin ? <NavAfterLogin /> : <NavBeforeLogin />))}
+        {!noNavbar && (vehicleMore ? <NavPopular /> : (isLogin ? <NavAfterLogin /> : <NavBeforeLogin />))}
         {children}
         {!signup && <Footer />}
       </div>
