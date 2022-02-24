@@ -7,10 +7,11 @@ import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
 import VehicleType from "./pages/VehicleType";
 import VehiclePopular from "./pages/VehiclePopular";
+import VehicleDetail from "./pages/VehicleDetail";
 
 export default class App extends Component {
   state = {
-    isLogged: false
+    isLogged: true
   }
 
   render() {
@@ -31,11 +32,14 @@ export default class App extends Component {
           <Route path="signup" element={
             <Layout noNavbar={true} signup={true}><Signup /></Layout>
           } />
-          <Route path="vehicle-type" element={
+          <Route path="vehicle/type" element={
             <Layout isLogin={isLogged}><VehicleType /></Layout>
           } />
-          <Route path="vehicle-popular" element={
+          <Route path="vehicle/popular" element={
             <Layout isLogin={isLogged} vehiclePopular={true}><VehiclePopular /></Layout>
+          } />
+          <Route path="vehicle/detail" element={
+            <Layout isLogin={isLogged}><VehicleDetail /></Layout>
           } />
         </Routes>
         {/* <VehiclePopular /> */}

@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
-import NavAfterLogin from './NavAfterLogin'
-import NavBeforeLogin from './NavBeforeLogin'
-import NavPopular from './NavPopular'
+import NavAfterLogin from './Navbar/NavAfterLogin'
+import NavBeforeLogin from './Navbar/NavBeforeLogin'
+import NavPopular from './Navbar/NavPopular'
 import Footer from './Footer'
 
 export default class Layout extends Component {
   render() {
-    const {noNavbar, signup, isLogin, vehiclePopular} = this.props
+    const {noNavbar, signup, isLogin, vehiclePopular, children} = this.props
     return (
       <div>
-        {/* {isLogin ? (vehiclePopular ? <NavPopular/> : <NavBeforeLogin />) : <NavAfterLogin />}
-        {vehiclePopular ? <NavPopular /> : (isLogin ? <NavAfterLogin /> : <NavBeforeLogin />)} */}
         {!noNavbar && (vehiclePopular ? <NavPopular /> : (isLogin ? <NavAfterLogin /> : <NavBeforeLogin />))}
-        {this.props.children}
+        {children}
         {!signup && <Footer />}
       </div>
     )
