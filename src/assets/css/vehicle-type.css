@@ -119,8 +119,8 @@ body {
 .vehicle-type section img {
   border-radius: 10px;
   margin-bottom: 15px;
-  width: 284px;
-  height: 337px;
+  /* width: 284px;
+  height: 337px; */
   
 }
 .vehicle-type section a {
