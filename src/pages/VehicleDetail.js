@@ -3,7 +3,7 @@ import '../assets/css/vehicle-detail.css'
 import {BiMinus, BiPlus} from 'react-icons/bi'
 import {GrFormPrevious, GrFormNext} from 'react-icons/gr'
 import {IoChevronBack} from 'react-icons/io5'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import {default as axios} from 'axios';
 import noImage from '../assets/images/no-image.jpg'
 
@@ -13,6 +13,8 @@ export default function VehicleDetail() {
   const [vehicle, setVehilcle] = useState({})
   const [price, setPrice] = useState(0)
   const [count, setCount] = useState(1)
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     getVehicle()
@@ -33,6 +35,10 @@ export default function VehicleDetail() {
       setPrice(price / 2)
       setCount(count - 1)
     }
+  }
+
+  const toReservation = () => {
+    navigate(`/reservation/${id}`)
   }
 
   return (
@@ -108,7 +114,7 @@ export default function VehicleDetail() {
             <a href="#" className="btn btn-black">Chat Admin</a>
           </div>
           <div className="col-12 col-md text-center btn-reservation">
-            <a href="/reservation.html" className="btn btn-green">Reservation</a>
+            <button onClick={toReservation} className="btn btn-green">Reservation</button>
           </div>
           <div className="col-12 col-md-3 text-end">
             <button className="btn btn-black">

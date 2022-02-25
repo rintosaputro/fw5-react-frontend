@@ -8,6 +8,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import VehicleType from "./pages/VehicleType";
 import VehicleMore from "./pages/VehicleMore";
 import VehicleDetail from "./pages/VehicleDetail";
+import Reservation from "./pages/Reservation";
 
 export default class App extends Component {
   state = {
@@ -41,6 +42,9 @@ export default class App extends Component {
           } />
           <Route path="vehicle/:id" element={
             <Layout isLogin={isLogged}><VehicleDetail /></Layout>
+          } />
+          <Route path="reservation" element={
+            <Layout isLogin={isLogged}><Reservation /></Layout>
           } />
         </Routes>
         {/* {!this.state.isLogged && <Login isLogin={(value) => this.setState({isLogged: value})} />} */}
