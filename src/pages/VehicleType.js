@@ -3,7 +3,7 @@ import '../assets/css/vehicle-type.css'
 import ProductHighlight from '../components/ProductHighlight';
 import {BiSearchAlt2} from 'react-icons/bi'
 import {IoChevronForward} from 'react-icons/io5'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {default as axios} from 'axios';
 
 const VehicleType = () => {
@@ -11,7 +11,8 @@ const VehicleType = () => {
   const [cars, setCars] = useState([])
   const [motorbike, setMotorBike] = useState([])
   const [bike, setBike] = useState([])
-  const [search, setSearch] = useState([])
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     getVehicle(setPopularTown)
@@ -29,9 +30,7 @@ const VehicleType = () => {
   const handleSubmit = async (ev) => {
     ev.preventDefault()
     const key = ev.target.elements['search'].value
-    // getVehicle(setSearch, key, )
-    const {data} = await axios.get(`http://localhost:5000/popular?search=${key}&limit=8`)
-    setSearch(data.results)
+    navigate(`/vehicle?search=${key}`)
   }
 
   const product = (head, arr, type, link ) => {

@@ -40,6 +40,9 @@ body {
 .vehicle-type nav form {
   height: auto;
 }
+.form-control:focus {
+  box-shadow: 0 0 0 0.25rem rgba(13, 253, 233, 0.25) !important;
+}
 .vehicle-type nav form {
   margin: 0;
 }
@@ -81,7 +84,8 @@ body {
   padding-left: 75px;
   padding-right: 80px;
 }
-.vehicle-type form .form-control:focus {
+.vehicle-type form .form-control:focus,
+.vehicle-type form .form-control:hover {
   padding-right: 100px;
 }
 .vehicle-type form .search-icon {
