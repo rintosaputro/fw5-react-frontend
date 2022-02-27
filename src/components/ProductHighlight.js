@@ -11,7 +11,7 @@ export default function ProductHighlight({props}) {
         <div style={{backgroundImage: `url(${bg})`}}></div>
         <img className="img-fluid" src={bg} alt={brand} />
         <div className="highlight position-absolute start-0 text-start">
-          <h5>{location}</h5>
+          <h5>{brand}</h5>
           <span>{location}</span>
         </div>
       </Link>

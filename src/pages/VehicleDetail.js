@@ -38,7 +38,9 @@ export default function VehicleDetail() {
       setCount(count - 1)
     }
   }
-
+  const backNavigate = () => {
+    window.history.back()
+  }
   const toReservation = () => {
     navigate(`/reservation/${id}`)
   }
@@ -47,10 +49,10 @@ export default function VehicleDetail() {
     <div className='vehicle-detail my-5'>
       <section className='container first-container'>
         <div className="row pt-5 detail-vehicle">
-          <Link to='/vehicle/popular' className="back my-4 fw-bold fs-5">
+          <div onClick={backNavigate} className="back my-4 fw-bold fs-5">
             <IoChevronBack className='me-5'/>
             <span>Back</span>
-          </Link>
+          </div>
           <div className="col-12 col-lg-6 img-section">
             <div className="cover-image overflow-hidden text-center">
               <img src={vehicle.image || noImage} alt={vehicle.brand} className='img-fluid'/>

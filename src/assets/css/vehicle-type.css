@@ -132,9 +132,10 @@ body {
 }
 .vehicle-type section .highlight {
   margin-top: -67px;
+  padding-right: 10px;
   position: relative;
-  background-color: #ffff;
-  width: 120px;
+  background-color: rgba(255, 255, 255, 0.8);
+  width: auto;
   height: 56px;
   border-radius: 0px 6px 0px 0px;
   font-family: 'Nunito', sans-serif;

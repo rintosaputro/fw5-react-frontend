@@ -74,6 +74,7 @@ body {
   margin-top: 150px;
 }
 .vehicle-detail .back {
+  cursor: pointer;
   text-decoration: none;
   color: black;
 }
