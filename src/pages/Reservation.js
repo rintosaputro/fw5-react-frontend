@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import {default as axios} from 'axios'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import {BiMinus, BiPlus} from 'react-icons/bi'
 import {IoChevronBack} from 'react-icons/io5'
+import noImage from '../assets/images/no-image.jpg'
 
 export default function Reservation() {
   const {id} = useParams()
   const [vehicle, setVehilcle] = useState({})
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -17,20 +20,24 @@ export default function Reservation() {
     const {data} = await axios.get(`http://localhost:5000/vehicles/${id}`)
     setVehilcle(data.results)
   }
+  const back = () => {
+    window.history.back()
+  }
+
   const {brand, location, price, image} = vehicle
 
   return (
     <div className='vehicle-detail'>
       <section className="container first-section reservation mb-5">
-        <div className="d-flex flex-row head">
-          <a href="/more-detail-2.html" className="back d-flex mb-5">
+        <div onClick={back} style={{cursor: 'pointer'}} className="d-flex flex-row head">
+          <div className="back d-flex mb-5">
             <IoChevronBack className='me-5 fs-1'/>
-          </a>
+          </div>
           <span>Reservation</span>
         </div>
         <div className="row pt-5 detail-vehicle">
           <div className="col-12 col-lg-7 img-section overflow-hidden my-auto">
-            <img src={image} alt="fixie" className='img-fluid' />
+            <img src={image || noImage} alt={brand} className='img-fluid' />
             <div className="cover-image overflow-hidden">
               
             </div>
