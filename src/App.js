@@ -10,6 +10,7 @@ import VehicleMore from "./pages/VehicleMore";
 import VehicleDetail from "./pages/VehicleDetail";
 import Reservation from "./pages/Reservation";
 import History from "./pages/History";
+import Payment from "./pages/Payment";
 
 export default class App extends Component {
   state = {
@@ -46,6 +47,9 @@ export default class App extends Component {
           } />
           <Route path="reservation/:id" element={
             <Layout isLogin={isLogged}><Reservation /></Layout>
+          } />
+          <Route path="payment/:id" element={
+            <Layout isLogin={isLogged}><Payment /></Layout>
           } />
           <Route path="history" element={
             <Layout isLogin={isLogged}><History /></Layout>

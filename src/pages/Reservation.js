@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import '../assets/css/vehicle-detail.css'
 import {default as axios} from 'axios'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import {BiMinus, BiPlus} from 'react-icons/bi'
 import {IoChevronBack} from 'react-icons/io5'
 import noImage from '../assets/images/no-image.jpg'
@@ -8,8 +9,6 @@ import noImage from '../assets/images/no-image.jpg'
 export default function Reservation() {
   const {id} = useParams()
   const [vehicle, setVehilcle] = useState({})
-
-  const navigate = useNavigate()
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -23,8 +22,7 @@ export default function Reservation() {
   const back = () => {
     window.history.back()
   }
-
-  const {brand, location, price, image} = vehicle
+  const {brand, location, price, image, payment} = vehicle
 
   return (
     <div className='vehicle-detail'>
@@ -48,7 +46,7 @@ export default function Reservation() {
               <p className="text-muted">{location}</p>
             </div>
             <div className="status my-3 d-flex flex-column">
-              <span className="text-danger fw-bold">No prepayment</span>
+              <span className="text-danger fw-bold">{payment || 'No prepayment'}</span>
             </div>
             <div className="my-auto">
               <div className="total-day d-flex flex-row justify-content-between align-items-center">
@@ -68,11 +66,11 @@ export default function Reservation() {
           </div>
         </div>
         <div className="pay-now mt-5 px-2">
-          <a href="payment.html" className="btn btn-green w-100 mt-3">Pay now: Rp.
+          <Link to={`/payment/${id}`} className="btn btn-green w-100 mt-3">Pay now: Rp.
             <span>
               {new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(price)}
             </span>
-          </a>
+          </Link>
         </div>
       </section>
     </div>

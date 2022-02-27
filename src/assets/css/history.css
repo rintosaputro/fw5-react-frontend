@@ -85,7 +85,7 @@ nav form .search-icon:hover {
   font-size: 19px;
   color: #B8BECD !important;
 }
-.history .form-control, .form-select {
+.history .form-control, .history .form-select {
   padding-left: 20px;
   background-color: #f1f1f1;
 }

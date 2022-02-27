@@ -79,7 +79,7 @@ export default function VehicleDetail() {
             </div>
             <div className="status my-3 d-flex flex-column">
               <span className="text-success fw-bold my-2">{vehicle.status}</span>
-              <span className="text-danger">No prepayment</span>
+              <span className="text-danger">{vehicle.payment || 'No prepayment'}</span>
             </div>
             <div className="mt-4">
               Capacity: {vehicle.capacity} Person
