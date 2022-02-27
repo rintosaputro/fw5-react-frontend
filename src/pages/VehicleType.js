@@ -11,6 +11,7 @@ const VehicleType = () => {
   const [cars, setCars] = useState([])
   const [motorbike, setMotorBike] = useState([])
   const [bike, setBike] = useState([])
+  const [search, setSearch] = useState([])
 
   useEffect(() => {
     getVehicle(setPopularTown)
@@ -25,6 +26,13 @@ const VehicleType = () => {
     setData(data.results)
   }  
   
+  const handleSubmit = async (ev) => {
+    ev.preventDefault()
+    const key = ev.target.elements['search'].value
+    // getVehicle(setSearch, key, )
+    const {data} = await axios.get(`http://localhost:5000/popular?search=${key}&limit=8`)
+    setSearch(data.results)
+  }
 
   const product = (head, arr, type, link ) => {
     return (
@@ -45,7 +53,7 @@ const VehicleType = () => {
 
   return (      
     <div className='vehicle-type'>
-      <form className="container d-flex position-relative">
+      <form onSubmit={handleSubmit} className="container d-flex position-relative">
         <input className="form-control" name='search' type="search" placeholder="Search vehicle (ex. cars, cars name)" />
         <button type="submit" className="btn position-absolute end-0" aria-label="search button">
           <i className="search-icon"><BiSearchAlt2 /></i>

@@ -3,6 +3,7 @@ import '../assets/css/vehicle-detail.css'
 import {BiMinus, BiPlus} from 'react-icons/bi'
 import {GrFormPrevious, GrFormNext} from 'react-icons/gr'
 import {IoChevronBack} from 'react-icons/io5'
+import {IoMdHeart} from 'react-icons/io'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import {default as axios} from 'axios';
 import noImage from '../assets/images/no-image.jpg'
@@ -17,6 +18,7 @@ export default function VehicleDetail() {
   const navigate = useNavigate()
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     getVehicle()
   },[])
 
@@ -42,7 +44,7 @@ export default function VehicleDetail() {
   }
 
   return (
-    <div className='vehicle-detail mt-5'>
+    <div className='vehicle-detail my-5'>
       <section className='container first-container'>
         <div className="row pt-5 detail-vehicle">
           <Link to='/vehicle/popular' className="back my-4 fw-bold fs-5">
@@ -56,7 +58,6 @@ export default function VehicleDetail() {
             <div className="row carousel d-flex align-items-center mt-4">
               <button className="col-1 btn" aria-label="previous button">
                 <GrFormPrevious className='prev' />
-                <i className="fa-solid fa-angle-left prev"></i>
               </button>
               <div className="col-5 overflow-hidden rounded">
                 <img src="../assets/images/fixie-detail.png" alt="fixie" className="rounded" />
@@ -66,7 +67,6 @@ export default function VehicleDetail() {
               </div>
               <button className="col-1 btn" aria-label="next button">
                 <GrFormNext className='next' />
-                <i className="fa-solid fa-angle-right next"></i>
               </button>
             </div>
           </div>
@@ -111,15 +111,15 @@ export default function VehicleDetail() {
       <section className="container form-section mt-5">
         <form className="row">
           <div className="col-12 col-md">
-            <a href="#" className="btn btn-black">Chat Admin</a>
+            <button className="btn btn-black">Chat Admin</button>
           </div>
           <div className="col-12 col-md text-center btn-reservation">
             <button onClick={toReservation} className="btn btn-green">Reservation</button>
           </div>
           <div className="col-12 col-md-3 text-end">
             <button className="btn btn-black">
-              <i className="fa-solid fa-heart"></i>
-              Like
+              <IoMdHeart />
+              <span className='ps-2'>Like</span>
             </button>
           </div>
         </form>
