@@ -4,7 +4,7 @@ import {BiMinus, BiPlus} from 'react-icons/bi'
 import {GrFormPrevious, GrFormNext} from 'react-icons/gr'
 import {IoChevronBack} from 'react-icons/io5'
 import {IoMdHeart} from 'react-icons/io'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import {default as axios} from 'axios';
 import noImage from '../assets/images/no-image.jpg'
 
@@ -62,10 +62,10 @@ export default function VehicleDetail() {
                 <GrFormPrevious className='prev' />
               </button>
               <div className="col-5 overflow-hidden rounded">
-                <img src="../assets/images/fixie-detail.png" alt="fixie" className="rounded" />
+                <img src={vehicle.image || noImage} alt={vehicle.brand} className="rounded img-fluid" />
               </div>
               <div className="col-5 overflow-hidden rounded">
-                <img src="../assets/images/fixie-detail.png" alt="fixie" className="rounded" />
+                <img src={vehicle.image || noImage} alt={vehicle.brand} className="rounded" />
               </div>
               <button className="col-1 btn" aria-label="next button">
                 <GrFormNext className='next' />

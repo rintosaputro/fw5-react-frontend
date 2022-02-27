@@ -3,11 +3,13 @@ body {
   margin: 0;
   padding: 0;
 }
+.btn:active {
+  box-shadow: none !important;
+}
 .home .btn-green
 {
   width: 120px;
 }
-
 .home .btn-green {
   background-color: #32DBC6;
 }

@@ -9,6 +9,7 @@ export default function Reservation() {
   const [vehicle, setVehilcle] = useState({})
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     getVehicle()
   }, [])
 

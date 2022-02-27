@@ -113,7 +113,10 @@ body {
   font-weight: 900;
   font-size: 36px;
 }
-
+.vehicle-detail .carousel button, .vehicle-detail .carousel button {
+  display: flex !important;
+  padding: 0;
+}
 .vehicle-detail .prev, .vehicle-detail .next, .vehicle-detail .plus, .vehicle-detail .minus {
   font-size: 40px;
   height: auto;
