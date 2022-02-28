@@ -5,10 +5,14 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import {BiMinus, BiPlus} from 'react-icons/bi'
 import {IoChevronBack} from 'react-icons/io5'
 import noImage from '../assets/images/no-image.jpg'
+import checkDate from '../helper/checkDate'
 
 export default function Reservation() {
-  const {id} = useParams()
+  const {id, qty} = useParams()
   const [vehicle, setVehilcle] = useState({})
+  const [defaultPrice, setDefaultPrice] = useState(0)
+  const [priceVehicle, setPriceVehicle] = useState(0)
+  const [count, setCount] = useState(Number(qty))
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -16,13 +20,55 @@ export default function Reservation() {
   }, [])
 
   const getVehicle = async () => {
-    const {data} = await axios.get(`http://localhost:5000/vehicles/${id}`)
-    setVehilcle(data.results)
+    try {
+      const {data} = await axios.get(`http://localhost:5000/vehicles/${id}`)
+      setVehilcle(data.results)
+      setPriceVehicle(data.results.price * count)
+      setDefaultPrice(data.results.price)
+    } catch(err) {
+      console.log(err)
+    }
   }
   const back = () => {
     window.history.back()
   }
-  const {brand, location, price, image, payment} = vehicle
+  
+  const {brand, location, image, payment} = vehicle
+  const countPlus = () => {
+    setPriceVehicle(priceVehicle + defaultPrice)
+    setCount(count + 1)
+  }
+  const countMinus = () => {
+    if(count > 1) {
+      setPriceVehicle(priceVehicle - defaultPrice)
+      setCount(count - 1)
+    }
+  }
+
+  const navigate = useNavigate()
+
+  const gotoPayment = () => {
+    // try {
+    //   ev.preventDefault()
+    //   const startDate = document.getElementById('dateReservation').value
+    //   const endDate = document.getElementById('date').value
+    //   const {idVehicle, payment} = vehicle
+    //   const data = await axios.post('http://localhost:5000/histories', {
+    //     id_user: 1,
+    //     id_vehicle: idVehicle,
+    //     rent_start_date: startDate,
+    //     rent_end_date: startDate,
+    //     prepayment: payment,
+    //   })
+    //   console.log(data.results.idHistory);
+    //   navigate(`/payment/${id}/${qty}/${1}`)
+    //   return data
+      
+    // } catch(err) {
+    //   console.log(err)
+    // }
+    navigate(`/payment/${id}/${qty}/${1}`)
+  }
 
   return (
     <div className='vehicle-detail'>
@@ -50,14 +96,14 @@ export default function Reservation() {
             </div>
             <div className="my-auto">
               <div className="total-day d-flex flex-row justify-content-between align-items-center">
-                <button className="btn" aria-label="button minus"><BiMinus className='minus' /></button>
-                <div className="count">1</div>
-                <button className="btn" aria-label="button plus"><BiPlus className='plus'/></button>           
+                <button onClick={countMinus} className="btn" aria-label="button minus"><BiMinus className='minus' /></button>
+                <div className="count">{count}</div>
+                <button onClick={countPlus} className="btn" aria-label="button plus"><BiPlus className='plus'/></button>           
               </div>
             </div>
             <form>
               <h4 className="fw-bold mt-5">Reservation Date:</h4>
-              <input type="text" placeholder="Select date" className="form-control" />
+              <input type="date" placeholder="Select date" id='dateReservation' className="form-control" />
               <select name="date" id="date" className="form-select mt-3">
                 <option value="1">1 Day</option>
                 <option value="2">2 Day</option>
@@ -66,11 +112,11 @@ export default function Reservation() {
           </div>
         </div>
         <div className="pay-now mt-5 px-2">
-          <Link to={`/payment/${id}`} className="btn btn-green w-100 mt-3">Pay now: Rp.
+          <div onClick={gotoPayment} style={{cursor: 'pointer'}} className="btn btn-green w-100 mt-3">Pay now: Rp.
             <span>
-              {new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(price)}
+              {new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(priceVehicle)}
             </span>
-          </Link>
+          </div>
         </div>
       </section>
     </div>
