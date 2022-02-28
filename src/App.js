@@ -11,6 +11,7 @@ import VehicleDetail from "./pages/VehicleDetail";
 import Reservation from "./pages/Reservation";
 import History from "./pages/History";
 import Payment from "./pages/Payment";
+import Profile from "./pages/Profile";
 
 export default class App extends Component {
   state = {
@@ -53,6 +54,9 @@ export default class App extends Component {
           } />
           <Route path="history" element={
             <Layout isLogin={isLogged}><History /></Layout>
+          } />
+          <Route path="profile" element={
+            <Layout isLogin={isLogged}><Profile /></Layout>
           } />
         </Routes>
         {/* {!this.state.isLogged && <Login isLogin={(value) => this.setState({isLogged: value})} />} */}
