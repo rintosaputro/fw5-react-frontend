@@ -31,9 +31,13 @@ export default function Search() {
   }
 
   const nextPage = async () => {
-    const {data} = await axios.get(page.next)
-    setVehilcle([...vehicle, ...data.results])
-    setPage(data.pageInfo)
+    try {
+      const {data} = await axios.get(page.next)
+      setVehilcle([...vehicle, ...data.results])
+      setPage(data.pageInfo)
+    } catch (err) {
+      console.log(err.message)
+    }
   }
   const handleSubmit = (ev) => {
     ev.preventDefault()

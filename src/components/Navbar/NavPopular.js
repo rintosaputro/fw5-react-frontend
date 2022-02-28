@@ -13,7 +13,7 @@ export default function NavPopular() {
   const handleSubmit = (ev) => {
     ev.preventDefault()
     const search = ev.target.elements['search'].value
-    navigate(`?search=${search}`)
+    navigate(`/search?keyword=${search}`)
   }
 
   return (
