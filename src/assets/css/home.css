@@ -154,7 +154,7 @@ main.home section .highlight span {
   margin: 0 5px;
 }
 
-@media all and (max-width: 991px) {
+/* @media all and (max-width: 991px) {
   nav {
     height: 95px;
   }
@@ -190,7 +190,7 @@ main.home section .highlight span {
   .btn-outline {
     margin-bottom: 20px;
   }
-}
+} */
 @media all and (max-width: 650px) {
   /* nav .container-fluid {
     justify-content: center !important;

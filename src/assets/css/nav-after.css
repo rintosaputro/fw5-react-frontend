@@ -4,7 +4,7 @@
 .nav-after nav .navigation {
   font-size: 1rem;
   padding: 0 65px;
-  display: flex;
+  /* display: flex; */
   justify-content: flex-end;
 }
 .nav-after nav .navbar-collapse {
@@ -36,6 +36,9 @@
 @media all and (max-width: 991px) {
   .nav-after nav {
     height: 95px;
+  }
+  .nav-after nav .navigation {
+    justify-content: space-between;
   }
   .nav-after nav .navigation#navbarNav {
     align-items: flex-end;

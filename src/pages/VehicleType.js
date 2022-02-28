@@ -9,6 +9,7 @@ import {default as axios} from 'axios';
 const VehicleType = () => {
   const [popularTown, setPopularTown] = useState([])
   const [cars, setCars] = useState([])
+  const [pickUP, setPickUp] = useState([])
   const [motorbike, setMotorBike] = useState([])
   const [bike, setBike] = useState([])
 
@@ -17,6 +18,7 @@ const VehicleType = () => {
   useEffect(() => {
     getVehicle(setPopularTown)
     getVehicle(setCars, 'cars')
+    getVehicle(setPickUp, 'pick up')
     getVehicle(setMotorBike, 'motorbike')
     getVehicle(setBike, 'bike')
   },[])
@@ -64,6 +66,7 @@ const VehicleType = () => {
       {product('Cars', cars, 'cars')}
       {product('Motorbike', motorbike, 'motorbike')}
       {product('Bike', bike, 'bike')}
+      {product('Pick Up', pickUP, 'pick up')}
     </div>
   )
 }

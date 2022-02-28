@@ -6,7 +6,7 @@ body {
   margin: 0;
   padding: 0;
 }
-.vehicle-detail nav {
+/* .vehicle-detail nav {
   height: 150px;
 }
 .vehicle-detail nav .navigation {
@@ -39,7 +39,7 @@ body {
 }
 .vehicle-detail .profile img {
   border-radius: 30px;
-}
+} */
 
 /* button */
 .vehicle-detail .btn:focus {
@@ -69,6 +69,7 @@ body {
 /* section */
 .vehicle-detail section {
   margin-top: 40px;
+  margin-bottom: 50px;
 }
 .vehicle-detail .first-section {
   margin-top: 150px;
@@ -279,7 +280,7 @@ body {
   }
 }
 @media all and (max-width: 991px) {
-  .vehicle-detail nav {
+  /* .vehicle-detail nav {
     height: 95px;
   }
   .vehicle-detail nav .navigation#navbarNav {
@@ -301,7 +302,7 @@ body {
   }
   .vehicle-detail nav form {
     margin: 20px 0;
-  }
+  } */
   .vehicle-detail .reservation .img-section img {
     width: 100%;
     height: auto;
@@ -325,7 +326,9 @@ body {
   /* payment */
   .vehicle-detail .payment .description-section {
     width: auto;
-    margin-top: 0;
+    margin-top: 0 !important;
+    margin-left: 23px;
+    padding: 10px;
   }
   .vehicle-detail .payment .img-section {
     text-align: unset;
@@ -360,6 +363,9 @@ body {
 @media all and (max-width: 768px) {
   .vehicle-detail .carousel {
     margin-bottom: 45px;
+  }
+  .vehicle-detail .reservation .back {
+    font-size: 20px;
   }
   .vehicle-detail .total-day {
     margin: auto;
@@ -396,7 +402,7 @@ body {
   .vehicle-detail .payment .code,
   .vehicle-detail .payment .copy-contain .btn,
   .vehicle-detail .pay-now .btn {
-    font-size: 10px;
+    font-size: 15px;
   }
   .vehicle-detail .payment .description p,
   .vehicle-detail .payment .status,
@@ -430,9 +436,9 @@ body {
     font-size: 14px;
   }
   .vehicle-detail .btn-copy {
-    padding: 3px;
+    padding: 9px;
     font-size: 11px;
-    width: 28%;
+    width: 45%;
   }
   .vehicle-detail .payment .payment-code, .vehicle-detail .payment .form-select {
     height: 47px;
@@ -453,6 +459,13 @@ body {
   }
   .vehicle-detail .description-section {
     margin: 10px;
+  }
+  .vehicle-detail .reservation .description-section {
+    margin: 0;
+  }
+  .vehicle-detail .btn-copy-top {
+    padding: 12px !important;
+    width: 200%;
   }
   .vehicle-detail .description h2 {
     font-size: 40px;

@@ -67,7 +67,7 @@ export default function Reservation() {
     // } catch(err) {
     //   console.log(err)
     // }
-    navigate(`/payment/${id}/${qty}/${1}`)
+    navigate(`/payment/${id}/${count}/${1}`)
   }
 
   return (

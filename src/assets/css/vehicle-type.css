@@ -5,7 +5,7 @@ body {
   font-family: 'Nunito', Courier, monospace;
 }
 .vehicle-type nav {
-  height: 150px;
+  height: 100px;
 }
 .vehicle-type nav .navigation {
   font-size: 1rem;
@@ -52,10 +52,6 @@ body {
 .vehicle-type nav input.form-control {
   padding-left: 8px;
 }
-/* .vehicle-type nav input.form-control:focus,
-.vehicle-type nav input.form-control:hover {
-  padding-right: 45px;
-} */
 .vehicle-type nav form button {
   height: fit-content;
 }
@@ -81,8 +77,8 @@ body {
   color: #B8BECD !important;
 }
 .vehicle-type form .form-control {
-  padding-left: 75px;
-  padding-right: 80px;
+  padding-left: 51px;
+  padding-right: 53px;
 }
 .vehicle-type form .form-control:focus,
 .vehicle-type form .form-control:hover {
@@ -197,6 +193,19 @@ body {
   }
   .vehicle-type section .highlight {
     margin-top: -70px;
+  }
+}
+@media  all and (max-width: 768px) {
+  .vehicle-type form .search-icon {
+    font-size: 20px;
+    padding-right: 10px;
+  }
+  .vehicle-type form .form-control {
+    padding-left: 15px;
+    padding-right: 53px;
+  }
+  .vehicle-type form .form-control:focus, .vehicle-type form .form-control:hover {
+    padding-right: 45px;
   }
 }
 @media all and (max-width: 576px) {

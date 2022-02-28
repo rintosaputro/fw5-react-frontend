@@ -12,7 +12,6 @@ export default function VehicleMore() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    console.log(searchParams)
     const params = searchParams.get('type') ? {type: searchParams.get('type')} 
     : {search: searchParams.get('search') || '', filter: searchParams.get('filter') || ''}
     getVehicle(params)
