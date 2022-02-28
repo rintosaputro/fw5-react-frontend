@@ -18,6 +18,9 @@ body {
 .vehicle-type nav .mail-profile img {
   width: 54.62px;
 }
+.vehicle-type nav form .form-control:focus, .vehicle-type nav form .form-control:hover {
+  padding-right: 53px;
+}
 .vehicle-type .message {
   text-decoration: none;
 }
@@ -77,16 +80,16 @@ body {
   color: #B8BECD !important;
 }
 .vehicle-type form .form-control {
-  padding-left: 51px;
-  padding-right: 53px;
+  padding-left: 50px;
+  padding-right: 59px;
 }
 .vehicle-type form .form-control:focus,
 .vehicle-type form .form-control:hover {
-  padding-right: 100px;
+  padding-right: 59px;
 }
 .vehicle-type form .search-icon {
   font-size: 25px;
-  padding-right: 40px;
+  padding-right: 20px;
 }
 
 /* section */

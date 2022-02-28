@@ -12,6 +12,7 @@ import Reservation from "./pages/Reservation";
 import History from "./pages/History";
 import Payment from "./pages/Payment";
 import Profile from "./pages/Profile";
+import Search from "./pages/Search";
 
 export default class App extends Component {
   state = {
@@ -57,6 +58,9 @@ export default class App extends Component {
           } />
           <Route path="profile/:idUser" element={
             <Layout isLogin={isLogged}><Profile /></Layout>
+          } />
+          <Route path={`search`} element={
+            <Layout isLogin={isLogged}><Search /></Layout>
           } />
         </Routes>
         {/* {!this.state.isLogged && <Login isLogin={(value) => this.setState({isLogged: value})} />} */}

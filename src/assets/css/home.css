@@ -6,6 +6,9 @@ body {
 .btn:active {
   box-shadow: none !important;
 }
+.btn:focus {
+  box-shadow: none !important;
+}
 .home .btn-green
 {
   width: 120px;

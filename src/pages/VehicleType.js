@@ -33,7 +33,7 @@ const VehicleType = () => {
     ev.preventDefault()
     const key = ev.target.elements['search'].value
     const fil = ev.target.elements['filter'].value
-    navigate(fil ? `/vehicle?search=${key}&filter=${fil}` : `/vehicle?search=${key}`)
+    navigate(fil ? `/search?keyword=${key}&filter=${fil}` : `/search?keyword=${key}`)
   }
 
   const product = (head, arr, type, link ) => {
