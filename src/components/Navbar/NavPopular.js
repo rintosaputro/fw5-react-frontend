@@ -36,7 +36,7 @@ export default function NavPopular() {
             </form>
             <div className="mail-profile ms-xl-5 d-flex align-items-center">
               <Link to='/message' className="me-4 message"><span className="text-white badge total-message">1</span><FiMail className='icon-message' /></Link>
-              <Link to='/profile' className='profile'>
+              <Link to='/profile/41' className='profile'>
                 <img src={photo} alt="Photoprofile." />
               </Link>
             </div>

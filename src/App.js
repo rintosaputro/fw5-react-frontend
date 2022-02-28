@@ -55,7 +55,7 @@ export default class App extends Component {
           <Route path="history" element={
             <Layout isLogin={isLogged}><History /></Layout>
           } />
-          <Route path="profile" element={
+          <Route path="profile/:idUser" element={
             <Layout isLogin={isLogged}><Profile /></Layout>
           } />
         </Routes>

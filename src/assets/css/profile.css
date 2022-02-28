@@ -58,6 +58,12 @@ nav .mail-profile img {
 .profile header h1, .profile header h2, .profile header p {
   font-weight: bold;
 }
+.form-check-input:checked {
+  border-color: #32DBC6 !important;
+}
+.form-check-input {
+  border: 4px solid rgba(53, 66, 65, 0.25);;
+}
 .profile form .gender {
   margin-top: 134px;
   display: flex;
