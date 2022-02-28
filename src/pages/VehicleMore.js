@@ -40,7 +40,8 @@ export default function VehicleMore() {
         <div className='row'>
           {vehicle.map(data => {
             const props = {image: data.image, location: data.location, brand: data.brand, id: data.idVehicle}
-            return <ProductHighlight key={props.id} props={props} />
+            if (data.qty > 0) return <ProductHighlight key={props.id} props={props} />
+            // return <ProductHighlight key={props.id} props={props} />
           })}
         </div>
         <div className='my-4 text-center'>

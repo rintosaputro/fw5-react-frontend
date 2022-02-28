@@ -130,8 +130,8 @@ export default function Payment() {
           <div className="col-12 col-sm-auto">
             <select className="form-select">
               <option className="d-none">Select payment method</option>
-              <option>ATM</option>
-              <option>Gopay</option>
+              <option>Cash</option>
+              <option>Transfer</option>
             </select>
           </div>
         </div>

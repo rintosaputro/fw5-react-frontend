@@ -9,6 +9,7 @@ export default function Profile() {
   const {idUser} = useParams()
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     getUser()
   }, [])
 

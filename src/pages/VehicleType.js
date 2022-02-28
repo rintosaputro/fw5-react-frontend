@@ -16,6 +16,7 @@ const VehicleType = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     getVehicle(setPopularTown)
     getVehicle(setCars, 'cars')
     getVehicle(setPickUp, 'pick up')
@@ -46,7 +47,8 @@ const VehicleType = () => {
         <div className="row">
           {arr.map((data) => {
             const props = {image: data.image, location: data.location, brand: data.brand, id: data.idVehicle}
-            return <ProductHighlight key={props.id} props={props} />
+            if (data.qty > 0) return <ProductHighlight key={props.id} props={props} />
+            // return <ProductHighlight key={props.id} props={props} />
           })}
         </div>
       </section>

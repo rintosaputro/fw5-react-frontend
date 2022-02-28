@@ -48,7 +48,8 @@ header.home .opacity .line {
   width: 32px;
 }
 header.home .option-form {
-  width: 220px;
+  padding: 0 20px;
+  width:  -webkit-fill-available;
   height: 52px;
   margin:35px 0;
   margin-right: 31px;
@@ -57,6 +58,9 @@ header.home .option-form {
 }
 header.home .option-form:focus {
   outline: none;
+}
+header.home .option-form::placeholder {
+  color: #000000;
 }
 header.home .opacity .btn {
   border-radius: 8px;

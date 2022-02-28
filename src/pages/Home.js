@@ -5,33 +5,39 @@ import user from '../assets/images/user-homepage.png'
 import {GrFormPrevious, GrFormNext} from 'react-icons/gr';
 import {FaStar} from 'react-icons/fa'
 import ProductHighlight from '../components/ProductHighlight';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {IoChevronForward} from 'react-icons/io5'
 
 const Home = () => {
   const [vehicle, setVehilcle] = useState([])
   const [category, setCategory] = useState([])
   const [allVehicles, setAllVehicles] = useState([])
+  const navigate = useNavigate()
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     getVehicle()
     getCategory()
   },[])
 
-  const dataLocation = []
   const getVehicle = async () => {
     const {data} = await axios.get('http://localhost:5000/popular?limit=4')
     setVehilcle(data.results)
-    // const {item} = await axios.get('http://localhost:5000/popular?limit=100')
-    // setAllVehicles(item.results)
-    // item.results.map((data) => dataLocation.push(data.location))
-    // console.log(dataLocation)
-    console.log(data.results)
   }
   const getCategory = async () => {
     const {data} = await axios.get('http://localhost:5000/categories?limit=100')
     setCategory(data.results)
-  }  
+  }
+
+  const handleSubmit = (ev) => {
+    ev.preventDefault()
+    const key = document.getElementById('search').value
+    const location = document.getElementById('location').value
+    const date = document.getElementById('date').value
+    console.log(date)
+    navigate(`/search?keyword=${key}&filter=${location}&date=${date}`)
+  }
+
   
   return (
     <>
@@ -40,41 +46,31 @@ const Home = () => {
         <div className="container">
           <h1>Explore and <br/> Travel</h1>
           <p>Vehicle Finder</p>
-          <div className="line"></div>
+          <div className="line"></div> 
           <form className="col-sm-12 col-lg-6">
-            <div className="row">
-              <div className="col-sm-6">
-                <select className="option-form">
-                  <option className='d-none'>Location</option>
-                  <option>Jakarta</option>
-                  <option>Bandung</option>
-                  <option>Yogyakarta</option>
-                  <option>Depok</option>
-                  <option>Ngawi</option>
-                  {/* {[...new Set(dataLocation)].map((data) => <option key={data}>{data}</option>)} */}
-                </select>
-              </div>
-              <div className="col-sm-6">
-                <select className="option-form">
-                  <option className='d-none'>Type</option>
-                  {category.map((data) => <option key={data.idCategory}>{data.type}</option>)}
-                </select>
+            <div className="">
+              <div className='col-12'>
+                <input name='search' id='search' type='search' placeholder='Type the vehicle (ex. motorbike, cars)' className='option-form' />
               </div>
             </div>
             <div className="row">
               <div className="col-sm-6">
-                <select className="option-form">
-                  <option>Payment</option>
-                  <option></option>
+                <select id='location' className="option-form">
+                  <option className='d-none'>Location</option>
+                  <option value='Jakarta'>Jakarta</option>
+                  <option value='Bandung'>Bandung</option>
+                  <option value='Yogyakarta'>Yogyakarta</option>
+                  <option value='Depok'>Depok</option>
+                  <option value='Ngawi'>Ngawi</option>
                 </select>
               </div>
               <div className="col-sm-6">
                 <label className="date-section">
-                  <input type="date" className="option-form" id="date" />
+                  <input name='date' type="date" className="option-form" id="date" />
                 </label>
               </div>
             </div>
-            <button className="btn btn-green" aria-label="explore">Explore</button>
+            <button onClick={handleSubmit} className="btn btn-green" aria-label="explore">Search</button>
           </form>
         </div>
       </div>
@@ -89,7 +85,7 @@ const Home = () => {
         <div className="row">
           {vehicle.map((data) => {
             const props = {image: data.image, location: data.location, brand: data.brand, id: data.idVehicle}
-            return <ProductHighlight key={props.id} props={props} />
+            if (data.qty > 0) return <ProductHighlight key={props.id} props={props} />
           })}
         </div>
       </section>

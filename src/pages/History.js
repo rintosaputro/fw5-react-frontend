@@ -10,6 +10,7 @@ export default function History() {
   const [page, setPage] = useState([])
   
   useEffect(() => {
+    window.scrollTo(0, 0)
     getHistory()
     getNewVehicle()
   }, [])
