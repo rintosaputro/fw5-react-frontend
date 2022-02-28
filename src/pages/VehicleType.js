@@ -30,7 +30,8 @@ const VehicleType = () => {
   const handleSubmit = async (ev) => {
     ev.preventDefault()
     const key = ev.target.elements['search'].value
-    navigate(`/vehicle?search=${key}`)
+    const fil = ev.target.elements['filter'].value
+    navigate(fil ? `/vehicle?search=${key}&filter=${fil}` : `/vehicle?search=${key}`)
   }
 
   const product = (head, arr, type, link ) => {
@@ -54,6 +55,7 @@ const VehicleType = () => {
     <div className='vehicle-type'>
       <form onSubmit={handleSubmit} className="container d-flex position-relative">
         <input className="form-control" name='search' type="search" placeholder="Search vehicle (ex. cars, cars name)" />
+        <input className="form-control" name='filter' type="search" placeholder="Filter (ex. location)" />
         <button type="submit" className="btn position-absolute end-0" aria-label="search button">
           <i className="search-icon"><BiSearchAlt2 /></i>
         </button>
