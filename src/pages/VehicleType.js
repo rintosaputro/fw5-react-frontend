@@ -30,11 +30,37 @@ const VehicleType = () => {
     setData(data.results)
   }  
   
-  const handleSubmit = async (ev) => {
+  const handleSubmit = (ev) => {
     ev.preventDefault()
-    const key = ev.target.elements['search'].value
-    const fil = ev.target.elements['filter'].value
-    navigate(fil ? `/search?keyword=${key}&filter=${fil}` : `/search?keyword=${key}`)
+    const key = ev.target.elements['brand'].value
+    const fil = ev.target.elements['location'].value
+    const min = ev.target.elements['minimum'].value
+    const max = ev.target.elements['maximum'].value
+    let url = ''
+    if (key) {
+      url = `/search?keyword=${key}`
+    }
+    if (fil) {
+      url = `/search?keyword=${key}&location=${fil}`
+    }
+    if (min) {
+      url = `/search?keyword=${key}&min=${min}`
+    }
+    if (max) {
+      url = `/search?keyword=${key}&max=${max}`
+    }
+    if (min && fil) {
+      url = `/search?keyword=${key}&location=${fil}&min=${min}`
+    }
+    if (max && fil) {
+      url = `/search?keyword=${key}&location=${fil}&min=${max}`
+    }
+    if (fil && max && min) {
+      url = `/search?keyword=${key}&location=${fil}&min=${min}&max=${max}`
+    }
+    navigate(url)
+    console.log(url)
+    // navigate(fil ? `/search?keyword=${key}&filter=${fil}` : `/search?keyword=${key}`)
   }
 
   const product = (head, arr, type, link ) => {
@@ -57,13 +83,32 @@ const VehicleType = () => {
 
   return (      
     <div className='vehicle-type'>
-      <form onSubmit={handleSubmit} className="container d-flex position-relative">
+      {/* <form onSubmit={handleSubmit} className="container d-flex position-relative">
         <input className="form-control" name='search' type="search" placeholder="Search vehicle (ex. cars, cars name)" />
         <input className="form-control" name='filter' type="search" placeholder="Filter (ex. location)" />
         <button type="submit" className="btn position-absolute end-0" aria-label="search button">
           <i className="search-icon"><BiSearchAlt2 /></i>
         </button>
-      </form>
+      </form> */}
+      <section className='form-search'>
+        <form onSubmit={handleSubmit} className="container row g-0  mx-auto">
+          <div className='col-12 col-md-6 my-2'>
+            <input className="form-control" name='brand' type="search" placeholder="Search vehicle (ex. cars, cars name)" />
+          </div>
+          <div className='col-12 col-md-6 my-2'>
+            <input className="form-control" name='location' type="search" placeholder="Location" />
+          </div>
+          <div className='col-12 col-md-6'>
+            <input className='form-control my-2' name='minimum' type='number' placeholder='Min price' />
+          </div>
+          <div className='col-12 col-md-6'>
+            <input className='form-control my-2' name='maximum' type='number' placeholder='Max price' />
+          </div>
+          <button type="submit" className="col-12 btn-green btn text-center fs-5" aria-label="search button">
+            Search <i className="search-icon"><BiSearchAlt2 /></i>
+          </button>
+        </form>
+      </section>
       {product('Popular in town', popularTown)}
       {product('Cars', cars, 'cars')}
       {product('Motorbike', motorbike, 'motorbike')}

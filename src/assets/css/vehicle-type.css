@@ -80,12 +80,14 @@ body {
   color: #B8BECD !important;
 }
 .vehicle-type form .form-control {
-  padding-left: 50px;
-  padding-right: 59px;
+  padding: 15px 20px;
+  /* padding-left: 50px;
+  padding-right: 59px; */
 }
 .vehicle-type form .form-control:focus,
 .vehicle-type form .form-control:hover {
-  padding-right: 59px;
+  /* padding-right: 59px; */
+
 }
 .vehicle-type form .search-icon {
   font-size: 25px;
@@ -184,6 +186,9 @@ body {
   .vehicle-type .mail-profile a {
     width: 100%;
   }
+  .vehicle-type .form-search {
+    height: 225px;
+  }
   .vehicle-type nav form {
     width: 100%;
     margin: 20px 0;
@@ -210,9 +215,15 @@ body {
   .vehicle-type form .form-control:focus, .vehicle-type form .form-control:hover {
     padding-right: 45px;
   }
+  .vehicle-type .form-search {
+    height: 330px;
+  }
 }
 @media all and (max-width: 576px) {
   form .form-control {
     padding-left: 32px;
+  }
+  .vehicle-type .form-search {
+    padding: 0 15px;
   }
 }

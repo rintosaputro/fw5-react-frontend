@@ -4,6 +4,7 @@ import {default as axios} from 'axios'
 import noImage from '../assets/images/no-image.jpg'
 import { Link } from 'react-router-dom'
 import deleteActiveNav from '../helper/deleteActiveNav'
+import {GoSearch} from 'react-icons/go'
 
 export default function History() {
   const [history, setHistory] = useState([])
@@ -65,15 +66,16 @@ export default function History() {
       <main className="row main-section">
         <section className="col-12 col-md -8 ps-5">
           <div className="row container form-section">
-            <div className="col-12 col-sm-9 search-bar">
-              <form className="container d-flex position-relative">
+            <div className="col-12 col-md-9 search-bar">
+              <form className=" d-flex position-relative">
                 <input className="form-control" type="search" placeholder="Search history" />
                 <button type="submit" className="btn position-absolute end-0">
+                  <GoSearch className='icon-search' />
                   <i className="fa-solid fa-magnifying-glass search-icon"></i>
                 </button>
               </form>       
             </div>
-            <div className="container col-4 col-sm-3 filter">
+            <div className="container col-12 col-md-3 filter">
               <select className="form-select select-bar">
                 <option className="d-none disabled">Filter</option>
                 <option value="type">Type</option>
