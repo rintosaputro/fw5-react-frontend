@@ -3,6 +3,7 @@ import '../assets/css/vehicle-detail.css'
 import {default as axios} from 'axios'
 import { useParams } from 'react-router-dom'
 import {IoChevronBack} from 'react-icons/io5'
+import activeNav from '../helper/activeNav'
 
 export default function Payment() {
   const [vehicle, setVehilcle] = useState({})
@@ -10,6 +11,7 @@ export default function Payment() {
   useEffect(() => {
     window.scrollTo(0, 0)
     getVehicle()
+    activeNav()
   }, [])
 
   const {id, qty} = useParams()

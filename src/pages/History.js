@@ -3,6 +3,7 @@ import '../assets/css/history.css'
 import {default as axios} from 'axios'
 import noImage from '../assets/images/no-image.jpg'
 import { Link } from 'react-router-dom'
+import deleteActiveNav from '../helper/deleteActiveNav'
 
 export default function History() {
   const [history, setHistory] = useState([])
@@ -13,6 +14,7 @@ export default function History() {
     window.scrollTo(0, 0)
     getHistory()
     getNewVehicle()
+    deleteActiveNav()
   }, [])
 
   const getHistory = async (key) => {

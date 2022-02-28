@@ -7,6 +7,7 @@ import {IoMdHeart} from 'react-icons/io'
 import { useNavigate, useParams } from 'react-router-dom'
 import {default as axios} from 'axios';
 import noImage from '../assets/images/no-image.jpg'
+import activeNav from '../helper/activeNav'
 
 export default function VehicleDetail() {
   const {id} = useParams()
@@ -21,6 +22,7 @@ export default function VehicleDetail() {
   useEffect(() => {
     window.scrollTo(0, 0)
     getVehicle()
+    activeNav()
   },[])
 
   const getVehicle = async () => {

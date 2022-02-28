@@ -7,6 +7,7 @@ import {FaStar} from 'react-icons/fa'
 import ProductHighlight from '../components/ProductHighlight';
 import { Link, useNavigate } from 'react-router-dom';
 import {IoChevronForward} from 'react-icons/io5'
+import deleteActiveNav from '../helper/deleteActiveNav'
 
 const Home = () => {
   const [vehicle, setVehilcle] = useState([])
@@ -18,6 +19,7 @@ const Home = () => {
     window.scrollTo(0, 0)
     getVehicle()
     getCategory()
+    deleteActiveNav()
   },[])
 
   const getVehicle = async () => {
@@ -31,11 +33,11 @@ const Home = () => {
 
   const handleSubmit = (ev) => {
     ev.preventDefault()
-    const key = document.getElementById('search').value
-    const location = document.getElementById('location').value
-    const date = document.getElementById('date').value
-    console.log(date)
-    navigate(`/search?keyword=${key}&filter=${location}&date=${date}`)
+    // const key = document.getElementById('search').value
+    // const location = document.getElementById('location').value
+    // const date = document.getElementById('date').value
+    // console.log(date)
+    // navigate(`/search?keyword=${key}&filter=${location}&date=${date}`)
   }
 
   
@@ -54,7 +56,7 @@ const Home = () => {
               </div>
             </div>
             <div className="row">
-              <div className="col-sm-6">
+              <div className="col-12 col-md-6">
                 <select id='location' className="option-form">
                   <option className='d-none'>Location</option>
                   <option value='Jakarta'>Jakarta</option>
@@ -64,7 +66,7 @@ const Home = () => {
                   <option value='Ngawi'>Ngawi</option>
                 </select>
               </div>
-              <div className="col-sm-6">
+              <div className="col-12 col-md-6">
                 <label className="date-section">
                   <input name='date' type="date" className="option-form" id="date" />
                 </label>

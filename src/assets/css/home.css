@@ -52,7 +52,6 @@ header.home .option-form {
   width:  -webkit-fill-available;
   height: 52px;
   margin:35px 0;
-  margin-right: 31px;
   border-radius: 6px;
   background-color: rgba(255, 255, 255, 0.5);
 }
@@ -198,6 +197,15 @@ main.home section .highlight span {
     margin-bottom: 20px;
   }
 } */
+@media all and (max-width: 768px) {
+  header.home .opacity .btn {
+    width: inherit;
+    margin-top: 15px;
+  }
+  header.home .option-form {
+    margin: 20px 0;
+  }
+}
 @media all and (max-width: 650px) {
   /* nav .container-fluid {
     justify-content: center !important;

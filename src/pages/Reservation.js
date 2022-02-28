@@ -5,6 +5,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import {BiMinus, BiPlus} from 'react-icons/bi'
 import {IoChevronBack} from 'react-icons/io5'
 import noImage from '../assets/images/no-image.jpg'
+import activeNav from '../helper/activeNav'
 import checkDate from '../helper/checkDate'
 
 export default function Reservation() {
@@ -17,6 +18,7 @@ export default function Reservation() {
   useEffect(() => {
     window.scrollTo(0, 0)
     getVehicle()
+    activeNav()
   }, [])
 
   const getVehicle = async () => {

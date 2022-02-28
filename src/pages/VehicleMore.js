@@ -3,6 +3,7 @@ import '../assets/css/vehicle-type.css'
 import ProductHighlight from '../components/ProductHighlight'
 import {default as axios} from 'axios';
 import { useSearchParams } from 'react-router-dom';
+import activeNav from '../helper/activeNav';
 
 export default function VehicleMore() {
   const [vehicle, setVehilcle] = useState([])
@@ -14,6 +15,7 @@ export default function VehicleMore() {
     window.scrollTo(0, 0)
     const params = searchParams.get('type')
     getVehicle(params)
+    activeNav()
   }, [searchParams])
 
   const getVehicle = async (params) => {

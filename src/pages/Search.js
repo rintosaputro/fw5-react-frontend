@@ -5,18 +5,25 @@ import {default as axios} from 'axios';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import {BiSearchAlt2} from 'react-icons/bi'
 
-export default function Search() {
+export default function Search(props) {
   const [vehicle, setVehilcle] = useState([])
   const [page, setPage] = useState({})
   
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
 
+  const navActive = () => {
+    const navList = document.getElementById('vehicleType')
+    navList.classList.add('active')
+    // navList.classList.remove('active')
+  }
+
   useEffect(() => {
     window.scrollTo(0, 0)
     const params = searchParams.get('type') ? {type: searchParams.get('type')} 
     : {search: searchParams.get('keyword') || '', filter: searchParams.get('filter') || ''}
     getVehicle(params)
+    navActive()
   }, [searchParams])
 
   const getVehicle = async (params) => {

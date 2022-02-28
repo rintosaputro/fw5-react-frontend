@@ -3,6 +3,7 @@ import '../assets/css/profile.css'
 import {default as axios} from 'axios'
 import { useParams} from 'react-router-dom'
 import {BsFillPenFill} from 'react-icons/bs'
+import deleteActiveNav from '../helper/deleteActiveNav'
 
 export default function Profile() {
   const [user, setUser] = useState([])
@@ -11,6 +12,7 @@ export default function Profile() {
   useEffect(() => {
     window.scrollTo(0, 0)
     getUser()
+    deleteActiveNav()
   }, [])
 
   const getUser = async () => {
