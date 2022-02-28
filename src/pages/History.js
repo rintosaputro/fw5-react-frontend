@@ -85,48 +85,6 @@ export default function History() {
               const props = {idHistory: data.idHistory, idUser: data.idUser, name: data.name, image: data.image, brand: data.brand, prepayment: data.prepayment, status: data.status }
               return bgImage(props)
             })}
-
-            <div className="d-flex align-items-center history-contain">
-              <div className="row history-data">
-                <div className="col-3">
-                  <div className="vehicle-image1" style={{backgroundImage: `url('}')`}} ></div>
-                </div>
-                <div className="col">
-                  <div className="detail-1">
-                    <h5 className="m-0 fw-bold">Vespa Matic</h5>
-                    <span>Jan 18 to 21 2021</span>
-                  </div>
-                  <div className="mt-4 detail-2">
-                    <h5 className="m-0 fw-bold">Prepayment: Rp. 245.000</h5>
-                    <span className="text-success status">Has been returned</span>
-                  </div>
-                </div> 
-              </div>
-              <div className="btn-delete d-none">
-                <button className="btn btn-green">Delete</button>
-              </div>
-            </div>
-            
-            <div className="d-flex align-items-center history-contain">
-              <div className="row history-data">
-                <div className="col-3">
-                  <div className="vehicle-image2"></div>
-                </div>
-                <div className="col">
-                  <div className="detail-1">
-                    <h5 className="m-0 fw-bold">Lamborghini</h5>
-                    <span>Jan 18 to 21 2021</span>
-                  </div>
-                  <div className="mt-4 detail-2">
-                    <h5 className="m-0 fw-bold">Prepayment: Rp. 5.500.000</h5>
-                    <span className="text-success status">Has been returned</span>
-                  </div>
-                </div>
-              </div>
-              <div className="btn-delete d-none">
-                <button className="btn btn-green">Delete</button>
-              </div>
-            </div>
           </div>
         </section>
       
