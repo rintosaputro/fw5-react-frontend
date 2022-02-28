@@ -12,6 +12,7 @@ export default function VehicleDetail() {
   const {id} = useParams()
 
   const [vehicle, setVehilcle] = useState({})
+  const [defaultPrice, setDefaultPrice] = useState(0)
   const [price, setPrice] = useState(0)
   const [count, setCount] = useState(1)
 
@@ -25,16 +26,17 @@ export default function VehicleDetail() {
   const getVehicle = async () => {
     const {data} = await axios.get(`http://localhost:5000/vehicles/${id}`)
     setVehilcle(data.results)
+    setDefaultPrice(data.results.price)
     setPrice(data.results.price)
   }
   
   const countPlus = () => {
-    setPrice(price * 2)
+    setPrice(defaultPrice + price )
     setCount(count + 1)
   }
   const countMinus = () => {
     if(count > 1) {
-      setPrice(price / 2)
+      setPrice(price - defaultPrice)
       setCount(count - 1)
     }
   }
@@ -42,7 +44,7 @@ export default function VehicleDetail() {
     window.history.back()
   }
   const toReservation = () => {
-    navigate(`/reservation/${id}`)
+    navigate(`/reservation/${id}/${count}`)
   }
 
   return (
