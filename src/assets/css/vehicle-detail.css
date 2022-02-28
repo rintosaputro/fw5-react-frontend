@@ -126,7 +126,7 @@ body {
   width: 100%;
 }
 .vehicle-detail .total-day {
-  margin-top: 20%;
+  margin: 13% 0;
 }
 .vehicle-detail .plus, .minus {
   padding: 10px;
@@ -181,6 +181,9 @@ body {
   padding: 20px 0;
   background-color: rgba(159, 163, 161, 0.1);
   border: none;
+}
+.vehicle-detail .reservation input.form-control {
+  padding-right: 20px;
 }
 .vehicle-detail .reservation input.form-control,
 .vehicle-detail .reservation select.form-select {

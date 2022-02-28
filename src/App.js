@@ -45,10 +45,10 @@ export default class App extends Component {
           <Route path="vehicle/:id" element={
             <Layout isLogin={isLogged}><VehicleDetail /></Layout>
           } />
-          <Route path="reservation/:id" element={
+          <Route path="reservation/:id/:qty" element={
             <Layout isLogin={isLogged}><Reservation /></Layout>
           } />
-          <Route path="payment/:id" element={
+          <Route path="payment/:id/:qty/:idHistory" element={
             <Layout isLogin={isLogged}><Payment /></Layout>
           } />
           <Route path="history" element={

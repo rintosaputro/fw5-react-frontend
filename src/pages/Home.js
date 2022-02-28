@@ -10,16 +10,29 @@ import {IoChevronForward} from 'react-icons/io5'
 
 const Home = () => {
   const [vehicle, setVehilcle] = useState([])
+  const [category, setCategory] = useState([])
+  const [allVehicles, setAllVehicles] = useState([])
 
   useEffect(() => {
     getVehicle()
+    getCategory()
   },[])
 
+  const dataLocation = []
   const getVehicle = async () => {
     const {data} = await axios.get('http://localhost:5000/popular?limit=4')
     setVehilcle(data.results)
+    // const {item} = await axios.get('http://localhost:5000/popular?limit=100')
+    // setAllVehicles(item.results)
+    // item.results.map((data) => dataLocation.push(data.location))
+    // console.log(dataLocation)
+    console.log(data.results)
   }
-
+  const getCategory = async () => {
+    const {data} = await axios.get('http://localhost:5000/categories?limit=100')
+    setCategory(data.results)
+  }  
+  
   return (
     <>
     <header className="header-homepage home">
@@ -32,14 +45,19 @@ const Home = () => {
             <div className="row">
               <div className="col-sm-6">
                 <select className="option-form">
-                  <option>Location</option>
-                  <option></option>
+                  <option className='d-none'>Location</option>
+                  <option>Jakarta</option>
+                  <option>Bandung</option>
+                  <option>Yogyakarta</option>
+                  <option>Depok</option>
+                  <option>Ngawi</option>
+                  {/* {[...new Set(dataLocation)].map((data) => <option key={data}>{data}</option>)} */}
                 </select>
               </div>
               <div className="col-sm-6">
                 <select className="option-form">
-                  <option>Type</option>
-                  <option></option>
+                  <option className='d-none'>Type</option>
+                  {category.map((data) => <option key={data.idCategory}>{data.type}</option>)}
                 </select>
               </div>
             </div>
