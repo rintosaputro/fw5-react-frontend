@@ -40,6 +40,9 @@ body {
 .vehicle-type .profile img {
   border-radius: 30px;
 }
+.vehicle-type .form-search {
+  height: 100px;
+}
 .vehicle-type nav form {
   height: auto;
 }

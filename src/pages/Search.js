@@ -20,70 +20,16 @@ export default function Search(props) {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    
     const key = searchParams.get('keyword') || ''
     const fil = searchParams.get('location') || ''
     const min = searchParams.get('min') || 0
     const max = searchParams.get('max') || 100000000
     let url = `http://localhost:5000/vehicles/category/?limit=8&search=${key}&location=${fil}&minimum=${min}&maximum=${max}`
-    // if (fil) {
-    //   url = `http://localhost:5000/vehicles/category/?limit=8&search=${key}&location=${fil}`
-    // }
-    // if (min) {
-    //   url = `http://localhost:5000/vehicles/category/?limit=8&search=${key}&minimum=${min}`
-    // }
-    // if (max) {
-    //   url = `http://localhost:5000/vehicles/category/?limit=8&search=${key}&maximum=${max}`
-    // }
-    // if (min && fil) {
-    //   url = `http://localhost:5000/vehicles/category/?limit=8&search=${key}&location=${fil}&minimum=${min}`
-    // }
-    // if (max && fil) {
-    //   url = `http://localhost:5000/vehicles/category/?limit=8&search=${key}&location=${fil}&minimum=${max}`
-    // }
-    // if (fil && max && min) {
-    //   url = `http://localhost:5000/vehicles/category/?limit=8&search=${key}&location=${fil}&minimum=${min}&maximum=${max}`
-    // }
-    // console.log(type)
-    console.log(url)
-    // const params = searchParams.get('type') ? {type: searchParams.get('type')} 
-    // : {search: searchParams.get('keyword') || '', filter: searchParams.get('filter') || ''}
-
     getVehicle(url)
     navActive()
   }, [searchParams])
 
   const getVehicle = async (url) => {
-    // let url = ''
-    // const key = searchParams.get('search')
-    // const fil = searchParams.get('location')
-    // const min = searchParams.get('minimum')
-    // const max = searchParams.get('maximum')
-
-    // if (fil) {
-    //   url = `?search=${key}&location=${fil}`
-    // }
-    // if (min) {
-    //   url = `?search=${key}&minimum=${min}`
-    // }
-    // if (max) {
-    //   url = `?search=${key}&maximum=${max}`
-    // }
-    // if (min && fil) {
-    //   url = `?search=${key}&location=${fil}&minimum=${min}`
-    // }
-    // if (max && fil) {
-    //   url = `?search=${key}&location=${fil}&minimum=${max}`
-    // }
-    // if (fil && max && min) {
-    //   url = `?search=${key}&location=${fil}&minimum=${min}&maximum=${max}`
-    // }
-    // const resUrl = params.search ?
-    // (params.type ? 
-    //   `http://localhost:5000/popular?limit=8&search=${params.type}` 
-    //   : `http://localhost:5000/vehicles/category/?search=${params.search}&filter=${params.filter}&limit=8`) 
-    // : 'http://localhost:5000/popular?limit=8'
-    // const resUrl = searchParams
     const {data} = await axios.get(url)
     setVehilcle(data.results) 
     setPage(data.pageInfo) 
@@ -100,22 +46,68 @@ export default function Search(props) {
   }
   const handleSubmit = (ev) => {
     ev.preventDefault()
-    const key = ev.target.elements['search'].value
-    const fil = ev.target.elements['filter'].value
-    navigate(fil ? `/search?keyword=${key}&filter=${fil}` : `/search?keyword=${key}`)
+    // const key = ev.target.elements['search'].value
+    // const fil = ev.target.elements['filter'].value
+    // navigate(fil ? `/search?keyword=${key}&filter=${fil}` : `/search?keyword=${key}`)
+    const key = ev.target.elements['brand'].value
+    const fil = ev.target.elements['location'].value
+    const min = ev.target.elements['minimum'].value
+    const max = ev.target.elements['maximum'].value
+    let url = ''
+    if (key) {
+      url = `/search?keyword=${key}`
+    }
+    if (fil) {
+      url = `/search?keyword=${key}&location=${fil}`
+    }
+    if (min) {
+      url = `/search?keyword=${key}&min=${min}`
+    }
+    if (max) {
+      url = `/search?keyword=${key}&max=${max}`
+    }
+    if (min && fil) {
+      url = `/search?keyword=${key}&location=${fil}&min=${min}`
+    }
+    if (max && fil) {
+      url = `/search?keyword=${key}&location=${fil}&min=${max}`
+    }
+    if (fil && max && min) {
+      url = `/search?keyword=${key}&location=${fil}&min=${min}&max=${max}`
+    }
+    navigate(url)
   }
 
   return (
     <div className='vehicle-type'>
+      <section className='form-search'>
+        <form onSubmit={handleSubmit} className="container row g-0  mx-auto">
+          <div className='col-12 col-md-6 my-2'>
+            <input className="form-control" name='brand' type="search" placeholder="Search vehicle (ex. cars, cars name)" />
+          </div>
+          <div className='col-12 col-md-6 my-2'>
+            <input className="form-control" name='location' type="search" placeholder="Location" />
+          </div>
+          <div className='col-12 col-md-6'>
+            <input className='form-control my-2' name='minimum' type='number' placeholder='Min price' />
+          </div>
+          <div className='col-12 col-md-6'>
+            <input className='form-control my-2' name='maximum' type='number' placeholder='Max price' />
+          </div>
+          <button type="submit" className="col-12 btn-green btn text-center fs-5" aria-label="search button">
+            Search <i className="search-icon"><BiSearchAlt2 /></i>
+          </button>
+        </form>
+      </section>
       <section className='container'>
-        <form onSubmit={handleSubmit} className="container d-flex position-relative">
+        {/* <form onSubmit={handleSubmit} className="container d-flex position-relative">
           <input className="form-control" name='search' type="search" placeholder="Search vehicle (ex. cars, cars name)" />
           <input className="form-control" name='filter' type="search" placeholder="location" />
           <button type="submit" className="btn position-absolute end-0" aria-label="search button">
             <i className="search-icon"><BiSearchAlt2 /></i>
           </button>
-        </form>
-        <div className="head">
+        </form> */}
+        <div className="head mt-5">
           {/* <h2>{searchParams.get('type') || searchParams.get('search') || 'Popular in town'}</h2> */}
           {vehicle.length > 0 ? <p className="text-muted text-center">Click item to see details and reservation</p> 
           : <p className="text-center text-muted py-5">
