@@ -2,27 +2,39 @@ import React, { useEffect, useState } from 'react'
 import '../assets/css/history.css'
 import {default as axios} from 'axios'
 import noImage from '../assets/images/no-image.jpg'
+import { Link } from 'react-router-dom'
 
 export default function History() {
   const [history, setHistory] = useState([])
+  const [newVehicle, setNewVehicle] = useState([])
+  const [page, setPage] = useState([])
   
   useEffect(() => {
     getHistory()
+    getNewVehicle()
   }, [])
 
   const getHistory = async (key) => {
-    const url = key ? `http://localhost:5000/histories/?search=${key}&limit=8` : `http://localhost:5000/histories/?limit=8`
+    const url = key ? `http://localhost:5000/histories/?search=${key}&limit=3` : `http://localhost:5000/histories/?limit=3`
     const {data} = await axios.get(url)
     setHistory(data.results)
-    console.log(data.results.length)
+    setPage(data.pageInfo)
+  }
+  const getNewVehicle = async () => {
+    const {data} = await axios.get('http://localhost:5000/vehicles/new')
+    setNewVehicle(data.results)
+  }
+  const nextPage = async () => {
+    const {data} = await axios.get(page.next)
+    setHistory([...history, ...data.results])
+    setPage(data.pageInfo)
   }
 
   const bgImage = (props) => {
-    const {image, brand, prepayment, status} = props
+    const {image, brand, prepayment, status, idHistory} = props
     const bgImg = image || noImage
-    console.log(bgImg)
     return (
-      <div className="d-flex align-items-center history-contain">
+      <div className="d-flex align-items-center history-contain" key={idHistory}>
         <div className="row history-data">
           <div className="col-3">
             <div className="vehicle-image1" style={{backgroundImage: `url(${bgImg})`}} ></div>
@@ -85,6 +97,7 @@ export default function History() {
               const props = {idHistory: data.idHistory, idUser: data.idUser, name: data.name, image: data.image, brand: data.brand, prepayment: data.prepayment, status: data.status }
               return bgImage(props)
             })}
+            <button onClick={nextPage} className='btn btn-green w-50 mt-5'>next</button>
           </div>
         </section>
       
@@ -92,24 +105,19 @@ export default function History() {
           <div className="border  text-center">
             <h5 className="fw-bold">New Arrival</h5>
             <div className="main-aside">
-              <div className="new-arival">
-                <a href="#">
-                  <div className="bg-vehicle-1"></div>
-                  <div className="highlight">
-                    <h6 className="fw-bold">Lamborghini</h6>
-                    <span className="text-muted">South Jakarta</span>
-                  </div>
-                </a>
-              </div>
-              <div className="new-arival">
-                <a href="#">
-                  <div className="bg-vehicle-2"></div>
-                  <div className="highlight">
-                    <h6 className="fw-bold">White Jeep</h6>
-                    <span className="text-muted">Kalimantan</span>
-                  </div>
-                </a>
-              </div>
+              {newVehicle.map((data, index) => {
+                return (
+                <div className="new-arival" key={index}>
+                  <Link to={`/vehicle/${data.idVehicle}`}>
+                    <div className="bg-vehicle-1"style={{backgroundImage: `url(${data.image || noImage})`}}></div>
+                    <div className="highlight">
+                      <h6 className="fw-bold">{data.brand}</h6>
+                      <span className="text-muted">{data.location}</span>
+                    </div>
+                  </Link>
+                </div>
+                )
+              })}
             </div>
             <div className="view-more">
               <a href="#">

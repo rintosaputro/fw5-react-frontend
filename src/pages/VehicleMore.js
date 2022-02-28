@@ -12,18 +12,11 @@ export default function VehicleMore() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    // const params = searchParams.get('type') ? {type: searchParams.get('type')} 
-    // : {search: searchParams.get('search') || '', filter: searchParams.get('filter') || ''}
     const params = searchParams.get('type')
     getVehicle(params)
   }, [searchParams])
 
   const getVehicle = async (params) => {
-    // const url = params.type || params.search ?
-    // (params.type ? 
-    //   `http://localhost:5000/popular?limit=8&search=${params.type}` 
-    //   : `http://localhost:5000/vehicles/category/?search=${params.search}&filter=${params.filter}&limit=8`) 
-    // : 'http://localhost:5000/popular?limit=8'
     const url = params ? `http://localhost:5000/popular?limit=8&search=${params}` : 'http://localhost:5000/popular?limit=8'
     const {data} = await axios.get(url)
     setVehilcle(data.results) 
