@@ -20,9 +20,9 @@ export default function NavPopular() {
     <div className='vehicle-type'>
       <nav className="navbar navbar-expand-lg navbar-light bg-white fixed-top">
         <div className="container-fluid bg-white navigation">
-          <a href="index.html" className="navbar-brand">
+          <Link to='/' className="navbar-brand">
             <img src={logo} alt="Logo" />
-          </a>
+          </Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="navbar button">
             <span className="navbar-toggler-icon"></span>
           </button>

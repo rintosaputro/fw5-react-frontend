@@ -328,7 +328,7 @@ body {
     width: auto;
     margin-top: 0 !important;
     margin-left: 23px;
-    padding: 10px;
+    padding: 0 10px;
   }
   .vehicle-detail .payment .img-section {
     text-align: unset;

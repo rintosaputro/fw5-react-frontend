@@ -103,6 +103,8 @@ const Home = () => {
                 <button className="btn prev" aria-label="previous"><GrFormNext /></button>
               </div>
             </div>
+            <h5>Edward Newgate</h5>
+            <span>Founder Circle</span>
           </div>
         <div className="row">
           <div className="col-12 col-lg-6 mt-5 left-testi">

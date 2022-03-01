@@ -4,6 +4,7 @@ import '../assets/css/signup.css'
 import google from '../assets/images/google.png'
 import logo from '../assets/images/logo.png'
 import {FaTwitter, FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube} from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 export default class Signup extends Component {
   render() {
@@ -25,7 +26,7 @@ export default class Signup extends Component {
                 <div className="col"><hr /></div>
               </div>
               <a href="#" className="btn my-5 google"><img src={google} alt="google" /> Sign Up With Google</a>
-              <a href="/login.html" className="btn login">Login</a> <br />
+              <Link to='/login' className="btn login">Login</Link> <br />
             </form>
       
             <footer className="bg-light container pt-5">
