@@ -33,11 +33,11 @@ const Home = () => {
 
   const handleSubmit = (ev) => {
     ev.preventDefault()
-    // const key = document.getElementById('search').value
-    // const location = document.getElementById('location').value
-    // const date = document.getElementById('date').value
-    // console.log(date)
-    // navigate(`/search?keyword=${key}&filter=${location}&date=${date}`)
+    const key = document.getElementById('search').value
+    const location = document.getElementById('location').value
+    const date = document.getElementById('date').value
+    console.log(date)
+    navigate(`/search?keyword=${key}&location=${location}&date=${date}`)
   }
 
   
@@ -84,11 +84,12 @@ const Home = () => {
           <h2>Popular in town</h2>
           <Link to='/vehicle' className="view-all">View all <IoChevronForward /></Link>
         </div>
-        <div className="row">
+        <div className="row position-relative">
           {vehicle.map((data) => {
             const props = {image: data.image, location: data.location, brand: data.brand, id: data.idVehicle}
             if (data.qty > 0) return <ProductHighlight key={props.id} props={props} />
           })}
+           <Link to='/vehicle' className="view-all-btn position-absolute"><IoChevronForward /></Link>
         </div>
       </section>
 

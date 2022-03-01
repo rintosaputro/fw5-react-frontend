@@ -87,6 +87,9 @@ body {
   /* padding-left: 50px;
   padding-right: 59px; */
 }
+.vehicle-type nav form .form-control {
+  padding: 8px 20px;
+}
 .vehicle-type form .form-control:focus,
 .vehicle-type form .form-control:hover {
   /* padding-right: 59px; */

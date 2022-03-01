@@ -34,6 +34,10 @@ export default function History() {
     setPage(data.pageInfo)
   }
 
+  const handleSubmit = () => {
+    
+  }
+
   const bgImage = (props) => {
     const {image, brand, prepayment, status, idHistory} = props
     const bgImg = image || noImage
@@ -68,15 +72,25 @@ export default function History() {
           <div className="row container form-section">
             <div className="col-12 col-md-9 search-bar">
               <form className=" d-flex position-relative">
-                <input className="form-control" type="search" placeholder="Search history" />
+                <input name='keyword' className="form-control" type="search" placeholder="Search history" />
                 <button type="submit" className="btn position-absolute end-0">
                   <GoSearch className='icon-search' />
                   <i className="fa-solid fa-magnifying-glass search-icon"></i>
                 </button>
               </form>       
             </div>
+            {/* <div className="dropdown col-12 col-md-3 filter">
+                <button className="btn dropdown-toggle w-100" type="button" id="dropdownMenuButton1" style={{backgroundColor: '#f1f1f1'}} data-bs-toggle="dropdown" aria-expanded="false">
+                  Filter
+                </button>
+                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><Link to={`type`} className='dropdown-item' >Type</Link></li>
+                  <li><a className="dropdown-item" href="#">Another action</a></li>
+                  <li><a className="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </div> */}
             <div className="container col-12 col-md-3 filter">
-              <select className="form-select select-bar">
+              <select id='filer' className="form-select select-bar">
                 <option className="d-none disabled">Filter</option>
                 <option value="type">Type</option>
                 <option value="data-added">Data Added</option>

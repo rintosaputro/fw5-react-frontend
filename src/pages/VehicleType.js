@@ -59,8 +59,6 @@ const VehicleType = () => {
       url = `/search?keyword=${key}&location=${fil}&min=${min}&max=${max}`
     }
     navigate(url)
-    console.log(url)
-    // navigate(fil ? `/search?keyword=${key}&filter=${fil}` : `/search?keyword=${key}`)
   }
 
   const product = (head, arr, type, link ) => {
@@ -74,7 +72,6 @@ const VehicleType = () => {
           {arr.map((data) => {
             const props = {image: data.image, location: data.location, brand: data.brand, id: data.idVehicle}
             if (data.qty > 0) return <ProductHighlight key={props.id} props={props} />
-            // return <ProductHighlight key={props.id} props={props} />
           })}
         </div>
       </section>
@@ -83,13 +80,6 @@ const VehicleType = () => {
 
   return (      
     <div className='vehicle-type'>
-      {/* <form onSubmit={handleSubmit} className="container d-flex position-relative">
-        <input className="form-control" name='search' type="search" placeholder="Search vehicle (ex. cars, cars name)" />
-        <input className="form-control" name='filter' type="search" placeholder="Filter (ex. location)" />
-        <button type="submit" className="btn position-absolute end-0" aria-label="search button">
-          <i className="search-icon"><BiSearchAlt2 /></i>
-        </button>
-      </form> */}
       <section className='form-search'>
         <form onSubmit={handleSubmit} className="container row g-0  mx-auto">
           <div className='col-12 col-md-6 my-2'>

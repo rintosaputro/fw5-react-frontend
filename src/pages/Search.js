@@ -100,18 +100,12 @@ export default function Search(props) {
         </form>
       </section>
       <section className='container'>
-        {/* <form onSubmit={handleSubmit} className="container d-flex position-relative">
-          <input className="form-control" name='search' type="search" placeholder="Search vehicle (ex. cars, cars name)" />
-          <input className="form-control" name='filter' type="search" placeholder="location" />
-          <button type="submit" className="btn position-absolute end-0" aria-label="search button">
-            <i className="search-icon"><BiSearchAlt2 /></i>
-          </button>
-        </form> */}
         <div className="head mt-5">
           {/* <h2>{searchParams.get('type') || searchParams.get('search') || 'Popular in town'}</h2> */}
           {vehicle.length > 0 ? <p className="text-muted text-center">Click item to see details and reservation</p> 
           : <p className="text-center text-muted py-5">
-            Your search '{searchParams.get('keyword')} {searchParams.get('filter')}' did not match any document
+            {/* Your search '{searchParams.get('keyword')} {searchParams.get('filter')}' did not match any document */}
+            Did not find search results
             </p>}
         </div>
         <div className='row'>
