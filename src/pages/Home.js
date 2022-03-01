@@ -95,6 +95,15 @@ const Home = () => {
 
       <section className="testimoni mt-5">
         <h2>Testimonials</h2>
+        <div className="col-3 mt-5 profile profile-top">
+            <div className="image">
+              <img src={user} alt="Edward" />
+              <div className="ms-auto next-prev">
+                <button className="btn disabled next" aria-label="next"><GrFormPrevious /></button>
+                <button className="btn prev" aria-label="previous"><GrFormNext /></button>
+              </div>
+            </div>
+          </div>
         <div className="row">
           <div className="col-12 col-lg-6 mt-5 left-testi">
             <div className="comment">

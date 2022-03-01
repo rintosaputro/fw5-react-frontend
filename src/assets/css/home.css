@@ -73,6 +73,17 @@ header.home .opacity .btn {
 } 
 
 /* section */
+.home section.testimoni .profile-top {
+  display: none;
+}
+.home section.testimoni .profile-top img {
+  width: 130px !important;
+}
+.home section.testimoni .profile-top .next-prev {
+  margin-left: 0 !important;
+  margin-top: -10px !important;
+  border-radius: 0px 0px 0px 0px !important;
+} 
 .home .head {
   margin-top: 82px;
   margin-bottom: 56px;
@@ -188,6 +199,15 @@ main.home section .highlight span {
   }
   .home .view-all-btn {
     display: none;
+  }
+  .home section.testimoni .profile-top {
+    display: block !important;
+  }
+  .home section.testimoni .profile {
+    display: none;
+  }
+  .home .left-testi {
+    margin-bottom: 35px;
   }
   /* nav {
     height: 95px;
