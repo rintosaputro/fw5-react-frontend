@@ -211,8 +211,8 @@ body {
 }
 .vehicle-detail .payment .img-section img {
   position: absolute;
-  width: auto;
-  height: 100%;
+  /* width: auto;
+  height: 100%; */
 }
 .vehicle-detail .payment .code {
   font-size: 25px;
@@ -220,13 +220,13 @@ body {
   font-family: 'Playfair Display', Times, serif;
 }
 .vehicle-detail .payment .description-section {
-  padding-left: 0;
+  padding-left: 30px;
 }
 .vehicle-detail .payment .rent-data {
   margin-top: 20px;
 }
 .vehicle-detail .payment .first-col {
-  width: 30.5%;
+  width: 35.5%;
   margin: 10px 0;
   margin-right: 31px;
 }
@@ -345,7 +345,9 @@ body {
   .vehicle-detail .pay-now .btn {
     font-size: 17px;
   }
-
+  .vehicle-detail .payment .btn-copy-top {
+    width: 100%;
+  }
   .vehicle-detail .payment .order-details,
   .vehicle-detail .payment .identity {
     display: flex;
@@ -456,6 +458,12 @@ body {
   }
   .vehicle-detail .img-section img {
     width: 80%;
+  }
+  .vehicle-detail .payment .btn-copy-top {
+    margin-top: 15px;
+  }
+  .vehicle-detail .payment .description-section {
+    margin-left: 5px;
   }
   .vehicle-detail .description-section {
     margin: 10px;

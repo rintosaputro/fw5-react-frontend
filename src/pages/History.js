@@ -34,10 +34,6 @@ export default function History() {
     setPage(data.pageInfo)
   }
 
-  const handleSubmit = () => {
-    
-  }
-
   const bgImage = (props) => {
     const {image, brand, prepayment, status, idHistory} = props
     const bgImg = image || noImage
