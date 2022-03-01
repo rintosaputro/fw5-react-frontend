@@ -81,7 +81,7 @@ export default function Search(props) {
   return (
     <div className='vehicle-type'>
       <section className='form-search'>
-        <form onSubmit={handleSubmit} className="container row g-0  mx-auto">
+        <form onSubmit={handleSubmit} className="container row g-2 mx-auto">
           <div className='col-12 col-md-6 my-2'>
             <input className="form-control" name='brand' type="search" placeholder="Search vehicle (ex. cars, cars name)" />
           </div>

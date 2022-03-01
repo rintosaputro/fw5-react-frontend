@@ -8,27 +8,21 @@ import ProductHighlight from '../components/ProductHighlight';
 import { Link, useNavigate } from 'react-router-dom';
 import {IoChevronForward} from 'react-icons/io5'
 import deleteActiveNav from '../helper/deleteActiveNav'
+import env from 'react-dotenv'
 
 const Home = () => {
   const [vehicle, setVehilcle] = useState([])
-  const [category, setCategory] = useState([])
-  const [allVehicles, setAllVehicles] = useState([])
   const navigate = useNavigate()
 
   useEffect(() => {
     window.scrollTo(0, 0)
     getVehicle()
-    getCategory()
     deleteActiveNav()
   },[])
 
   const getVehicle = async () => {
-    const {data} = await axios.get('http://localhost:5000/popular?limit=4')
+    const {data} = await axios.get(`${env.APP_API}/popular?limit=4`)
     setVehilcle(data.results)
-  }
-  const getCategory = async () => {
-    const {data} = await axios.get('http://localhost:5000/categories?limit=100')
-    setCategory(data.results)
   }
 
   const handleSubmit = (ev) => {

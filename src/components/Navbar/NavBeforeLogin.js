@@ -21,8 +21,8 @@ export default class NavBeforeLogin extends Component {
               <div className="collapse navbar-collapse main-nav" id="navbarNav">
                 <NavList />
                 <div className="button-section ms-lg-5">
-                  <a href="../pages/Login" className="me-lg-4 btn btn-outline">Login</a>
-                  <a href="signup.html" className="btn btn-green">Register</a>
+                  <Link to='/login' className="me-lg-4 btn btn-outline">Login</Link>
+                  <Link to='signup' className="btn btn-green">Register</Link>
                 </div>
               </div>
             </div>
