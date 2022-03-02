@@ -4,6 +4,8 @@ import ProductHighlight from '../components/ProductHighlight'
 import {default as axios} from 'axios';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import {BiSearchAlt2} from 'react-icons/bi'
+import env from 'react-dotenv'
+import searchURL from '../helper/searchURL';
 
 export default function Search(props) {
   const [vehicle, setVehilcle] = useState([])
@@ -24,7 +26,7 @@ export default function Search(props) {
     const fil = searchParams.get('location') || ''
     const min = searchParams.get('min') || 0
     const max = searchParams.get('max') || 100000000
-    let url = `http://localhost:5000/vehicles/category/?limit=8&search=${key}&location=${fil}&minimum=${min}&maximum=${max}`
+    let url = `${env.APP_API}/vehicles/category/?limit=8&search=${key}&location=${fil}&minimum=${min}&maximum=${max}`
     getVehicle(url)
     navActive()
   }, [searchParams])
@@ -49,33 +51,34 @@ export default function Search(props) {
     // const key = ev.target.elements['search'].value
     // const fil = ev.target.elements['filter'].value
     // navigate(fil ? `/search?keyword=${key}&filter=${fil}` : `/search?keyword=${key}`)
-    const key = ev.target.elements['brand'].value
-    const fil = ev.target.elements['location'].value
-    const min = ev.target.elements['minimum'].value
-    const max = ev.target.elements['maximum'].value
-    let url = ''
-    if (key) {
-      url = `/search?keyword=${key}`
-    }
-    if (fil) {
-      url = `/search?keyword=${key}&location=${fil}`
-    }
-    if (min) {
-      url = `/search?keyword=${key}&min=${min}`
-    }
-    if (max) {
-      url = `/search?keyword=${key}&max=${max}`
-    }
-    if (min && fil) {
-      url = `/search?keyword=${key}&location=${fil}&min=${min}`
-    }
-    if (max && fil) {
-      url = `/search?keyword=${key}&location=${fil}&min=${max}`
-    }
-    if (fil && max && min) {
-      url = `/search?keyword=${key}&location=${fil}&min=${min}&max=${max}`
-    }
-    navigate(url)
+    // const key = ev.target.elements['brand'].value
+    // const fil = ev.target.elements['location'].value
+    // const min = ev.target.elements['minimum'].value
+    // const max = ev.target.elements['maximum'].value
+    // let url = ''
+    // if (key) {
+    //   url = `/search?keyword=${key}`
+    // }
+    // if (fil) {
+    //   url = `/search?keyword=${key}&location=${fil}`
+    // }
+    // if (min) {
+    //   url = `/search?keyword=${key}&min=${min}`
+    // }
+    // if (max) {
+    //   url = `/search?keyword=${key}&max=${max}`
+    // }
+    // if (min && fil) {
+    //   url = `/search?keyword=${key}&location=${fil}&min=${min}`
+    // }
+    // if (max && fil) {
+    //   url = `/search?keyword=${key}&location=${fil}&min=${max}`
+    // }
+    // if (fil && max && min) {
+    //   url = `/search?keyword=${key}&location=${fil}&min=${min}&max=${max}`
+    // }
+    // navigate(url)
+    navigate(searchURL(ev))
   }
 
   return (

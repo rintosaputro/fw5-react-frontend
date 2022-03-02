@@ -5,6 +5,8 @@ import {BiSearchAlt2} from 'react-icons/bi'
 import {IoChevronForward} from 'react-icons/io5'
 import { Link, useNavigate } from 'react-router-dom';
 import {default as axios} from 'axios';
+import env from 'react-dotenv'
+import searchURL from '../helper/searchURL';
 
 const VehicleType = () => {
   const [popularTown, setPopularTown] = useState([])
@@ -25,40 +27,41 @@ const VehicleType = () => {
   },[])
 
   const getVehicle = async (setData, type, limit = 4) => {
-    const url = type ? `http://localhost:5000/popular?search=${type}&limit=${limit}` : `http://localhost:5000/popular?limit=${limit}`
+    const url = type ? `${env.APP_API}/popular?search=${type}&limit=${limit}` : `${env.APP_API}/popular?limit=${limit}`
     const {data} = await axios.get(url)
     setData(data.results)
   }  
   
   const handleSubmit = (ev) => {
     ev.preventDefault()
-    const key = ev.target.elements['brand'].value
-    const fil = ev.target.elements['location'].value
-    const min = ev.target.elements['minimum'].value
-    const max = ev.target.elements['maximum'].value
-    let url = ''
-    if (key) {
-      url = `/search?keyword=${key}`
-    }
-    if (fil) {
-      url = `/search?keyword=${key}&location=${fil}`
-    }
-    if (min) {
-      url = `/search?keyword=${key}&min=${min}`
-    }
-    if (max) {
-      url = `/search?keyword=${key}&max=${max}`
-    }
-    if (min && fil) {
-      url = `/search?keyword=${key}&location=${fil}&min=${min}`
-    }
-    if (max && fil) {
-      url = `/search?keyword=${key}&location=${fil}&min=${max}`
-    }
-    if (fil && max && min) {
-      url = `/search?keyword=${key}&location=${fil}&min=${min}&max=${max}`
-    }
-    navigate(url)
+    // const key = ev.target.elements['brand'].value
+    // const fil = ev.target.elements['location'].value
+    // const min = ev.target.elements['minimum'].value
+    // const max = ev.target.elements['maximum'].value
+    // let url = ''
+    // if (key) {
+    //   url = `/search?keyword=${key}`
+    // }
+    // if (fil) {
+    //   url = `/search?keyword=${key}&location=${fil}`
+    // }
+    // if (min) {
+    //   url = `/search?keyword=${key}&min=${min}`
+    // }
+    // if (max) {
+    //   url = `/search?keyword=${key}&max=${max}`
+    // }
+    // if (min && fil) {
+    //   url = `/search?keyword=${key}&location=${fil}&min=${min}`
+    // }
+    // if (max && fil) {
+    //   url = `/search?keyword=${key}&location=${fil}&min=${max}`
+    // }
+    // if (fil && max && min) {
+    //   url = `/search?keyword=${key}&location=${fil}&min=${min}&max=${max}`
+    // }
+    // navigate(url)
+    navigate(searchURL(ev))
   }
 
   const product = (head, arr, type, link ) => {
