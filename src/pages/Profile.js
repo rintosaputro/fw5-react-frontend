@@ -66,13 +66,13 @@ export default function Profile() {
             </div>
           </div>
           <h4 className="mt-5">Identity</h4>
-          <div className="row mt-4 identity">
-            <div className="col-6 pe-lg-5">
+          <div className="row identity">
+            <div className="col-12 col-lg-6 pe-lg-5 mt-4">
               <label>Display name:</label> <br/>
               <input className="form-control form-contact" type="text" defaultValue={username} />
             </div>
-            <div className="col-6 ps-lg-5">
-              <label>DD/MM/YY</label> <br/>
+            <div className="col-12 col-lg-6 ps-lg-5 mt-4">
+              <label>Birthdate (DD/MM/YY)</label> <br/>
               <input className="form-control form-contact" type="text" defaultValue="03/09/2003" />
             </div>
           </div>
