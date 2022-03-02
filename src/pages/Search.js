@@ -14,12 +14,6 @@ export default function Search(props) {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
 
-  const navActive = () => {
-    const navList = document.getElementById('vehicleType')
-    navList.classList.add('active')
-    // navList.classList.remove('active')
-  }
-
   useEffect(() => {
     window.scrollTo(0, 0)
     const key = searchParams.get('keyword') || ''
@@ -28,7 +22,6 @@ export default function Search(props) {
     const max = searchParams.get('max') || 100000000
     let url = `${env.APP_API}/vehicles/category/?limit=8&search=${key}&location=${fil}&minimum=${min}&maximum=${max}`
     getVehicle(url)
-    navActive()
   }, [searchParams])
 
   const getVehicle = async (url) => {
@@ -48,36 +41,6 @@ export default function Search(props) {
   }
   const handleSubmit = (ev) => {
     ev.preventDefault()
-    // const key = ev.target.elements['search'].value
-    // const fil = ev.target.elements['filter'].value
-    // navigate(fil ? `/search?keyword=${key}&filter=${fil}` : `/search?keyword=${key}`)
-    // const key = ev.target.elements['brand'].value
-    // const fil = ev.target.elements['location'].value
-    // const min = ev.target.elements['minimum'].value
-    // const max = ev.target.elements['maximum'].value
-    // let url = ''
-    // if (key) {
-    //   url = `/search?keyword=${key}`
-    // }
-    // if (fil) {
-    //   url = `/search?keyword=${key}&location=${fil}`
-    // }
-    // if (min) {
-    //   url = `/search?keyword=${key}&min=${min}`
-    // }
-    // if (max) {
-    //   url = `/search?keyword=${key}&max=${max}`
-    // }
-    // if (min && fil) {
-    //   url = `/search?keyword=${key}&location=${fil}&min=${min}`
-    // }
-    // if (max && fil) {
-    //   url = `/search?keyword=${key}&location=${fil}&min=${max}`
-    // }
-    // if (fil && max && min) {
-    //   url = `/search?keyword=${key}&location=${fil}&min=${min}&max=${max}`
-    // }
-    // navigate(url)
     navigate(searchURL(ev))
   }
 

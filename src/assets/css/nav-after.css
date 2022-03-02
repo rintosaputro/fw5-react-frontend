@@ -51,11 +51,12 @@
     width: 100%;
   }
   .nav-after .mail-profile {
-    flex-direction: column;
-    align-items: start !important;
+    /* flex-direction: column; */
   }
   .nav-after .mail-profile a {
-    width: 100%;
     margin: 10px 0;
+  }
+  .nav-after .mail-profile .message {
+    margin-left: -13px;
   }
 }
