@@ -4,6 +4,7 @@ import {default as axios} from 'axios'
 import { useParams} from 'react-router-dom'
 import {BsFillPenFill} from 'react-icons/bs'
 import deleteActiveNav from '../helper/deleteActiveNav'
+import env from 'react-dotenv'
 
 export default function Profile() {
   const [user, setUser] = useState([])
@@ -16,7 +17,7 @@ export default function Profile() {
   }, [])
 
   const getUser = async () => {
-    const {data} = await axios.get(`http://localhost:5000/users/${idUser}`)
+    const {data} = await axios.get(`${env.APP_API}/users/${idUser}`)
     setUser(data.results)    
   }
   

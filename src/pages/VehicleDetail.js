@@ -8,6 +8,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import {default as axios} from 'axios';
 import noImage from '../assets/images/no-image.jpg'
 import activeNav from '../helper/activeNav'
+import env from 'react-dotenv'
 
 export default function VehicleDetail() {
   const {id} = useParams()
@@ -26,7 +27,7 @@ export default function VehicleDetail() {
   },[])
 
   const getVehicle = async () => {
-    const {data} = await axios.get(`http://localhost:5000/vehicles/${id}`)
+    const {data} = await axios.get(`${env.APP_API}/vehicles/${id}`)
     setVehilcle(data.results)
     setDefaultPrice(data.results.price)
     setPrice(data.results.price)

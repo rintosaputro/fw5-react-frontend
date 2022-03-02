@@ -4,6 +4,7 @@ import ProductHighlight from '../components/ProductHighlight'
 import {default as axios} from 'axios';
 import { useSearchParams } from 'react-router-dom';
 import activeNav from '../helper/activeNav';
+import env from 'react-dotenv'
 
 export default function VehicleMore() {
   const [vehicle, setVehilcle] = useState([])
@@ -19,7 +20,7 @@ export default function VehicleMore() {
   }, [searchParams])
 
   const getVehicle = async (params) => {
-    const url = params ? `http://localhost:5000/popular?limit=8&search=${params}` : 'http://localhost:5000/popular?limit=8'
+    const url = params ? `${env.APP_API}/popular?limit=8&search=${params}` : `${env.APP_API}/popular?limit=8`
     const {data} = await axios.get(url)
     setVehilcle(data.results) 
     setPage(data.pageInfo) 
