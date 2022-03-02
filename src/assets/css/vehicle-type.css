@@ -127,8 +127,8 @@ body {
   border-radius: 10px;
   height: 337px;
 }
-.vehicle-type section img {
-  border-radius: 10px;
+section .product-highlight img {
+  /* border-radius: 10px; */
   margin-bottom: 15px;
   /* width: 284px;
   height: 337px; */
@@ -137,8 +137,8 @@ body {
 .vehicle-type section a {
   text-decoration: none;
 }
-.vehicle-type section .highlight {
-  margin-top: -67px;
+section .highlight {
+  margin-top: -56px;
   padding-right: 10px;
   position: relative;
   background-color: rgba(255, 255, 255, 0.8);
@@ -148,12 +148,12 @@ body {
   font-family: 'Nunito', sans-serif;
   color: #042521;
 }
-.vehicle-type section .highlight h5 {
+section .highlight h5 {
   color: #042521;
   font-weight: 600;
   font-size: 17px;
 }
-.vehicle-type section .highlight span {
+section .highlight span {
   font-size: 17px;
   color: #686767;
 }
@@ -209,7 +209,7 @@ body {
     margin-top: 50px;
   }
   .vehicle-type section .highlight {
-    margin-top: -70px;
+    /* margin-top: -70px; */
   }
 }
 @media  all and (max-width: 768px) {

@@ -120,14 +120,14 @@ header.home .opacity .btn {
   margin: auto;
   font-size: 30px;
 }
-main.home section img {
+/* main.home section img {
   border-radius: 10px;
   margin-bottom: 15px;
-}
+} */
 main.home section a {
   text-decoration: none;
 }
-main.home section .highlight {
+/* main.home section .highlight {
   margin-top: -67px;
   position: relative;
   background-color: #ffff;
@@ -136,7 +136,7 @@ main.home section .highlight {
   border-radius: 0px 6px 0px 0px;
   font-family: 'Nunito', sans-serif;
   color: #042521;
-}
+} */
 main.home section .highlight h5 {
   color: #042521;
   font-weight: 600;
