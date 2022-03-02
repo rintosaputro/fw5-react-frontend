@@ -5,11 +5,14 @@ import noImage from '../assets/images/no-image.jpg'
 import { Link } from 'react-router-dom'
 import deleteActiveNav from '../helper/deleteActiveNav'
 import {GoSearch} from 'react-icons/go'
+import {BsChevronDown, BsChevronRight} from 'react-icons/bs'
+import env from 'react-dotenv'
 
 export default function History() {
   const [history, setHistory] = useState([])
   const [newVehicle, setNewVehicle] = useState([])
   const [page, setPage] = useState([])
+  const apiURL = env.APP_API
   
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -19,13 +22,13 @@ export default function History() {
   }, [])
 
   const getHistory = async (key) => {
-    const url = key ? `http://localhost:5000/histories/?search=${key}&limit=3` : `http://localhost:5000/histories/?limit=3`
+    const url = key ? `${apiURL}/histories/?search=${key}&limit=3` : `${apiURL}/histories/?limit=3`
     const {data} = await axios.get(url)
     setHistory(data.results)
     setPage(data.pageInfo)
   }
   const getNewVehicle = async () => {
-    const {data} = await axios.get('http://localhost:5000/vehicles/new')
+    const {data} = await axios.get(`${apiURL}/vehicles/new`)
     setNewVehicle(data.results)
   }
   const nextPage = async () => {
@@ -75,16 +78,6 @@ export default function History() {
                 </button>
               </form>       
             </div>
-            {/* <div className="dropdown col-12 col-md-3 filter">
-                <button className="btn dropdown-toggle w-100" type="button" id="dropdownMenuButton1" style={{backgroundColor: '#f1f1f1'}} data-bs-toggle="dropdown" aria-expanded="false">
-                  Filter
-                </button>
-                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><Link to={`type`} className='dropdown-item' >Type</Link></li>
-                  <li><a className="dropdown-item" href="#">Another action</a></li>
-                  <li><a className="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </div> */}
             <div className="container col-12 col-md-3 filter">
               <select id='filer' className="form-select select-bar">
                 <option className="d-none disabled">Filter</option>
@@ -137,8 +130,8 @@ export default function History() {
             <div className="view-more">
               <a href="#">
                 <div className="text-muted">View more</div>
-                <div className="arrow-down"><i className="fa-solid fa-angle-down"></i></div>
-                <div className="arrow-next d-none"><i className="fa-solid fa-angle-right"></i></div>
+                <div className="arrow-down"><BsChevronDown /></div>
+                <div className="arrow-next d-none"><BsChevronRight /></div>
               </a>
             </div>
           </div>
