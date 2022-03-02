@@ -66,10 +66,10 @@ export default function VehicleDetail() {
               <button className="col-1 btn" aria-label="previous button">
                 <GrFormPrevious className='prev' />
               </button>
-              <div className="col-5 overflow-hidden rounded">
+              <div className="col-5 overflow-hidden rounded text-center">
                 <img src={vehicle.image || noImage} alt={vehicle.brand} className="rounded img-fluid" />
               </div>
-              <div className="col-5 overflow-hidden rounded">
+              <div className="col-5 overflow-hidden rounded text-center">
                 <img src={vehicle.image || noImage} alt={vehicle.brand} className="rounded" />
               </div>
               <button className="col-1 btn" aria-label="next button">

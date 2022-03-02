@@ -82,7 +82,7 @@ export default function Reservation() {
           <span>Reservation</span>
         </div>
         <div className="row pt-5 detail-vehicle">
-          <div className="col-12 col-lg-7 img-section overflow-hidden my-auto">
+          <div className="col-12 col-lg-7 img-section overflow-hidden my-auto text-center">
             <img src={image || noImage} alt={brand} className='img-fluid' />
             <div className="cover-image overflow-hidden">
               

@@ -96,6 +96,7 @@ body {
 } */
 .vehicle-detail img, .vehicle-detail .cover-image {
   border-radius: 10px;
+  max-height: 310px;
 }
 .vehicle-detail .description-section {
   padding-left: 100px;
@@ -124,7 +125,7 @@ body {
   width: 75px;
 }
 .vehicle-detail .carousel img {
-  width: 100%;
+  max-height: 154px;
 }
 .vehicle-detail .total-day {
   margin: 13% 0;
@@ -304,7 +305,7 @@ body {
     margin: 20px 0;
   } */
   .vehicle-detail .reservation .img-section img {
-    width: 100%;
+    /* width: 100%; */
     height: auto;
   }
   .vehicle-detail .img-section {
@@ -394,8 +395,8 @@ body {
     position: unset;
   }
   .vehicle-detail .payment .img-section img {
-    width: 100%;
-    height: auto;
+    /* width: 100%;
+    height: auto; */
   }
   .vehicle-detail .payment .description h2 {
     font-size: 20px;
@@ -457,7 +458,7 @@ body {
     height: 100%;
   }
   .vehicle-detail .img-section img {
-    width: 80%;
+    /* width: 80%; */
   }
   .vehicle-detail .payment .btn-copy-top {
     margin-top: 15px;

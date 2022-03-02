@@ -41,8 +41,8 @@ export default function Payment() {
           </div>
           <span>Payment</span>
         </div>
-        <div className="row pt-5 detail-vehicle">
-          <div className="col-12 col-sm-5 col-md-5 col-xl-4 img-section overflow-hidden">
+        <div className="container row pt-5 detail-vehicle">
+          <div className="col-12 col-sm-5 col-md-5 col-xl-4 img-section overflow-hidden d-flex align-item-center justify-content-center">
             <img src={image} alt={brand} className='img-fluid' />
           </div>
           <div className="col-12 col-sm-7 col-md-7 col-xl-8 description-section">
