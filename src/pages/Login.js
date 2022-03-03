@@ -1,17 +1,23 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import '../assets/css/login.css'
 import dot from '../assets/images/dot-register.png'
 import google from '../assets/images/google.png'
 
-const Login = ({auth}) => {
+const Login = ({auth, dispatch}) => {
+  const navigate = useNavigate()
   useEffect(() => {
-    console.log(auth)
-  })
+    // console.log(auth)
+  }, [])
   const handleSubmit = (ev) => {
     ev.preventDefault()
-    
+    dispatch({
+      type: 'LOGIN',
+      username: ev.target.elements['username'].value,
+      password: ev.target.elements['password'].value,
+    })
+    navigate('/')
   }
   return (
     <>
@@ -33,7 +39,7 @@ const Login = ({auth}) => {
               
               <div className="col-12 col-md-6 form">
                 <form onSubmit={handleSubmit} className="form-register row">
-                  <input name='email' type="email" placeholder="Email" /> <br />
+                  <input name='username' type="text" placeholder="Username" /> <br />
                   <input name='password' type="password" placeholder="Password" /> <br />
                   <div><Link to='/forgot-password' className="forgot">Forgot password?</Link> <br/></div>
                   <button type='submit' className="btn login">Login</button>
@@ -52,6 +58,7 @@ const Login = ({auth}) => {
   )
 }
 
-const mapStateToProps = state => ({auth: state.auth}) // read data from redux
+const mapStateToProps = (state) => ({auth: state.auth}) // read data from redux
+const mapDispatchToProps = (dispatch) =>({dispatch})
 
-export default connect(mapStateToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

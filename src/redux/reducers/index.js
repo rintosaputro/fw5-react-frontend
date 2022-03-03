@@ -6,7 +6,7 @@ const initialState = {
 
 const rootReducer = combineReducers({
   auth: (state = initialState, action) => {
-    switch(action) {
+    switch(action.type) {
       case 'LOGIN': {
         state.token = 'test'
         return state
