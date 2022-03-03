@@ -7,15 +7,19 @@ import google from '../assets/images/google.png'
 
 const Login = ({auth, dispatch}) => {
   const navigate = useNavigate()
-  
+
   const handleSubmit = (ev) => {
     ev.preventDefault()
-    dispatch({
-      type: 'LOGIN',
-      username: ev.target.elements['username'].value,
-      password: ev.target.elements['password'].value,
-    })
-    navigate('/')
+    const username = ev.target.elements['username'].value
+    const password = ev.target.elements['password'].value
+    if (username === 'Admin' && password === '1234') {
+      dispatch({
+        type: 'LOGIN'
+      })
+      navigate('/')
+    } else {
+      alert('Wrong username or password')
+    }
   }
   return (
     <>
