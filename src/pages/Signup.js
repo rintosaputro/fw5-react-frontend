@@ -7,6 +7,9 @@ import {FaTwitter, FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube} from 'reac
 import { Link } from 'react-router-dom'
 
 export default class Signup extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
   render() {
     return (
       <main className="row signup-page">

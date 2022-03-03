@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import NavAfterLogin from './Navbar/NavAfterLogin'
 import NavBeforeLogin from './Navbar/NavBeforeLogin'
 import NavPopular from './Navbar/NavPopular'
@@ -8,9 +8,6 @@ import { useSelector } from 'react-redux'
 const Layout = (props) => {
   const {noNavbar, signup, vehicleMore, children} = props
   const {auth} = useSelector(state => state)
-  useEffect(() => {
-    console.log(auth)
-  }, [auth])
 
   return (
     <div>

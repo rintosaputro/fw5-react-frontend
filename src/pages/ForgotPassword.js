@@ -4,6 +4,9 @@ import {IoChevronBack} from 'react-icons/io5'
 import { Link } from 'react-router-dom'
 
 export default class ForgotPassword extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
   render() {
     return (
       <div className='forgot'>

@@ -8,6 +8,10 @@ import google from '../assets/images/google.png'
 const Login = ({auth, dispatch}) => {
   const navigate = useNavigate()
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   const handleSubmit = (ev) => {
     ev.preventDefault()
     const username = ev.target.elements['username'].value
