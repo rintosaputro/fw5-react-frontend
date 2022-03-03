@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
+import { connect, useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import '../assets/css/login.css'
 import dot from '../assets/images/dot-register.png'
@@ -7,9 +7,7 @@ import google from '../assets/images/google.png'
 
 const Login = ({auth, dispatch}) => {
   const navigate = useNavigate()
-  useEffect(() => {
-    // console.log(auth)
-  }, [])
+  
   const handleSubmit = (ev) => {
     ev.preventDefault()
     dispatch({
@@ -62,3 +60,4 @@ const mapStateToProps = (state) => ({auth: state.auth}) // read data from redux
 const mapDispatchToProps = (dispatch) =>({dispatch})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)
+// export default Login

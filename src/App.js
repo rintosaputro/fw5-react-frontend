@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
@@ -15,19 +15,12 @@ import Profile from "./pages/Profile";
 import Search from "./pages/Search";
 
 export default class App extends Component {
-  state = {
-    isLogged: true,
-    moreDetail: ''
-  }
-
   render() {
-    const {isLogged} = this.state
-
     return (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={
-            <Layout isLogin={isLogged}><Home /></Layout>
+            <Layout><Home /></Layout>
           } />
           <Route path="login" element={
             <Layout noNavbar={true}><Login /></Layout>
@@ -39,28 +32,28 @@ export default class App extends Component {
             <Layout noNavbar={true} signup={true}><Signup /></Layout>
           } />
           <Route path="vehicle/type" element={
-            <Layout isLogin={isLogged}><VehicleType /></Layout>
+            <Layout><VehicleType /></Layout>
           } />
           <Route path={`vehicle`} element={
-            <Layout isLogin={isLogged} vehicleMore={true}><VehicleMore /></Layout>
+            <Layout vehicleMore={true}><VehicleMore /></Layout>
           } />
           <Route path="vehicle/:id" element={
-            <Layout isLogin={isLogged}><VehicleDetail /></Layout>
+            <Layout><VehicleDetail /></Layout>
           } />
           <Route path="reservation/:id/:qty" element={
-            <Layout isLogin={isLogged}><Reservation /></Layout>
+            <Layout><Reservation /></Layout>
           } />
           <Route path="payment/:id/:qty/:idHistory" element={
-            <Layout isLogin={isLogged}><Payment /></Layout>
+            <Layout><Payment /></Layout>
           } />
           <Route path="history" element={
-            <Layout isLogin={isLogged}><History /></Layout>
+            <Layout><History /></Layout>
           } />
           <Route path="profile/:idUser" element={
-            <Layout isLogin={isLogged}><Profile /></Layout>
+            <Layout><Profile /></Layout>
           } />
           <Route path={`search`} element={
-            <Layout isLogin={isLogged}><Search /></Layout>
+            <Layout><Search /></Layout>
           } />
         </Routes>
         {/* {!this.state.isLogged && <Login isLogin={(value) => this.setState({isLogged: value})} />} */}
@@ -69,3 +62,50 @@ export default class App extends Component {
     )
   }
 }
+
+// const App = () => {
+//   return (
+//     <BrowserRouter>
+//       <Routes>
+//         <Route path="/" element={
+//           <Layout ><Home /></Layout>
+//         } />
+//         <Route path="login" element={
+//           <Layout noNavbar={true}><Login /></Layout>
+//         } />
+//         <Route path="forgot-password" element={
+//           <Layout noNavbar={true}><ForgotPassword /></Layout>
+//         } />
+//         <Route path="signup" element={
+//           <Layout noNavbar={true} signup={true}><Signup /></Layout>
+//         } />
+//         <Route path="vehicle/type" element={
+//           <Layout ><VehicleType /></Layout>
+//         } />
+//         <Route path={`vehicle`} element={
+//           <Layout  vehicleMore={true}><VehicleMore /></Layout>
+//         } />
+//         <Route path="vehicle/:id" element={
+//           <Layout ><VehicleDetail /></Layout>
+//         } />
+//         <Route path="reservation/:id/:qty" element={
+//           <Layout ><Reservation /></Layout>
+//         } />
+//         <Route path="payment/:id/:qty/:idHistory" element={
+//           <Layout ><Payment /></Layout>
+//         } />
+//         <Route path="history" element={
+//           <Layout ><History /></Layout>
+//         } />
+//         <Route path="profile/:idUser" element={
+//           <Layout ><Profile /></Layout>
+//         } />
+//         <Route path={`search`} element={
+//           <Layout ><Search /></Layout>
+//         } />
+//       </Routes>
+//     </BrowserRouter>
+//   )
+// }
+
+// export default App;
