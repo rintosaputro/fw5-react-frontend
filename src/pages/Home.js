@@ -8,35 +8,47 @@ import ProductHighlight from '../components/ProductHighlight';
 import { Link, useNavigate } from 'react-router-dom';
 import {IoChevronForward} from 'react-icons/io5'
 import deleteActiveNav from '../helper/deleteActiveNav'
-import env from 'react-dotenv'
+import { popular } from '../redux/actions/popular';
+import { getVehiclePopular } from '../redux/actions/vehicle';
+import Layout from '../components/Layout';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Home = () => {
-  const [vehicle, setVehilcle] = useState([])
+  // const popularVehicle = useSelector(state => state.popular)
+  // const [vehicle, setVehilcle] = useState([])
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const {vehiclePopular} = useSelector(state => state)
 
+  // useEffect(() => {
+  //   console.log('test', popularVehicle)
+  //   popular()
+  // }, [])
   useEffect(() => {
     window.scrollTo(0, 0)
-    getVehicle()
+    // getVehicle()
+    // getVehiclePopular()
+    dispatch(getVehiclePopular())
     deleteActiveNav()
-  },[])
+    console.log('data vehicle', vehiclePopular)
+  },[getVehiclePopular, vehiclePopular])
 
-  const getVehicle = async () => {
-    const {data} = await axios.get(`${env.APP_API}/popular?limit=4`)
-    setVehilcle(data.results)
-  }
+  // const getVehicle = async () => {
+  //   const {data} = await axios.get(`${env.APP_API}/popular?limit=4`)
+  //   setVehilcle(data.results)
+  // }
 
   const handleSubmit = (ev) => {
     ev.preventDefault()
     const key = document.getElementById('search').value
     const location = document.getElementById('location').value
     const date = document.getElementById('date').value
-    console.log(date)
     navigate(`/search?keyword=${key}&location=${location}&date=${date}`)
   }
 
   
   return (
-    <>
+    <Layout>
     <header className="header-homepage home">
       <div className="opacity">
         <div className="container">
@@ -79,9 +91,9 @@ const Home = () => {
           <Link to='/vehicle' className="view-all">View all <IoChevronForward /></Link>
         </div>
         <div className="row position-relative">
-          {vehicle.map((data) => {
+          {vehiclePopular.vehicle.map((data) => {
             const props = {image: data.image, location: data.location, brand: data.brand, id: data.idVehicle}
-            if (data.qty > 0) return <ProductHighlight key={props.id} props={props} />
+            return <ProductHighlight key={props.id} props={props} />
           })}
            <Link to='/vehicle' className="view-all-btn position-absolute"><IoChevronForward /></Link>
         </div>
@@ -125,8 +137,12 @@ const Home = () => {
         </div>
       </section>
     </main>
-    </>
+    </Layout>
   )
 }
 
+// const mapStateToProps = (state) => ({vehiclePopular: state.vehiclePopular})
+// const mapDispatchToProps = {getVehiclePopular}
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Home)
 export default Home
