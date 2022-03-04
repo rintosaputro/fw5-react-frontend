@@ -5,7 +5,6 @@ import {BiSearchAlt2} from 'react-icons/bi'
 import {IoChevronForward} from 'react-icons/io5'
 import { Link, useNavigate } from 'react-router-dom';
 import {default as axios} from 'axios';
-import env from 'react-dotenv'
 import searchURL from '../helper/searchURL';
 
 const VehicleType = () => {
@@ -27,7 +26,7 @@ const VehicleType = () => {
   },[])
 
   const getVehicle = async (setData, type, limit = 4) => {
-    const url = type ? `${env.APP_API}/popular?search=${type}&limit=${limit}` : `${env.APP_API}/popular?limit=${limit}`
+    const url = type ? `http://localhost:5000/popular?search=${type}&limit=${limit}` : `http://localhost:5000/popular?limit=${limit}`
     const {data} = await axios.get(url)
     setData(data.results)
   }  

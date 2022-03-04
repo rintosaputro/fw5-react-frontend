@@ -20,22 +20,22 @@ export default class App extends Component {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={
-            <Layout><Home /></Layout>
+            <Home />
           } />
           <Route path="login" element={
-            <Layout noNavbar={true}><Login /></Layout>
+            <Layout noNavbar><Login /></Layout>
           } />
           <Route path="forgot-password" element={
-            <Layout noNavbar={true}><ForgotPassword /></Layout>
+            <Layout noNavbar><ForgotPassword /></Layout>
           } />
           <Route path="signup" element={
-            <Layout noNavbar={true} signup={true}><Signup /></Layout>
+            <Layout noNavbar signup><Signup /></Layout>
           } />
           <Route path="vehicle/type" element={
             <Layout><VehicleType /></Layout>
           } />
           <Route path={`vehicle`} element={
-            <Layout vehicleMore={true}><VehicleMore /></Layout>
+            <Layout vehicleMore><VehicleMore /></Layout>
           } />
           <Route path="vehicle/:id" element={
             <Layout><VehicleDetail /></Layout>

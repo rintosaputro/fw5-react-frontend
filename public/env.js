@@ -1,7 +1,6 @@
 window.env = {
   "ALLUSERSPROFILE": "C:\\ProgramData",
   "APPDATA": "C:\\Users\\saput\\AppData\\Roaming",
-  "APP_API": "http://localhost:5000",
   "ChocolateyInstall": "C:\\ProgramData\\chocolatey",
   "ChocolateyLastPathUpdate": "132862724006710406",
   "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_20300_BTUUFAOAEZQWGLJX",
@@ -64,6 +63,7 @@ window.env = {
   "PROMPT": "$P$G",
   "PSModulePath": "C:\\Users\\saput\\OneDrive\\Dokumen\\PowerShell\\Modules;C:\\Program Files\\PowerShell\\Modules;c:\\program files\\windowsapps\\microsoft.powershell_7.2.1.0_x64__8wekyb3d8bbwe\\Modules;C:\\Program Files\\WindowsPowerShell\\Modules;C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules",
   "PUBLIC": "C:\\Users\\Public",
+  "REACT_APP_API": "http://localhost:5000",
   "SESSIONNAME": "Console",
   "SystemDrive": "C:",
   "SystemRoot": "C:\\WINDOWS",

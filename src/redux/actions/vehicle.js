@@ -1,15 +1,15 @@
-import {default as axios} from 'axios'
+import http from "../../helper/http";
 
-export const getVehiclePopular = () => {
+export const popular = () => {
   return {
-    type: 'GET_VEHICLE',
-    payload: axios.get(`http://localhost:5000/popular?limit=4`)
+    type: 'GET_POPULAR',
+    payload:http().get(`/popular`)
   }
 }
 
 export const getVehicleDetail = (id) => {
   return {
     type: 'GET_DETAIL',
-    payload: axios.get(`http://localhost:5000/vehicles/${id}`)
+    payload: http().get(`/vehicles/${id}`)
   }
 }

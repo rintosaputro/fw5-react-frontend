@@ -4,7 +4,6 @@ import ProductHighlight from '../components/ProductHighlight'
 import {default as axios} from 'axios';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import {BiSearchAlt2} from 'react-icons/bi'
-import env from 'react-dotenv'
 import searchURL from '../helper/searchURL';
 
 export default function Search(props) {
@@ -20,7 +19,7 @@ export default function Search(props) {
     const fil = searchParams.get('location') || ''
     const min = searchParams.get('min') || 0
     const max = searchParams.get('max') || 100000000
-    let url = `${env.APP_API}/vehicles/category/?limit=8&search=${key}&location=${fil}&minimum=${min}&maximum=${max}`
+    let url = `http://localhost:5000/vehicles/category/?limit=8&search=${key}&location=${fil}&minimum=${min}&maximum=${max}`
     getVehicle(url)
   }, [searchParams])
 

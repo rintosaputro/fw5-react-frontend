@@ -6,7 +6,6 @@ import {BiMinus, BiPlus} from 'react-icons/bi'
 import {IoChevronBack} from 'react-icons/io5'
 import noImage from '../assets/images/no-image.jpg'
 import activeNav from '../helper/activeNav'
-import env from 'react-dotenv'
 
 export default function Reservation() {
   const {id, qty} = useParams()
@@ -23,7 +22,7 @@ export default function Reservation() {
 
   const getVehicle = async () => {
     try {
-      const {data} = await axios.get(`${env.APP_API}/vehicles/${id}`)
+      const {data} = await axios.get(`http://localhost:5000/vehicles/${id}`)
       setVehilcle(data.results)
       setPriceVehicle(data.results.price * count)
       setDefaultPrice(data.results.price)
@@ -55,7 +54,7 @@ export default function Reservation() {
     //   const startDate = document.getElementById('dateReservation').value
     //   const endDate = document.getElementById('date').value
     //   const {idVehicle, payment} = vehicle
-    //   const data = await axios.post('${env.APP_API}/histories', {
+    //   const data = await axios.post('http://localhost:5000/histories', {
     //     id_user: 1,
     //     id_vehicle: idVehicle,
     //     rent_start_date: startDate,

@@ -4,7 +4,6 @@ import {default as axios} from 'axios'
 import { useParams } from 'react-router-dom'
 import {IoChevronBack} from 'react-icons/io5'
 import activeNav from '../helper/activeNav'
-import env from 'react-dotenv'
 
 export default function Payment() {
   const [vehicle, setVehilcle] = useState({})
@@ -17,7 +16,7 @@ export default function Payment() {
 
   const {id, qty} = useParams()
   const getVehicle = async () => {
-    const {data} = await axios.get(`${env.APP_API}/vehicles/${id}`)
+    const {data} = await axios.get(`http://localhost:5000/vehicles/${id}`)
     setVehilcle(data.results)
   }
   const back = () => {

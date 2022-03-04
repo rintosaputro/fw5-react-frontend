@@ -6,13 +6,11 @@ import { Link } from 'react-router-dom'
 import deleteActiveNav from '../helper/deleteActiveNav'
 import {GoSearch} from 'react-icons/go'
 import {BsChevronDown, BsChevronRight} from 'react-icons/bs'
-import env from 'react-dotenv'
 
 export default function History() {
   const [history, setHistory] = useState([])
   const [newVehicle, setNewVehicle] = useState([])
   const [page, setPage] = useState([])
-  const apiURL = env.APP_API
   
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -22,13 +20,13 @@ export default function History() {
   }, [])
 
   const getHistory = async (key) => {
-    const url = key ? `${apiURL}/histories/?search=${key}&limit=3` : `${apiURL}/histories/?limit=3`
+    const url = key ? `http://localhost:5000/histories/?search=${key}&limit=3` : `http://localhost:5000/histories/?limit=3`
     const {data} = await axios.get(url)
     setHistory(data.results)
     setPage(data.pageInfo)
   }
   const getNewVehicle = async () => {
-    const {data} = await axios.get(`${apiURL}/vehicles/new`)
+    const {data} = await axios.get(`http://localhost:5000/vehicles/new`)
     setNewVehicle(data.results)
   }
   const nextPage = async () => {

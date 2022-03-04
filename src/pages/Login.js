@@ -1,19 +1,26 @@
 import React, { useEffect } from 'react'
 import { connect, useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import '../assets/css/login.css'
 import dot from '../assets/images/dot-register.png'
 import google from '../assets/images/google.png'
 
 const Login = ({auth, dispatch}) => {
   const navigate = useNavigate()
-
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [])
+    console.log(auth)
+  }, [auth])
 
   const handleSubmit = (ev) => {
     ev.preventDefault()
+    // dispatch({
+    //   type: 'LOGIN',
+    //   payload: {
+    //     username: ev.target.elements['username'].value,
+    //     password: ev.target.elements['password'].value
+    //   }
+    // })
     const username = ev.target.elements['username'].value
     const password = ev.target.elements['password'].value
     if (username === 'Admin' && password === '1234') {
@@ -27,6 +34,7 @@ const Login = ({auth, dispatch}) => {
   }
   return (
     <>
+      {auth.token !== null && <Navigate to='/' />}
       <header className="register login">
         <div className="opacity">
           <div className="container">

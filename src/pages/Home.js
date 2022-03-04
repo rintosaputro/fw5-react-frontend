@@ -6,12 +6,12 @@ import {FaStar} from 'react-icons/fa'
 import ProductHighlight from '../components/ProductHighlight';
 import { Link, useNavigate } from 'react-router-dom';
 import {IoChevronForward} from 'react-icons/io5'
-import { popular } from '../redux/actions/popular';
+import { popular } from '../redux/actions/vehicle';
 import Layout from '../components/Layout';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Home = () => {
-  const vehiclePopular = useSelector(state => state.popular)
+  const vehiclePopular = useSelector(state => state.vehicleReducer.popular)
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -71,9 +71,9 @@ const Home = () => {
           <Link to='/vehicle' className="view-all">View all <IoChevronForward /></Link>
         </div>
         <div className="row position-relative">
-          {vehiclePopular.vehicle.map((data) => {
+          {vehiclePopular.vehicle.map((data, index) => {
             const props = {image: data.image, location: data.location, brand: data.brand, id: data.idVehicle}
-            return <ProductHighlight key={props.id} props={props} />
+            return (index < 4 && <ProductHighlight key={props.id} props={props} />)
           })}
            <Link to='/vehicle' className="view-all-btn position-absolute"><IoChevronForward /></Link>
         </div>

@@ -34,7 +34,7 @@ export default class Signup extends Component {
       
             <footer className="bg-light container pt-5">
               <div>
-                <img src={logo} alt="logo" width="20px" />
+                <Link to='/'><img src={logo} alt="logo" width="20px" /></Link>
                 <p className="description">Plan and book your perfect trip with expert advice, travel tips for vehicle information from us</p>
                 <p>©2020 Vehicle Rental Center. All rights reserved</p>
               </div>

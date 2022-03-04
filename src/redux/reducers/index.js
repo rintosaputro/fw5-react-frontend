@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import popular from "./popular";
+import vehicleReducer from "./vehicle";
 
 const initialState = {
   token: null,
@@ -11,14 +11,9 @@ const vehicleDetailState = {
 const qtyState = {
   total: 1,
 }
-const vehicleState = {
-  vehicle: [],
-  isLoading: false,
-  error: false,
-}
 
 const rootReducer = combineReducers({
-  popular,
+  vehicleReducer,
   auth: (state = initialState, action) => {
     switch(action.type) {
       case 'LOGIN': {
@@ -74,28 +69,6 @@ const rootReducer = combineReducers({
       }
     }
   },
-  vehiclePopular: (state = vehicleState, action) => {
-    switch(action.type) {
-      case 'GET_VEHICLE_PENDING': {
-        state.isLoading =true
-        return state
-      }
-      case 'GET_VEHICLE_FULFILLED': {
-          const {data} = action.payload
-          state.vehicle = data.results
-          state.isLoading = false
-          return state
-      }
-      case 'GET_VEHICLE_REJECTED': {
-          state.isLoading = false
-          state.isError = true
-          return state
-      }
-      default: {
-        return state
-      }
-    }
-  }
 })
 
 export default rootReducer

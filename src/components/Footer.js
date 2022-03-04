@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import '../assets/css/footer.css'
 import logo from '../assets/images/logo.png'
 import {FaTwitter, FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube} from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 export default class Footer extends Component {
   render() {
@@ -11,7 +12,7 @@ export default class Footer extends Component {
         <footer className="bg-light pt-3">
           <div className="container row">
             <div className="col-lg-5">
-              <img src={logo} alt="logo" />
+              <Link to='/'><img src={logo} alt="logo" /></Link>
               <p className="description">Plan and book your perfect trip with expert advice, travel tips for vehicle information from us</p>
               <p>©2020 Vehicle Rental Center. All rights reserved</p>
             </div>

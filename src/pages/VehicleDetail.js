@@ -5,13 +5,14 @@ import {GrFormPrevious, GrFormNext} from 'react-icons/gr'
 import {IoChevronBack} from 'react-icons/io5'
 import {IoMdHeart} from 'react-icons/io'
 import { useNavigate, useParams } from 'react-router-dom'
-import {default as axios} from 'axios';
 import noImage from '../assets/images/no-image.jpg'
 import activeNav from '../helper/activeNav'
-import env from 'react-dotenv'
+import { connect, useDispatch, useSelector } from 'react-redux'
+import { getVehicleDetail } from '../redux/actions/vehicle'
 
-export default function VehicleDetail() {
+function VehicleDetail({vehicleDetail, getVehicleDetail}) {
   const {id} = useParams()
+  // const {vehicleDetail} = useSelector(state => state)
 
   const [vehicle, setVehilcle] = useState({})
   const [defaultPrice, setDefaultPrice] = useState(0)
@@ -19,26 +20,34 @@ export default function VehicleDetail() {
   const [count, setCount] = useState(1)
 
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    getVehicle()
+    // getVehicle()
+    getVehicleDetail(id)
     activeNav()
-  },[])
+    console.log('test',vehicleDetail.vehicle)
+    // console.log('vehicle', vehicle)
+  }, [])
 
   const getVehicle = async () => {
-    const {data} = await axios.get(`${env.APP_API}/vehicles/${id}`)
-    setVehilcle(data.results)
-    setDefaultPrice(data.results.price)
-    setPrice(data.results.price)
+    // const {data} = await axios.get(`${env.APP_API}/vehicles/${id}`)
+    // setVehilcle(data.results)
+    // setDefaultPrice(data.results.price)
+    // setPrice(data.results.price)
+    setVehilcle(vehicleDetail.vehicle)
   }
   
   const countPlus = () => {
+    // dispatch({type: 'INCREMENT'})
     setPrice(defaultPrice + price )
     setCount(count + 1)
   }
   const countMinus = () => {
     if(count > 1) {
+      // dispatch({type: 'DECREMENT'})
+      // console.log(qty.total)
       setPrice(price - defaultPrice)
       setCount(count - 1)
     }
@@ -49,6 +58,7 @@ export default function VehicleDetail() {
   const toReservation = () => {
     navigate(`/reservation/${id}/${count}`)
   }
+  const dataVehicle = vehicleDetail.vehicle
 
   return (
     <div className='vehicle-detail my-5'>
@@ -60,17 +70,17 @@ export default function VehicleDetail() {
           </div>
           <div className="col-12 col-lg-6 img-section">
             <div className="cover-image overflow-hidden text-center">
-              <img src={vehicle.image || noImage} alt={vehicle.brand} className='img-fluid'/>
+              <img src={dataVehicle.image || noImage} alt={dataVehicle.brand} className='img-fluid'/>
             </div>
             <div className="row carousel d-flex align-items-center mt-4">
               <button className="col-1 btn" aria-label="previous button">
                 <GrFormPrevious className='prev' />
               </button>
               <div className="col-5 overflow-hidden rounded text-center">
-                <img src={vehicle.image || noImage} alt={vehicle.brand} className="rounded img-fluid" />
+                <img src={dataVehicle.image || noImage} alt={dataVehicle.brand} className="rounded img-fluid" />
               </div>
               <div className="col-5 overflow-hidden rounded text-center">
-                <img src={vehicle.image || noImage} alt={vehicle.brand} className="rounded" />
+                <img src={dataVehicle.image || noImage} alt={dataVehicle.brand} className="rounded img-fluid" />
               </div>
               <button className="col-1 btn" aria-label="next button">
                 <GrFormNext className='next' />
@@ -79,18 +89,18 @@ export default function VehicleDetail() {
           </div>
           <div className="col-12 col-lg-6 description-section">
             <div className="description">
-              <h2 className="fw-bold">{vehicle.brand}</h2>
-              <p className="text-muted">{vehicle.location}</p>
+              <h2 className="fw-bold">{dataVehicle.brand}</h2>
+              <p className="text-muted">{dataVehicle.location}</p>
             </div>
             <div className="status my-3 d-flex flex-column">
-              <span className="text-success fw-bold my-2">{vehicle.status}</span>
+              <span className="text-success fw-bold my-2">{dataVehicle.status}</span>
               <span className="text-danger">No prepayment</span>
             </div>
             <div className="mt-4">
-              Capacity: {vehicle.capacity} Person
+              Capacity: {dataVehicle.capacity} Person
             </div>
             <div className="my-2">
-              Type : {vehicle.type}
+              Type : {dataVehicle.type}
             </div>
             <div>
               Reservation: before 2 PM
@@ -135,3 +145,8 @@ export default function VehicleDetail() {
   )
     
 }
+
+const mapStateToProps = (state) => ({vehicleDetail: state.vehicleDetail})
+const mapDispatchToProps = {getVehicleDetail}
+
+export default connect(mapStateToProps, mapDispatchToProps)(VehicleDetail)
