@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import {default as axios} from 'axios';
+import React, { useEffect } from 'react'
 import '../assets/css/home.css'
 import user from '../assets/images/user-homepage.png'
 import {GrFormPrevious, GrFormNext} from 'react-icons/gr';
@@ -7,36 +6,18 @@ import {FaStar} from 'react-icons/fa'
 import ProductHighlight from '../components/ProductHighlight';
 import { Link, useNavigate } from 'react-router-dom';
 import {IoChevronForward} from 'react-icons/io5'
-import deleteActiveNav from '../helper/deleteActiveNav'
 import { popular } from '../redux/actions/popular';
-import { getVehiclePopular } from '../redux/actions/vehicle';
 import Layout from '../components/Layout';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Home = () => {
-  // const popularVehicle = useSelector(state => state.popular)
-  // const [vehicle, setVehilcle] = useState([])
+  const vehiclePopular = useSelector(state => state.popular)
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const {vehiclePopular} = useSelector(state => state)
 
-  // useEffect(() => {
-  //   console.log('test', popularVehicle)
-  //   popular()
-  // }, [])
   useEffect(() => {
-    window.scrollTo(0, 0)
-    // getVehicle()
-    // getVehiclePopular()
-    dispatch(getVehiclePopular())
-    deleteActiveNav()
-    console.log('data vehicle', vehiclePopular)
-  },[getVehiclePopular, vehiclePopular])
-
-  // const getVehicle = async () => {
-  //   const {data} = await axios.get(`${env.APP_API}/popular?limit=4`)
-  //   setVehilcle(data.results)
-  // }
+    dispatch(popular())
+  }, [dispatch])
 
   const handleSubmit = (ev) => {
     ev.preventDefault()
@@ -46,7 +27,6 @@ const Home = () => {
     navigate(`/search?keyword=${key}&location=${location}&date=${date}`)
   }
 
-  
   return (
     <Layout>
     <header className="header-homepage home">
