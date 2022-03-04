@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import NavList from './NavList'
-import '../../assets/css/nav-after.css'
+import '../../assets/css/nav-main.css'
 import {FiMail} from 'react-icons/fi'
 import logo from '../../assets/images/logo.png'
 import photo from '../../assets/images/profile.png'
@@ -10,7 +10,7 @@ import photo from '../../assets/images/profile.png'
 export default class NavAfterLogin extends Component {
   render() {
     return (
-      <div className='nav-after'>
+      <div className='nav-main'>
         <nav className="navbar navbar-expand-lg navbar-light bg-white fixed-top">
           <div className="container-fluid bg-white navigation">
             <Link to='/' className="navbar-brand">
