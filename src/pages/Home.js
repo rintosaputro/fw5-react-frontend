@@ -9,6 +9,7 @@ import {IoChevronForward} from 'react-icons/io5'
 import { popular } from '../redux/actions/vehicle';
 import Layout from '../components/Layout';
 import { useDispatch, useSelector } from 'react-redux';
+import BtnLogout from '../components/BtnLogout';
 
 const Home = () => {
   const vehiclePopular = useSelector(state => state.vehicleReducer.popular)
@@ -25,11 +26,6 @@ const Home = () => {
     const location = document.getElementById('location').value
     const date = document.getElementById('date').value
     navigate(`/search?keyword=${key}&location=${location}&date=${date}`)
-  }
-  const logOut = (ev) => {
-    dispatch({
-      type: 'AUTH_LOGOUT'
-    })
   }
 
   return (
@@ -71,9 +67,6 @@ const Home = () => {
 
     <main className="container home">
       <section className="destination">
-        <div>
-          <button onClick={logOut} className='btn btn-success'>Logout</button>
-        </div>
         <div className="d-flex justify-content-between align-items-center head">
           <h2>Popular in town</h2>
           <Link to='/vehicle' className="view-all">View all <IoChevronForward /></Link>
