@@ -25,7 +25,7 @@ const NavAfterLogin = () => {
             <NavList />
             <div className="mail-profile ms-xl-5 d-flex align-items-center">
               <Link to='/message' className="ms-lg-3 me-4 message"><span className="text-white badge total-message">0</span><FiMail className='icon-message' /></Link>
-              <Link to='/profile/41' className='profile'>
+              <Link to='/profile' className='profile'>
                 <img src={auth.userData.image || noImage} alt="Photoprofile." />
               </Link>
             </div>

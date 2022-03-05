@@ -4,23 +4,24 @@ import {default as axios} from 'axios'
 import { useParams} from 'react-router-dom'
 import {BsFillPenFill} from 'react-icons/bs'
 import deleteActiveNav from '../helper/deleteActiveNav'
+import { useSelector } from 'react-redux'
 
 export default function Profile() {
-  const [user, setUser] = useState([])
-  const {idUser} = useParams()
+  const {userData} = useSelector(state => state.auth)
+  // const [user, setUser] = useState([])
+  // const {idUser} = useParams()
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    getUser()
     deleteActiveNav()
   }, [])
 
-  const getUser = async () => {
-    const {data} = await axios.get(`http://localhost:5000/users/${idUser}`)
-    setUser(data.results)    
-  }
+  // const getUser = async () => {
+  //   const {data} = await axios.get(`http://localhost:5000/users/${idUser}`)
+  //   setUser(data.results)    
+  // }
   
-  const {image, name, username, email, createdAt, phoneNumber, address} = user
+  const {image, name, username, email, createdAt, phoneNumber, address} = userData
   
   return (
     <div className='profile'>

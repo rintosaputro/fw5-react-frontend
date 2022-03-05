@@ -71,7 +71,7 @@ const App = () => {
         <Route path="history" element={
           <Layout ><History /></Layout>
         } />
-        <Route path="profile/:idUser" element={
+        <Route path="profile" element={
           <Layout ><Profile /></Layout>
         } />
         <Route path={`search`} element={
