@@ -26,6 +26,11 @@ const Home = () => {
     const date = document.getElementById('date').value
     navigate(`/search?keyword=${key}&location=${location}&date=${date}`)
   }
+  const logOut = (ev) => {
+    dispatch({
+      type: 'AUTH_LOGOUT'
+    })
+  }
 
   return (
     <Layout>
@@ -66,6 +71,9 @@ const Home = () => {
 
     <main className="container home">
       <section className="destination">
+        <div>
+          <button onClick={logOut} className='btn btn-success'>Logout</button>
+        </div>
         <div className="d-flex justify-content-between align-items-center head">
           <h2>Popular in town</h2>
           <Link to='/vehicle' className="view-all">View all <IoChevronForward /></Link>

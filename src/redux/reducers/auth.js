@@ -45,6 +45,12 @@ const auth = (state = intialState, action) => {
       state.isLoading = false
       return {...state}
     }
+    case 'AUTH_LOGOUT': {
+      state.token = null
+      state.userData = {}
+      window.localStorage.removeItem('token')
+      return {...state}
+    }
     default: {
       return {...state}
     }

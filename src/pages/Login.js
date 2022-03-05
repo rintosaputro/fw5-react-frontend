@@ -1,37 +1,52 @@
 import React, { useEffect } from 'react'
-import { connect, useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import '../assets/css/login.css'
 import dot from '../assets/images/dot-register.png'
 import google from '../assets/images/google.png'
+import { login } from '../redux/actions/auth'
 
-const Login = ({auth, dispatch}) => {
-  const navigate = useNavigate()
+const Login = () => {
+  const dispatch = useDispatch()
+  const {auth} = useSelector(state => state)
+
   useEffect(() => {
     window.scrollTo(0, 0)
     console.log(auth)
-  }, [auth])
+  }, [])
 
   const handleSubmit = (ev) => {
     ev.preventDefault()
-    // dispatch({
-    //   type: 'LOGIN',
-    //   payload: {
-    //     username: ev.target.elements['username'].value,
-    //     password: ev.target.elements['password'].value
-    //   }
-    // })
     const username = ev.target.elements['username'].value
     const password = ev.target.elements['password'].value
-    if (username === 'Admin' && password === '1234') {
-      dispatch({
-        type: 'LOGIN'
-      })
-      navigate('/profile')
-    } else {
-      alert('Wrong username or password')
-    }
+    dispatch(login(username, password))
   }
+  // const navigate = useNavigate()
+  // useEffect(() => {
+  //   window.scrollTo(0, 0)
+  //   console.log(auth)
+  // }, [auth])
+
+  // const handleSubmit = (ev) => {
+  //   ev.preventDefault()
+  //   // dispatch({
+  //   //   type: 'LOGIN',
+  //   //   payload: {
+  //   //     username: ev.target.elements['username'].value,
+  //   //     password: ev.target.elements['password'].value
+  //   //   }
+  //   // })
+  //   const username = ev.target.elements['username'].value
+  //   const password = ev.target.elements['password'].value
+  //   if (username === 'Admin' && password === '1234') {
+  //     dispatch({
+  //       type: 'LOGIN'
+  //     })
+  //     navigate('/profile')
+  //   } else {
+  //     alert('Wrong username or password')
+  //   }
+  // }
   return (
     <>
       {auth.token !== null && <Navigate to='/' />}
@@ -44,7 +59,7 @@ const Login = ({auth, dispatch}) => {
                 <div className="d-flex flex-column align-items-center left-section">
                   <h1>Le`ts Explore <br /> The World</h1>
                   <div className="reverse-top">
-                    <a href="#" className="dont-have">Don`t have account?</a> <br />
+                    <Link to="#" className="dont-have">Don`t have account?</Link> <br />
                     <Link to='/signup' className="btn btn-signup">Sign Up</Link>
                   </div>
                 </div>
@@ -53,13 +68,14 @@ const Login = ({auth, dispatch}) => {
               
               <div className="col-12 col-md-6 form">
                 <form onSubmit={handleSubmit} className="form-register row">
+                  {auth.isError && auth.errorMessage && <div style={{backgroundColor: 'teal'}} className='alert' role='alert'>{auth.errorMessage}</div>}
                   <input name='username' type="text" placeholder="Username" /> <br />
                   <input name='password' type="password" placeholder="Password" /> <br />
                   <div><Link to='/forgot-password' className="forgot">Forgot password?</Link> <br/></div>
                   <button type='submit' className="btn login">Login</button>
-                  <a href="#" className="btn google"><img src={google} alt="google"/> Login With Google</a>
+                  <Link to="#" className="btn google"><img src={google} alt="google"/> Login With Google</Link>
                   <div className="reverse-bottom d-none g-0">
-                    <a href="#" className="dont-have">Don’t have account?</a> <br />
+                    <Link to="#" className="dont-have">Don’t have account?</Link> <br />
                     <Link to='/signup' className="btn btn-signup">Sign Up</Link>
                   </div>
                 </form>
@@ -72,8 +88,8 @@ const Login = ({auth, dispatch}) => {
   )
 }
 
-const mapStateToProps = (state) => ({auth: state.auth}) // read data from redux
-const mapDispatchToProps = (dispatch) =>({dispatch})
+// const mapStateToProps = (state) => ({auth: state.auth}) // read data from redux
+// const mapDispatchToProps = (dispatch) =>({dispatch})
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
-// export default Login
+// export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default Login
