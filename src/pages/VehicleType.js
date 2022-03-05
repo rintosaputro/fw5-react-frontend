@@ -6,9 +6,11 @@ import {IoChevronForward} from 'react-icons/io5'
 import { Link, useNavigate } from 'react-router-dom';
 import {default as axios} from 'axios';
 import searchURL from '../helper/searchURL';
+import { useSelector } from 'react-redux';
 
 const VehicleType = () => {
-  const [popularTown, setPopularTown] = useState([])
+  const {popular} = useSelector(state => state.vehicleReducer)
+  // const [popularTown, setPopularTown] = useState([])
   const [cars, setCars] = useState([])
   const [pickUP, setPickUp] = useState([])
   const [motorbike, setMotorBike] = useState([])
@@ -18,7 +20,7 @@ const VehicleType = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    getVehicle(setPopularTown)
+    // getVehicle(setPopularTown)
     getVehicle(setCars, 'cars')
     getVehicle(setPickUp, 'pick up')
     getVehicle(setMotorBike, 'motorbike')
@@ -44,9 +46,9 @@ const VehicleType = () => {
           <Link  to={type ? `/vehicle?type=${type}` : `/vehicle`} className="view-all">View all <IoChevronForward /></Link>
         </div>
         <div className="row">
-          {arr.map((data) => {
+          {arr.map((data, index) => {
             const props = {image: data.image, location: data.location, brand: data.brand, id: data.idVehicle}
-            if (data.qty > 0) return <ProductHighlight key={props.id} props={props} />
+            return (index < 4 && <ProductHighlight key={props.id} props={props} />)
           })}
         </div>
       </section>
@@ -74,7 +76,7 @@ const VehicleType = () => {
           </button>
         </form>
       </section>
-      {product('Popular in town', popularTown)}
+      {product('Popular in town', popular.vehicle)}
       {product('Cars', cars, 'cars')}
       {product('Motorbike', motorbike, 'motorbike')}
       {product('Bike', bike, 'bike')}

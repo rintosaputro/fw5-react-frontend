@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
@@ -38,7 +38,7 @@ const App = () => {
       dispatch(getUser(token))
       dispatch(popular())
     }
-  }, [])
+  }, [dispatch, auth.token])
   
   return (
     <BrowserRouter>
