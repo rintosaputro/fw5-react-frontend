@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import vehicleReducer from "./vehicle";
+import auth from "./auth";
 
 const initialState = {
   token: null,
@@ -14,30 +15,31 @@ const qtyState = {
 
 const rootReducer = combineReducers({
   vehicleReducer,
-  auth: (state = initialState, action) => {
-    switch(action.type) {
-      case 'LOGIN': {
-        // const {username, password} = action.payload
-        // if (username === 'Admin' && password === '1234') {
-        //   state.token = 'test'
-        //   return state
-        // } else {
-        //   alert('Wrong username or password')
-        //   state.token = null
-        //   return state
-        // }
-        state.token = 'test'
-        return state
-      }
-      case 'LOGOUT': {
-        state.token = null
-        return state
-      }
-      default: {
-        return state
-      }
-    }
-  },
+  auth,
+  // auth: (state = initialState, action) => {
+  //   switch(action.type) {
+  //     case 'LOGIN': {
+  //       // const {username, password} = action.payload
+  //       // if (username === 'Admin' && password === '1234') {
+  //       //   state.token = 'test'
+  //       //   return state
+  //       // } else {
+  //       //   alert('Wrong username or password')
+  //       //   state.token = null
+  //       //   return state
+  //       // }
+  //       state.token = 'test'
+  //       return state
+  //     }
+  //     case 'LOGOUT': {
+  //       state.token = null
+  //       return state
+  //     }
+  //     default: {
+  //       return state
+  //     }
+  //   }
+  // },
   vehicleDetail: (state = vehicleDetailState, action) => {
     switch(action.type) {
       case 'GET_DETAIL_PENDING': {

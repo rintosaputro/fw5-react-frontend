@@ -27,7 +27,7 @@ const Login = ({auth, dispatch}) => {
       dispatch({
         type: 'LOGIN'
       })
-      navigate('/')
+      navigate('/profile')
     } else {
       alert('Wrong username or password')
     }
