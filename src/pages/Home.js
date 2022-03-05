@@ -9,7 +9,6 @@ import {IoChevronForward} from 'react-icons/io5'
 import { popular } from '../redux/actions/vehicle';
 import Layout from '../components/Layout';
 import { useDispatch, useSelector } from 'react-redux';
-import BtnLogout from '../components/BtnLogout';
 
 const Home = () => {
   const vehiclePopular = useSelector(state => state.vehicleReducer.popular)
