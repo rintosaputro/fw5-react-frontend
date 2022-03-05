@@ -21,35 +21,10 @@ const Login = () => {
     const password = ev.target.elements['password'].value
     dispatch(login(username, password))
   }
-  // const navigate = useNavigate()
-  // useEffect(() => {
-  //   window.scrollTo(0, 0)
-  //   console.log(auth)
-  // }, [auth])
-
-  // const handleSubmit = (ev) => {
-  //   ev.preventDefault()
-  //   // dispatch({
-  //   //   type: 'LOGIN',
-  //   //   payload: {
-  //   //     username: ev.target.elements['username'].value,
-  //   //     password: ev.target.elements['password'].value
-  //   //   }
-  //   // })
-  //   const username = ev.target.elements['username'].value
-  //   const password = ev.target.elements['password'].value
-  //   if (username === 'Admin' && password === '1234') {
-  //     dispatch({
-  //       type: 'LOGIN'
-  //     })
-  //     navigate('/profile')
-  //   } else {
-  //     alert('Wrong username or password')
-  //   }
-  // }
+  
   return (
     <>
-      {auth.token !== null && <Navigate to='/' />}
+      {auth.token !== null && <Navigate to='/profile' />}
       <header className="register login">
         <div className="opacity">
           <div className="container">

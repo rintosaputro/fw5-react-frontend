@@ -6,18 +6,16 @@ import {FaStar} from 'react-icons/fa'
 import ProductHighlight from '../components/ProductHighlight';
 import { Link, useNavigate } from 'react-router-dom';
 import {IoChevronForward} from 'react-icons/io5'
-import { popular } from '../redux/actions/vehicle';
 import Layout from '../components/Layout';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
   const vehiclePopular = useSelector(state => state.vehicleReducer.popular)
   const navigate = useNavigate()
-  const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(popular())
-  }, [dispatch])
+    window.scrollTo(0, 0)
+  }, [])
 
   const handleSubmit = (ev) => {
     ev.preventDefault()

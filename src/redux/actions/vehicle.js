@@ -1,9 +1,9 @@
 import http from "../../helper/http";
 
-export const popular = () => {
+export const popular = (limit = 4) => {
   return {
     type: 'GET_POPULAR',
-    payload:http().get(`/popular`)
+    payload:http().get(`/popular?limit=${limit}`)
   }
 }
 
