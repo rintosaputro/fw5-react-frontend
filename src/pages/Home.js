@@ -8,7 +8,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import {IoChevronForward} from 'react-icons/io5'
 import Layout from '../components/Layout';
 import { useSelector } from 'react-redux';
-import Skeleton from 'react-loading-skeleton';
 import LoadingSkeleton from '../components/LoadingSkeleton';
 
 const Home = () => {

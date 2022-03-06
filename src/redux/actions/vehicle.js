@@ -14,6 +14,20 @@ export const nextPopular = (page, search) => {
   }
 }
 
+export const category = (CATEGORY, type) => {
+  return {
+    type: `GET_${CATEGORY}`,
+    payload: http().get(`/popular?search=${type}&limit=8`)
+  }
+}
+
+export const nextCategory = (CATEGORY, type) => {
+  return {
+    type: `GET_NEXt_${CATEGORY}`,
+    payload: http().get(`/popular?search=${type}&limit=8`)
+  }
+}
+
 export const getVehicleDetail = (id) => {
   return {
     type: 'GET_DETAIL',

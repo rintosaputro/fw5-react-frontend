@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import '../assets/css/vehicle-type.css'
 import ProductHighlight from '../components/ProductHighlight'
-import {default as axios} from 'axios';
 import { useSearchParams } from 'react-router-dom';
 import activeNav from '../helper/activeNav';
 import { useDispatch, useSelector } from 'react-redux';
