@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import '../assets/css/profile.css'
-import {default as axios} from 'axios'
-import { useParams} from 'react-router-dom'
 import {BsFillPenFill} from 'react-icons/bs'
 import deleteActiveNav from '../helper/deleteActiveNav'
 import { useSelector } from 'react-redux'
@@ -10,20 +8,13 @@ import BtnLogout from '../components/BtnLogout'
 
 export default function Profile() {
   const {userData} = useSelector(state => state.auth)
-  // const [user, setUser] = useState([])
-  // const {idUser} = useParams()
 
   useEffect(() => {
     window.scrollTo(0, 0)
     deleteActiveNav()
   }, [])
-
-  // const getUser = async () => {
-  //   const {data} = await axios.get(`http://localhost:5000/users/${idUser}`)
-  //   setUser(data.results)    
-  // }
   
-  const {image, name, username, email, createdAt, phoneNumber, address} = userData
+  const {image, name, username, email, createdAt, phoneNumber, address, birthdate} = userData
   
   return (
     <div className='profile'>
@@ -75,7 +66,7 @@ export default function Profile() {
             </div>
             <div className="col-12 col-lg-6 ps-lg-5 mt-4">
               <label>Birthdate (DD/MM/YY)</label> <br/>
-              <input className="form-control form-contact" type="text" defaultValue="03/09/2003" />
+              <input className="form-control form-contact" type="text" defaultValue={new Date(birthdate).toLocaleDateString('en-AU')} />
             </div>
           </div>
           <div className="row btn-group d-flex flex-row justify-content-between">
