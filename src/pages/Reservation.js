@@ -11,15 +11,11 @@ import { increment, decrement, reservation } from '../redux/actions/counter'
 import { getVehicleDetail } from '../redux/actions/vehicle'
 
 export default function Reservation() {
-  const {id, qty} = useParams()
+  const {id} = useParams()
   const {vehicle} = useSelector(state => state.vehicleReducer.detail)
   const {counter} = useSelector(state => state)
 
   const dispatch = useDispatch()
-  // const [vehicle, setVehilcle] = useState({})
-  const [defaultPrice, setDefaultPrice] = useState(0)
-  const [priceVehicle, setPriceVehicle] = useState(0)
-  const [count, setCount] = useState(Number(qty))
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -41,13 +37,6 @@ export default function Reservation() {
   const countMinus = () => {
     dispatch(decrement())
   }
-
-  // const totalDay = (day) => {
-  //   const rentStart = document.getElementById('dateReservation').value
-  //   // const totalDay = document.getElementById('date').value
-  //   dispatch(reservation(rentStart, day))
-  //   console.log('test', counter)
-  // }
 
   const navigate = useNavigate()
 

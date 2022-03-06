@@ -16,18 +16,12 @@ function VehicleDetail() {
   const vehicleDetail = useSelector(state => state.vehicleReducer.detail)
   const {counter} = useSelector(state => state)
 
-  const [defaultPrice, setDefaultPrice] = useState(0)
-  const [price, setPrice] = useState(0)
-  const [count, setCount] = useState(1)
-
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
   useEffect(() => {
     window.scrollTo(0, 0)
     dispatch(getVehicleDetail(id))
-    // dispatch(countPrice(vehicleDetail.vehicle.price))
-    // dispatch(reservation(vehicleDetail.vehicle.price))
     activeNav()
     console.log('test', counter)
   }, [])
@@ -35,20 +29,10 @@ function VehicleDetail() {
   const dataVehicle = vehicleDetail.vehicle
   
   const countPlus = () => {
-    // dispatch({type: 'INCREMENT'})
     dispatch(increment(dataVehicle.price))
-    // setPrice(defaultPrice + price )
-    // setCount(count + 1)
-    // console.log('plus', counter)
   }
   const countMinus = () => {
     dispatch(decrement())
-    // if(count > 1) {
-    //   // dispatch({type: 'DECREMENT'})
-    //   // console.log(qty.total)
-    //   setPrice(price - defaultPrice)
-    //   setCount(count - 1)
-    // }
   }
   const backNavigate = () => {
     window.history.back()

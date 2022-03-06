@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from 'react-redux'
 
 export default function Payment() {
   const {id} = useParams()
-  // const [vehicle, setVehilcle] = useState({})
   const dispatch = useDispatch()
 
   const {vehicle} = useSelector(state => state.vehicleReducer.detail)
@@ -19,14 +18,9 @@ export default function Payment() {
   useEffect(() => {
     window.scrollTo(0, 0)
     dispatch(getVehicleDetail(id))
-    // getVehicle()
     activeNav()
   }, [])
 
-  const getVehicle = async () => {
-    const {data} = await axios.get(`http://localhost:5000/vehicles/${id}`)
-    // setVehilcle(data.results)
-  }
   const back = () => {
     window.history.back()
   }
@@ -37,19 +31,6 @@ export default function Payment() {
     alert('code copied')
   }
   const {image, type, brand, location, price} = vehicle
-  // const totalPrice = price * Number(qty)
-  const formatPrice = (vehiclePrice, counterPrice) => {
-    let format;
-    if (counterPrice) {
-      format = new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(vehiclePrice + counterPrice)
-    } else {
-      format = new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(vehiclePrice)
-    }
-    // const format = counterPrice ? new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(vehiclePrice + counterPrice) :
-    // new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(vehiclePrice)
-    return format
-  } 
-  // const formatPrice = new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(price)
 
   return (
     <div className='vehicle-detail'>
