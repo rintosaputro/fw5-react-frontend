@@ -48,3 +48,10 @@ export const nextSearchVehicle = (key, location, min, max, page) => {
     payload: http().get(`/vehicles/category/?page=${page}&limit=8&search=${key}&location=${location}&minimum=${min}&maximum=${max}`)
   }
 }
+
+export const getNewVehicle = () => {
+  return ({
+    type: 'GET_NEW_VEHICLE',
+    payload: http().get(`/vehicles/new`)
+  })
+}

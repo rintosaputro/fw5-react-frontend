@@ -6,37 +6,48 @@ import { Link } from 'react-router-dom'
 import deleteActiveNav from '../helper/deleteActiveNav'
 import {GoSearch} from 'react-icons/go'
 import {BsChevronDown, BsChevronRight} from 'react-icons/bs'
+import { useDispatch, useSelector } from 'react-redux'
+import { getHistory, getNextHistory } from '../redux/actions/history'
+import { getNewVehicle } from '../redux/actions/vehicle'
 
 export default function History() {
-  const [history, setHistory] = useState([])
-  const [newVehicle, setNewVehicle] = useState([])
-  const [page, setPage] = useState([])
+  const {history} = useSelector(state => state)
+  const {userData} = useSelector(state => state.auth)
+  const {newVehicle} = useSelector(state => state.vehicleReducer)
+
+  const dispatch = useDispatch()
+  // const [history, setHistory] = useState([])
+  // const [newVehicle, setNewVehicle] = useState([])
+  // const [page, setPage] = useState([])
   
   useEffect(() => {
     window.scrollTo(0, 0)
-    getHistory()
-    getNewVehicle()
+    dispatch(getHistory(userData.username))
+    dispatch(getNewVehicle())
+    // getHistory()
+    // getNewVehicle()
     deleteActiveNav()
-  }, [])
+  }, [dispatch, userData.username])
 
-  const getHistory = async (key) => {
-    const url = key ? `http://localhost:5000/histories/?search=${key}&limit=3` : `http://localhost:5000/histories/?limit=3`
-    const {data} = await axios.get(url)
-    setHistory(data.results)
-    setPage(data.pageInfo)
-  }
-  const getNewVehicle = async () => {
-    const {data} = await axios.get(`http://localhost:5000/vehicles/new`)
-    setNewVehicle(data.results)
-  }
-  const nextPage = async () => {
-    const {data} = await axios.get(page.next)
-    setHistory([...history, ...data.results])
-    setPage(data.pageInfo)
+  // const getHistory = async (key) => {
+  //   const url = key ? `http://localhost:5000/histories/?search=${key}&limit=3` : `http://localhost:5000/histories/?limit=3`
+  //   const {data} = await axios.get(url)
+  //   // setHistory(data.results)
+  //   setPage(data.pageInfo)
+  // }
+  // const getNewVehicle = async () => {
+  //   const {data} = await axios.get(`http://localhost:5000/vehicles/new`)
+  //   setNewVehicle(data.results)
+  // }
+  const nextPage = () => {
+    dispatch(getNextHistory(userData.username, history.pageInfo.currentPage + 1))
+    // const {data} = await axios.get(page.next)
+    // setHistory([...history, ...data.results])
+    // setPage(data.pageInfo)
   }
 
   const bgImage = (props) => {
-    const {image, brand, prepayment, status, idHistory} = props
+    const {image, brand, prepayment, status, idHistory, rentStartDate, rentEndDate} = props
     const bgImg = image || noImage
     return (
       <div className="d-flex align-items-center history-contain" key={idHistory}>
@@ -47,7 +58,7 @@ export default function History() {
           <div className="col">
             <div className="detail-1">
               <h5 className="m-0 fw-bold">{brand}</h5>
-              <span>Jan 18 to 21 2021</span>
+              <span>{new Date(rentStartDate).toDateString()} to {new Date(rentEndDate).toDateString()}</span>
             </div>
             <div className="mt-4 detail-2">
               <h5 className="m-0 fw-bold">Prepayment: Rp. {new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(prepayment)}</h5>
@@ -99,8 +110,8 @@ export default function History() {
           </div>
           <div className="container weekly-history">
             <div className="text-muted head-weekly">A week ago</div>
-            {history.map((data) => {
-              const props = {idHistory: data.idHistory, idUser: data.idUser, name: data.name, image: data.image, brand: data.brand, prepayment: data.prepayment, status: data.status }
+            {history.history.map((data) => {
+              const props = {idHistory: data.idHistory, idUser: data.idUser, name: data.name, image: data.image, brand: data.brand, prepayment: data.prepayment, status: data.status, rentStartDate: data.rentStartDate, rentEndDate: data.rentEndDate }
               return bgImage(props)
             })}
             <button onClick={nextPage} className='btn btn-green w-50 mt-5'>next</button>
@@ -111,7 +122,7 @@ export default function History() {
           <div className="border  text-center">
             <h5 className="fw-bold">New Arrival</h5>
             <div className="main-aside">
-              {newVehicle.map((data, index) => {
+              {newVehicle.vehicle.map((data, index) => {
                 return (
                 <div className="new-arival" key={index}>
                   <Link to={`/vehicle/${data.idVehicle}`}>
