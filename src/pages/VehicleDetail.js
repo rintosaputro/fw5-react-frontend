@@ -9,10 +9,12 @@ import noImage from '../assets/images/no-image.jpg'
 import activeNav from '../helper/activeNav'
 import { useDispatch, useSelector } from 'react-redux'
 import { getVehicleDetail } from '../redux/actions/vehicle'
+import { countPrice, increment, decrement } from '../redux/actions/counter'
 
 function VehicleDetail() {
   const {id} = useParams()
   const vehicleDetail = useSelector(state => state.vehicleReducer.detail)
+  const {counter} = useSelector(state => state)
 
   const [defaultPrice, setDefaultPrice] = useState(0)
   const [price, setPrice] = useState(0)
@@ -24,29 +26,35 @@ function VehicleDetail() {
   useEffect(() => {
     window.scrollTo(0, 0)
     dispatch(getVehicleDetail(id))
+    // dispatch(countPrice(vehicleDetail.vehicle.price))
     activeNav()
+    console.log('test', counter)
   }, [])
+
+  const dataVehicle = vehicleDetail.vehicle
   
   const countPlus = () => {
     // dispatch({type: 'INCREMENT'})
-    setPrice(defaultPrice + price )
-    setCount(count + 1)
+    dispatch(increment(dataVehicle.price))
+    // setPrice(defaultPrice + price )
+    // setCount(count + 1)
+    // console.log('plus', counter)
   }
   const countMinus = () => {
-    if(count > 1) {
-      // dispatch({type: 'DECREMENT'})
-      // console.log(qty.total)
-      setPrice(price - defaultPrice)
-      setCount(count - 1)
-    }
+    dispatch(decrement())
+    // if(count > 1) {
+    //   // dispatch({type: 'DECREMENT'})
+    //   // console.log(qty.total)
+    //   setPrice(price - defaultPrice)
+    //   setCount(count - 1)
+    // }
   }
   const backNavigate = () => {
     window.history.back()
   }
   const toReservation = () => {
-    navigate(`/reservation/${id}/${count}`)
+    navigate(`/reservation/${id}`)
   }
-  const dataVehicle = vehicleDetail.vehicle
 
   return (
     <div className='vehicle-detail my-5'>
@@ -95,7 +103,7 @@ function VehicleDetail() {
             </div>
             <div className="price mt-5 text-end">
               Rp.<span className='fs-1'>
-                {new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(dataVehicle.price)}
+                {new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(dataVehicle.price + counter.totalPrice)}
                 </span>/day
             </div>
             <div className="my-auto">
@@ -103,7 +111,7 @@ function VehicleDetail() {
                 <button className="btn plus" aria-label="button plus" onClick={countPlus}>
                   <BiPlus className=''/>
                 </button>
-                <div className="count">{count}</div>
+                <div className="count">{counter.totalItem}</div>
                 <button className="btn minus" aria-label="button minus" onClick={countMinus}>
                   <BiMinus className=''/>
                 </button>
@@ -133,6 +141,7 @@ function VehicleDetail() {
   )
     
 }
+// import { increment } from '../redux/actions/counter'
 
 // const mapStateToProps = (state) => ({vehicleDetail: state.vehicleDetail})
 // const mapDispatchToProps = {getVehicleDetail}
