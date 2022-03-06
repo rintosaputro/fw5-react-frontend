@@ -25,13 +25,12 @@ export default function VehicleMore() {
   return (
     <div className='vehicle-type'>
       <section className='container'>
+        {data[state].isLoading && <div className='row'><LoadingSkeleton count={data[state].vehicle.length} /></div>}
         <div className="head">
-          <h2>{searchParams.get('type') || searchParams.get('search') || 'Popular in town'}</h2>
-          {data[state].vehicle.length > 0 ? <p className="text-muted text-center">Click item to see details and reservation</p> 
-          : <p className="text-center text-muted py-5">Your search '{searchParams.get('search')}' did not match any document</p>}
+          <h2>{searchParams.get('type') || 'Popular in town'}</h2>
+          {<p className="text-muted text-center">Click item to see details and reservation</p>}
         </div>
         <div className='row'>
-          {data[state].isLoading && <LoadingSkeleton count='8' />}
           {data[state].vehicle.map(data => {
             const props = {image: data.image, location: data.location, brand: data.brand, id: data.idVehicle}
             if (data.qty > 0) return <ProductHighlight key={props.id} props={props} />

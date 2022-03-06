@@ -30,6 +30,11 @@ const pickUpState = {
   isLoading: false,
   isError: false,
 }
+const detailState = {
+  vehicle: [],
+  isLoading: false,
+  isError: false,
+}
 
 const vehicleReducer = combineReducers({
   popular : (state = popularState, action) => {
@@ -190,6 +195,27 @@ const vehicleReducer = combineReducers({
         state.vehicle.push(...data.results)
         state.pageInfo = data.pageInfo
         state.isLoading = false
+        return {...state}
+      }
+      default: {
+        return {...state}
+      }
+    }
+  },
+  detail : (state = detailState, action) => {
+    switch(action.type) {
+      case `GET_DETAIL_PENDING`: {
+        state.isLoading = true
+        return {...state}
+      }
+      case `GET_DETAIL_FULFILLED`: {
+        const {data} = action.payload
+        state.vehicle = data.results
+        state.isLoading = false
+        return {...state}
+      }
+      case `GET_DETAIL_REJECTED`: {
+        state.isError = true
         return {...state}
       }
       default: {

@@ -7,14 +7,13 @@ import {IoMdHeart} from 'react-icons/io'
 import { useNavigate, useParams } from 'react-router-dom'
 import noImage from '../assets/images/no-image.jpg'
 import activeNav from '../helper/activeNav'
-import { connect, useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getVehicleDetail } from '../redux/actions/vehicle'
 
-function VehicleDetail({vehicleDetail, getVehicleDetail}) {
+function VehicleDetail() {
   const {id} = useParams()
-  // const {vehicleDetail} = useSelector(state => state)
+  const vehicleDetail = useSelector(state => state.vehicleReducer.detail)
 
-  const [vehicle, setVehilcle] = useState({})
   const [defaultPrice, setDefaultPrice] = useState(0)
   const [price, setPrice] = useState(0)
   const [count, setCount] = useState(1)
@@ -24,20 +23,9 @@ function VehicleDetail({vehicleDetail, getVehicleDetail}) {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    // getVehicle()
-    getVehicleDetail(id)
+    dispatch(getVehicleDetail(id))
     activeNav()
-    console.log('test',vehicleDetail.vehicle)
-    // console.log('vehicle', vehicle)
   }, [])
-
-  const getVehicle = async () => {
-    // const {data} = await axios.get(`${env.APP_API}/vehicles/${id}`)
-    // setVehilcle(data.results)
-    // setDefaultPrice(data.results.price)
-    // setPrice(data.results.price)
-    setVehilcle(vehicleDetail.vehicle)
-  }
   
   const countPlus = () => {
     // dispatch({type: 'INCREMENT'})
@@ -107,7 +95,7 @@ function VehicleDetail({vehicleDetail, getVehicleDetail}) {
             </div>
             <div className="price mt-5 text-end">
               Rp.<span className='fs-1'>
-                {new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(price)}
+                {new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(dataVehicle.price)}
                 </span>/day
             </div>
             <div className="my-auto">
@@ -146,7 +134,8 @@ function VehicleDetail({vehicleDetail, getVehicleDetail}) {
     
 }
 
-const mapStateToProps = (state) => ({vehicleDetail: state.vehicleDetail})
-const mapDispatchToProps = {getVehicleDetail}
+// const mapStateToProps = (state) => ({vehicleDetail: state.vehicleDetail})
+// const mapDispatchToProps = {getVehicleDetail}
 
-export default connect(mapStateToProps, mapDispatchToProps)(VehicleDetail)
+// export default connect(mapStateToProps, mapDispatchToProps)(VehicleDetail)
+export default VehicleDetail
