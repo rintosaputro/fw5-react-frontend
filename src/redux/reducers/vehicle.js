@@ -35,6 +35,12 @@ const detailState = {
   isLoading: false,
   isError: false,
 }
+const searchState = {
+  vehicle: [],
+  pageInfo: {},
+  isLoading: false,
+  isError: false,
+}
 
 const vehicleReducer = combineReducers({
   popular : (state = popularState, action) => {
@@ -216,6 +222,41 @@ const vehicleReducer = combineReducers({
       }
       case `GET_DETAIL_REJECTED`: {
         state.isError = true
+        return {...state}
+      }
+      default: {
+        return {...state}
+      }
+    }
+  },
+  search : (state = searchState, action) => {
+    switch(action.type) {
+      case `SEARCH_VEHICLE_PENDING`: {
+        state.isLoading = true
+        return {...state}
+      }
+      case `SEARCH_VEHICLE_FULFILLED`: {
+        const {data} = action.payload
+        state.vehicle = data.results
+        state.pageInfo = data.pageInfo
+        state.isLoading = false
+        return {...state}
+      }
+      case `SEARCH_VEHICLE_REJECTED`: {
+        state.isError = true
+        return {...state}
+      }
+      case `NEXT_SEARCH_VEHICLE_PENDING`: {
+        state.isLoading = true
+        return {...state}
+      }
+      case `NEXT_SEARCH_VEHICLE_FULFILLED`: {
+        const {data} = action.payload
+        // state.vehicle.push(...data.results)
+        state.vehicle = [...state.vehicle, ...data.results]
+        state.pageInfo = data.pageInfo
+        state.isLoading = false
+        console.log('search next', state.vehicle)
         return {...state}
       }
       default: {

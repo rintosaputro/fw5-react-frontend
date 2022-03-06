@@ -34,3 +34,17 @@ export const getVehicleDetail = (id) => {
     payload: http().get(`/vehicles/${id}`)
   }
 }
+
+export const searchVehicle = (key, location, min, max) => {
+  return {
+    type: 'SEARCH_VEHICLE',
+    payload: http().get(`/vehicles/category/?limit=8&search=${key}&location=${location}&minimum=${min}&maximum=${max}`)
+  }
+}
+
+export const nextSearchVehicle = (key, location, min, max, page) => {
+  return {
+    type: 'SEARCH_VEHICLE',
+    payload: http().get(`/vehicles/category/?page=${page}&limit=8&search=${key}&location=${location}&minimum=${min}&maximum=${max}`)
+  }
+}
