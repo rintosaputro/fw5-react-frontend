@@ -16,6 +16,7 @@ import Search from "./pages/Search";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "./redux/actions/auth";
 import { popular } from "./redux/actions/vehicle";
+import { category } from "./redux/actions/vehicle";
 
 const App = () => {
   const {auth} = useSelector(state => state)
@@ -37,6 +38,10 @@ const App = () => {
       })
       dispatch(getUser(token))
       dispatch(popular())
+      dispatch(category('CARS', 'cars'))
+      dispatch(category('MOTORBIKE', 'motorbike'))
+      dispatch(category('BIKE', 'bike'))
+      dispatch(category('PICKUP', 'pickup'))
     }
   }, [dispatch, auth.token])
   

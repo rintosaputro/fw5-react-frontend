@@ -6,7 +6,7 @@ import {IoChevronForward} from 'react-icons/io5'
 import { Link, useNavigate } from 'react-router-dom';
 import searchURL from '../helper/searchURL';
 import { useDispatch, useSelector } from 'react-redux';
-import { category } from '../redux/actions/vehicle';
+// import { category } from '../redux/actions/vehicle';
 import LoadingSkeleton from '../components/LoadingSkeleton';
 
 const VehicleType = () => {
@@ -14,19 +14,19 @@ const VehicleType = () => {
   const {cars} = useSelector(state => state.vehicleReducer)
   const {motorbike} = useSelector(state => state.vehicleReducer)
   const {bike} = useSelector(state => state.vehicleReducer)
-  const {pickUp} = useSelector(state => state.vehicleReducer)
+  const {pickup} = useSelector(state => state.vehicleReducer)
 
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   const navigate = useNavigate()
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    dispatch(category('CARS', 'cars'))
-    dispatch(category('MOTORBIKE', 'motorbike'))
-    dispatch(category('BIKE', 'bike'))
-    dispatch(category('PICKUP', 'pick up'))
-  },[dispatch])
+    // dispatch(category('CARS', 'cars'))
+    // dispatch(category('MOTORBIKE', 'motorbike'))
+    // dispatch(category('BIKE', 'bike'))
+    // dispatch(category('PICKUP', 'pickup'))
+  },[])
   
   const handleSubmit = (ev) => {
     ev.preventDefault()
@@ -76,7 +76,7 @@ const VehicleType = () => {
       {product('Cars', cars, 'cars')}
       {product('Motorbike', motorbike, 'motorbike')}
       {product('Bike', bike, 'bike')}
-      {product('Pick Up', pickUp, 'pick up')}
+      {product('Pick Up', pickup, 'pickup')}
     </div>
   )
 }

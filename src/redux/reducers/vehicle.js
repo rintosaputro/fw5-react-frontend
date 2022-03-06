@@ -164,7 +164,7 @@ const vehicleReducer = combineReducers({
       }
     }
   },
-  pickUp : (state = pickUpState, action) => {
+  pickup : (state = pickUpState, action) => {
     switch(action.type) {
       case `GET_PICKUP_PENDING`: {
         state.isLoading = true
