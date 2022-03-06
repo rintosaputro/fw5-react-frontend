@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import searchURL from '../helper/searchURL';
 import { useDispatch, useSelector } from 'react-redux';
 import { category } from '../redux/actions/vehicle';
+import LoadingSkeleton from '../components/LoadingSkeleton';
 
 const VehicleType = () => {
   const {popular} = useSelector(state => state.vehicleReducer)
@@ -32,7 +33,7 @@ const VehicleType = () => {
     navigate(searchURL(ev))
   }
 
-  const product = (head, arr, type, link ) => {
+  const product = (head, state, type ) => {
     return (
       <section className='container' id='parrent'>
         <div className="d-flex justify-content-between head">
@@ -40,7 +41,8 @@ const VehicleType = () => {
           <Link  to={type ? `/vehicle?type=${type}` : `/vehicle`} className="view-all">View all <IoChevronForward /></Link>
         </div>
         <div className="row">
-          {arr.map((data, index) => {
+          {state.isLoading && <LoadingSkeleton count='4' />}
+          {state.vehicle.map((data, index) => {
             const props = {image: data.image, location: data.location, brand: data.brand, id: data.idVehicle}
             return (index < 4 && <ProductHighlight key={props.id} props={props} />)
           })}
@@ -70,11 +72,11 @@ const VehicleType = () => {
           </button>
         </form>
       </section>
-      {product('Popular in town', popular.vehicle)}
-      {product('Cars', cars.vehicle, 'cars')}
-      {product('Motorbike', motorbike.vehicle, 'motorbike')}
-      {product('Bike', bike.vehicle, 'bike')}
-      {product('Pick Up', pickUp.vehicle, 'pick up')}
+      {product('Popular in town', popular)}
+      {product('Cars', cars, 'cars')}
+      {product('Motorbike', motorbike, 'motorbike')}
+      {product('Bike', bike, 'bike')}
+      {product('Pick Up', pickUp, 'pick up')}
     </div>
   )
 }
