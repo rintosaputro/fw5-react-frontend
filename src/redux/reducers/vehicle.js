@@ -49,11 +49,6 @@ const vehicleReducer = combineReducers({
       }
       case 'GET_NEXT_POPULAR_FULFILLED': {
         const {data} = action.payload
-        // state.vehicle.push(...data.results)
-        // state.test = data.results
-        // state.vehicle = [...state.vehicle, ...data.results]
-        // state.test.push(...data.results)
-        // console.log(state.test)
         state.vehicle.push(...data.results)
         state.pageInfo = data.pageInfo
         state.isLoading = false

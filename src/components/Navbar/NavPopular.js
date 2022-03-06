@@ -3,12 +3,14 @@ import { Link, useNavigate } from 'react-router-dom'
 import NavList from './NavList'
 import '../../assets/css/vehicle-type.css'
 import logo from "../../assets/images/logo.png"
-import photo from "../../assets/images/profile.png"
 import {FiMail} from 'react-icons/fi'
 import {AiOutlineSearch} from 'react-icons/ai'
+import noImage from '../../assets/images/no-pp.jpg'
+import { useSelector } from 'react-redux'
 
 export default function NavPopular() {
   const navigate = useNavigate()
+  const {auth} = useSelector(state => state)
 
   const handleSubmit = (ev) => {
     ev.preventDefault()
@@ -36,8 +38,8 @@ export default function NavPopular() {
             </form>
             <div className="mail-profile ms-xl-5 d-flex align-items-center">
               <Link to='/message' className="me-4 message"><span className="text-white badge total-message">1</span><FiMail className='icon-message' /></Link>
-              <Link to='/profile/41' className='profile'>
-                <img src={photo} alt="Photoprofile." />
+              <Link to='/profile' className='profile'>
+                <img src={auth.userData.image || noImage} alt="Photoprofile." />
               </Link>
             </div>
           </div>
