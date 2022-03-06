@@ -50,6 +50,14 @@ const counter = (state = counterState, action) => {
       }
       return {...state}
     }
+    case 'COUNTER_EMPTY': {
+      state.price = 0
+      state.totalPrice = 0
+      state.totalItem = 1
+      state.startDate = ''
+      state.totalDay = 1
+      return {...state}
+    }
     default: {
       return {...state}
     }

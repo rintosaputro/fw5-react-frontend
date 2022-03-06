@@ -43,9 +43,12 @@ export default function Reservation() {
   const gotoPayment = () => {
     const rentStart = document.getElementById('dateReservation').value
     const totalDay = document.getElementById('date').value
-    dispatch(reservation(rentStart, totalDay))
-    console.log(counter)
-    navigate(`/payment/${id}`)
+    if(!rentStart) {
+      alert('Please fill in reservation date')
+    } else {
+      dispatch(reservation(rentStart, totalDay))
+      navigate(`/payment/${id}`)
+    }
   }
   const formatPrice = new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(counter.totalPrice + vehicle.price)
 

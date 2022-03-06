@@ -22,10 +22,6 @@ const VehicleType = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    // dispatch(category('CARS', 'cars'))
-    // dispatch(category('MOTORBIKE', 'motorbike'))
-    // dispatch(category('BIKE', 'bike'))
-    // dispatch(category('PICKUP', 'pickup'))
   },[])
   
   const handleSubmit = (ev) => {

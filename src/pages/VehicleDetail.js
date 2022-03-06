@@ -9,7 +9,7 @@ import noImage from '../assets/images/no-image.jpg'
 import activeNav from '../helper/activeNav'
 import { useDispatch, useSelector } from 'react-redux'
 import { getVehicleDetail } from '../redux/actions/vehicle'
-import { reservation, increment, decrement } from '../redux/actions/counter'
+import { empty, increment, decrement } from '../redux/actions/counter'
 
 function VehicleDetail() {
   const {id} = useParams()
@@ -20,6 +20,7 @@ function VehicleDetail() {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    dispatch(empty())
     window.scrollTo(0, 0)
     dispatch(getVehicleDetail(id))
     activeNav()

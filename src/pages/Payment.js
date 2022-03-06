@@ -70,7 +70,7 @@ export default function Payment() {
             <div className="second-col">
               <div className="border border-dark w-100">
                 <span className="reservation-date fw-bold">Reservation Date: </span>
-                <span>{counter.startDate}  ({counter.totalDay} day)</span></div>
+                <span>{new Date(counter.startDate).toDateString()}  ({counter.totalDay} day)</span></div>
             </div>
           </div>
 

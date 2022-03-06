@@ -23,3 +23,9 @@ export const decrement = () => {
     type: 'COUNTER_DECREMENT'
   })
 }
+
+export const empty = () => {
+  return ({
+    type: 'COUNTER_EMPTY'
+  })
+}
