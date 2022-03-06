@@ -25,7 +25,7 @@ export default function ProductHighlight({props}) {
   }
   return (
     <div className="col-6 col-lg-3 mb-3 text-center product-highlight">
-      <div className='d-flex overflow-hidden main-highlight' style={{backgroundColor: '#f1f2f6', borderRadius: '8px'}}>
+      <div className='d-flex overflow-hidden main-highlight' style={{backgroundColor: 'rgb(236 236 236)', borderRadius: '8px'}}>
         <div onClick={handleClick} style={{cursor: 'pointer'}} className='position-relative align-self-end'>
           <img className="img-fluid mb-0" src={bg} alt={brand} />
           <div className="highlight position-absolute start-0 text-start ps-1">

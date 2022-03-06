@@ -5,6 +5,7 @@ import 'bootstrap/dist/js/bootstrap.bundle';
 import { Provider } from 'react-redux';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'react-loading-skeleton/dist/skeleton.css'
 import store from './redux/store'
 
 ReactDOM.render(

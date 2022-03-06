@@ -8,6 +8,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import {IoChevronForward} from 'react-icons/io5'
 import Layout from '../components/Layout';
 import { useSelector } from 'react-redux';
+import Skeleton from 'react-loading-skeleton';
+import LoadingSkeleton from '../components/LoadingSkeleton';
 
 const Home = () => {
   const vehiclePopular = useSelector(state => state.vehicleReducer.popular)
@@ -69,6 +71,9 @@ const Home = () => {
           <Link to='/vehicle' className="view-all">View all <IoChevronForward /></Link>
         </div>
         <div className="row position-relative">
+          {vehiclePopular.isLoading &&
+            <LoadingSkeleton count='4' />
+          }
           {vehiclePopular.vehicle.map((data, index) => {
             const props = {image: data.image, location: data.location, brand: data.brand, id: data.idVehicle}
             return (index < 4 && <ProductHighlight key={props.id} props={props} />)

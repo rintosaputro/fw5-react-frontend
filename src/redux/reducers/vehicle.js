@@ -2,24 +2,6 @@ import { combineReducers } from "redux";
 
 const popularState = {
   vehicle: [],
-  test: [
-    {
-      brand: "Polygon Strattos",
-      capacity: "1",
-      createdAt: "2022-02-28T02:27:11.000Z",
-      idCategory: 3,
-      idVehicle: 110,
-      image: "http://localhost:5000/uploads/polygon-strattos-1646015231270-605319110.jpg",
-      location: "Ngawi",
-      payment: 0,
-      price: 100000,
-      qty: 3,
-      rentCount: 0,
-      status: "Available",
-      type: "Bike",
-      updatedAt: null,
-    }
-  ],
   pageInfo: {},
   isLoading: false,
   isError: false,
