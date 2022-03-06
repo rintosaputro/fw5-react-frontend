@@ -6,70 +6,59 @@ import {BiMinus, BiPlus} from 'react-icons/bi'
 import {IoChevronBack} from 'react-icons/io5'
 import noImage from '../assets/images/no-image.jpg'
 import activeNav from '../helper/activeNav'
+import { useDispatch, useSelector } from 'react-redux'
+import { increment, decrement, reservation } from '../redux/actions/counter'
+import { getVehicleDetail } from '../redux/actions/vehicle'
 
 export default function Reservation() {
   const {id, qty} = useParams()
-  const [vehicle, setVehilcle] = useState({})
+  const {vehicle} = useSelector(state => state.vehicleReducer.detail)
+  const {counter} = useSelector(state => state)
+
+  const dispatch = useDispatch()
+  // const [vehicle, setVehilcle] = useState({})
   const [defaultPrice, setDefaultPrice] = useState(0)
   const [priceVehicle, setPriceVehicle] = useState(0)
   const [count, setCount] = useState(Number(qty))
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    getVehicle()
+    dispatch(getVehicleDetail(id))
     activeNav()
   }, [])
 
-  const getVehicle = async () => {
-    try {
-      const {data} = await axios.get(`http://localhost:5000/vehicles/${id}`)
-      setVehilcle(data.results)
-      setPriceVehicle(data.results.price * count)
-      setDefaultPrice(data.results.price)
-    } catch(err) {
-      console.log(err)
-    }
-  }
   const back = () => {
     window.history.back()
   }
-  
-  const {brand, location, image, payment} = vehicle
+
+  const {brand, location, image, payment, price} = vehicle
   const countPlus = () => {
-    setPriceVehicle(priceVehicle + defaultPrice)
-    setCount(count + 1)
+    const rentStart = document.getElementById('dateReservation').value
+    const totalDay = document.getElementById('date').value
+    console.log('test', rentStart, totalDay)
+    dispatch(increment(price))
   }
   const countMinus = () => {
-    if(count > 1) {
-      setPriceVehicle(priceVehicle - defaultPrice)
-      setCount(count - 1)
-    }
+    dispatch(decrement())
   }
+
+  // const totalDay = (day) => {
+  //   const rentStart = document.getElementById('dateReservation').value
+  //   // const totalDay = document.getElementById('date').value
+  //   dispatch(reservation(rentStart, day))
+  //   console.log('test', counter)
+  // }
 
   const navigate = useNavigate()
 
   const gotoPayment = () => {
-    // try {
-    //   ev.preventDefault()
-    //   const startDate = document.getElementById('dateReservation').value
-    //   const endDate = document.getElementById('date').value
-    //   const {idVehicle, payment} = vehicle
-    //   const data = await axios.post('http://localhost:5000/histories', {
-    //     id_user: 1,
-    //     id_vehicle: idVehicle,
-    //     rent_start_date: startDate,
-    //     rent_end_date: startDate,
-    //     prepayment: payment,
-    //   })
-    //   console.log(data.results.idHistory);
-    //   navigate(`/payment/${id}/${qty}/${1}`)
-    //   return data
-      
-    // } catch(err) {
-    //   console.log(err)
-    // }
-    navigate(`/payment/${id}/${count}/${1}`)
+    const rentStart = document.getElementById('dateReservation').value
+    const totalDay = document.getElementById('date').value
+    dispatch(reservation(rentStart, totalDay))
+    console.log(counter)
+    navigate(`/payment/${id}`)
   }
+  const formatPrice = new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(counter.totalPrice + vehicle.price)
 
   return (
     <div className='vehicle-detail'>
@@ -98,16 +87,30 @@ export default function Reservation() {
             <div className="my-auto">
               <div className="total-day d-flex flex-row justify-content-between align-items-center">
                 <button onClick={countMinus} className="btn" aria-label="button minus"><BiMinus className='minus' /></button>
-                <div className="count">{count}</div>
+                <div className="count">{counter.totalItem}</div>
                 <button onClick={countPlus} className="btn" aria-label="button plus"><BiPlus className='plus'/></button>           
               </div>
             </div>
             <form>
               <h4 className="fw-bold mt-5">Reservation Date:</h4>
               <input type="date" placeholder="Select date" id='dateReservation' className="form-control" />
+              {/* <div className="dropdown mt-3">
+                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  Day
+                </button>
+                <ul className="dropdown-menu w-100" aria-labelledby="dropdownMenuButton1">
+                  <li><button onClick={totalDay(1)} style={{cursor: 'pointer'}} className='dropdown-item'>1 Day</button></li>
+                  <li><button onClick={totalDay(2)} style={{cursor: 'pointer'}} className='dropdown-item'>2 Day</button></li>
+                  <li><button onClick={totalDay(3)} style={{cursor: 'pointer'}} className='dropdown-item'>3 Day</button></li>
+                  <li><button onClick={totalDay(3)} style={{cursor: 'pointer'}} className='dropdown-item'>4 Day</button></li>
+                </ul>
+              </div> */}
               <select name="date" id="date" className="form-select mt-3">
+                <option className='d-none'>{counter.totalDay} Day</option>
                 <option value="1">1 Day</option>
                 <option value="2">2 Day</option>
+                <option value="3">3 Day</option>
+                <option value="4">4 Day</option>
               </select>
             </form>        
           </div>
@@ -115,7 +118,7 @@ export default function Reservation() {
         <div className="pay-now mt-5 px-2">
           <div onClick={gotoPayment} style={{cursor: 'pointer'}} className="btn btn-green w-100 mt-3">Pay now: Rp.
             <span>
-              {new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(priceVehicle)}
+              {formatPrice}
             </span>
           </div>
         </div>

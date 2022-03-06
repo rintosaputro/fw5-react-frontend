@@ -184,6 +184,17 @@ body {
   background-color: rgba(159, 163, 161, 0.1);
   border: none;
 }
+.vehicle-detail .dropdown-toggle {
+  color: gray;
+  padding: 20px 19px !important;
+  background-color: rgba(159, 163, 161, 0.1);
+  border: none;
+  width: 100%;
+  text-align: start;
+}
+.vehicle-detail .dropdown-toggle::after {
+  margin-left: 15.255em ;
+}
 .vehicle-detail .reservation input.form-control {
   padding-right: 20px;
 }
@@ -279,6 +290,9 @@ body {
   .vehicle-detail .payment .first-col {
     width: 51.5%;
   }
+  .vehicle-detail .dropdown-toggle::after {
+    margin-left: 10.255em ;
+  }
 }
 @media all and (max-width: 991px) {
   /* .vehicle-detail nav {
@@ -323,6 +337,9 @@ body {
   }
   .vehicle-detail .reservation .description-section {
     width: 100%;
+  }
+  .vehicle-detail .dropdown-toggle::after {
+    margin-left: 30.255em ;
   }
   /* payment */
   .vehicle-detail .payment .description-section {
@@ -385,6 +402,9 @@ body {
     padding: 15px 0;
     font-size: 15px;
     width: 100%;
+  }
+  .vehicle-detail .dropdown-toggle::after {
+    margin-left: 19.255em ;
   }
   /* payment */
   .vehicle-detail .payment .detail-vehicle {
@@ -482,6 +502,10 @@ body {
   .vehicle-detail .price {
     font-size: 27px;
   }
+  
+.vehicle-detail .dropdown-toggle::after {
+  margin-left: 1.255em ;
+}
   .vehicle-detail .payment .code-section {
     margin: 0;
     margin-bottom: 10px;

@@ -72,7 +72,7 @@ const App = () => {
         <Route path="reservation/:id" element={
           <Layout ><Reservation /></Layout>
         } />
-        <Route path="payment/:id/:qty/:idHistory" element={
+        <Route path="payment/:id" element={
           <Layout ><Payment /></Layout>
         } />
         <Route path="history" element={

@@ -4,20 +4,28 @@ import {default as axios} from 'axios'
 import { useParams } from 'react-router-dom'
 import {IoChevronBack} from 'react-icons/io5'
 import activeNav from '../helper/activeNav'
+import { getVehicleDetail } from '../redux/actions/vehicle'
+import { useDispatch, useSelector } from 'react-redux'
 
 export default function Payment() {
-  const [vehicle, setVehilcle] = useState({})
+  const {id} = useParams()
+  // const [vehicle, setVehilcle] = useState({})
+  const dispatch = useDispatch()
+
+  const {vehicle} = useSelector(state => state.vehicleReducer.detail)
+  const {counter} = useSelector(state => state)
+  const {userData} = useSelector(state => state.auth)
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    getVehicle()
+    dispatch(getVehicleDetail(id))
+    // getVehicle()
     activeNav()
   }, [])
 
-  const {id, qty} = useParams()
   const getVehicle = async () => {
     const {data} = await axios.get(`http://localhost:5000/vehicles/${id}`)
-    setVehilcle(data.results)
+    // setVehilcle(data.results)
   }
   const back = () => {
     window.history.back()
@@ -25,11 +33,23 @@ export default function Payment() {
   const copyBtn = () => {
     const code = document.getElementById('bookingCode').innerHTML
     navigator.clipboard.writeText(code)
+    console.log('test', counter)
     alert('code copied')
   }
   const {image, type, brand, location, price} = vehicle
-  const totalPrice = price * Number(qty)
-  const formatPrice = new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(price)
+  // const totalPrice = price * Number(qty)
+  const formatPrice = (vehiclePrice, counterPrice) => {
+    let format;
+    if (counterPrice) {
+      format = new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(vehiclePrice + counterPrice)
+    } else {
+      format = new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(vehiclePrice)
+    }
+    // const format = counterPrice ? new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(vehiclePrice + counterPrice) :
+    // new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(vehiclePrice)
+    return format
+  } 
+  // const formatPrice = new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(price)
 
   return (
     <div className='vehicle-detail'>
@@ -64,12 +84,12 @@ export default function Payment() {
         <div className="rent-data">
           <div className="d-flex flex-row data-item">
             <div className="first-col">
-              <div className="border border-dark w-100 fw-bold">Quantity: 2 bikes</div>
+              <div className="border border-dark w-100 fw-bold">Quantity: {counter.totalItem} bikes</div>
             </div>
             <div className="second-col">
               <div className="border border-dark w-100">
                 <span className="reservation-date fw-bold">Reservation Date: </span>
-                <span>Jan 18 - 20 2021</span></div>
+                <span>{counter.startDate}  ({counter.totalDay} day)</span></div>
             </div>
           </div>
 
@@ -83,15 +103,15 @@ export default function Payment() {
                     </tr>
                   </thead>
                   <tbody>
-                    {[...Array(Number(qty))].map((data, index) => {
+                    {[...Array(Number(counter.totalItem))].map((data, index) => {
                       return (
                       <tr key={index}>
-                        <td>1 {type}: Rp.{formatPrice}</td>
+                        <td>1 {type}: Rp.{new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(price)} ({counter.totalDay} day)</td>
                       </tr>
                       )
                     })}
                     <tr>
-                      <td className="fw-bold pt-2">Total: {totalPrice}</td>
+                      <td className="fw-bold pt-2">Total: {new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(price * counter.totalItem * counter.totalDay)}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -107,10 +127,10 @@ export default function Payment() {
                   </thead>
                   <tbody>
                     <tr>
-                      <td>Samantha Doe(+6290987682)</td>
+                      <td>{userData.name}({userData.phoneNumber})</td>
                     </tr>
                     <tr>
-                      <td>samanthadoe@mail.com</td>
+                      <td>{userData.email}</td>
                     </tr>
                   </tbody>
                 </table>
