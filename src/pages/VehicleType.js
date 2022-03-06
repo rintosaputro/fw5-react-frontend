@@ -1,37 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import '../assets/css/vehicle-type.css'
 import ProductHighlight from '../components/ProductHighlight';
 import {BiSearchAlt2} from 'react-icons/bi'
 import {IoChevronForward} from 'react-icons/io5'
 import { Link, useNavigate } from 'react-router-dom';
-import {default as axios} from 'axios';
 import searchURL from '../helper/searchURL';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { category } from '../redux/actions/vehicle';
 
 const VehicleType = () => {
   const {popular} = useSelector(state => state.vehicleReducer)
-  // const [popularTown, setPopularTown] = useState([])
-  const [cars, setCars] = useState([])
-  const [pickUP, setPickUp] = useState([])
-  const [motorbike, setMotorBike] = useState([])
-  const [bike, setBike] = useState([])
+  const {cars} = useSelector(state => state.vehicleReducer)
+  const {motorbike} = useSelector(state => state.vehicleReducer)
+  const {bike} = useSelector(state => state.vehicleReducer)
+  const {pickUp} = useSelector(state => state.vehicleReducer)
+
+  const dispatch = useDispatch()
 
   const navigate = useNavigate()
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    // getVehicle(setPopularTown)
-    getVehicle(setCars, 'cars')
-    getVehicle(setPickUp, 'pick up')
-    getVehicle(setMotorBike, 'motorbike')
-    getVehicle(setBike, 'bike')
-  },[])
-
-  const getVehicle = async (setData, type, limit = 4) => {
-    const url = type ? `http://localhost:5000/popular?search=${type}&limit=${limit}` : `http://localhost:5000/popular?limit=${limit}`
-    const {data} = await axios.get(url)
-    setData(data.results)
-  }  
+    dispatch(category('CARS', 'cars'))
+    dispatch(category('MOTORBIKE', 'motorbike'))
+    dispatch(category('BIKE', 'bike'))
+    dispatch(category('PICKUP', 'pick up'))
+  },[dispatch])
   
   const handleSubmit = (ev) => {
     ev.preventDefault()
@@ -77,10 +71,10 @@ const VehicleType = () => {
         </form>
       </section>
       {product('Popular in town', popular.vehicle)}
-      {product('Cars', cars, 'cars')}
-      {product('Motorbike', motorbike, 'motorbike')}
-      {product('Bike', bike, 'bike')}
-      {product('Pick Up', pickUP, 'pick up')}
+      {product('Cars', cars.vehicle, 'cars')}
+      {product('Motorbike', motorbike.vehicle, 'motorbike')}
+      {product('Bike', bike.vehicle, 'bike')}
+      {product('Pick Up', pickUp.vehicle, 'pick up')}
     </div>
   )
 }
