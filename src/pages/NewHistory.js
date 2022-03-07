@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import '../assets/css/vehicle-detail.css'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import {IoChevronBack} from 'react-icons/io5'
 import activeNav from '../helper/activeNav'
 import { getVehicleDetail } from '../redux/actions/vehicle'
@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import LoadingSkeleton from '../components/LoadingSkeleton'
 import { addHistory } from '../redux/actions/history'
 
-export default function Payment() {
+
+export default function NewHistory() {
   const {id} = useParams()
   const dispatch = useDispatch()
 
@@ -19,8 +20,9 @@ export default function Payment() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    dispatch(getVehicleDetail(id))
+    // dispatch(getVehicleDetail(id))
     activeNav()
+    console.log('test', payment)
   }, [])
 
   const back = () => {
@@ -29,16 +31,16 @@ export default function Payment() {
   const copyBtn = () => {
     const code = document.getElementById('bookingCode').innerHTML
     navigator.clipboard.writeText(code)
-    console.log('test', counter)
+    console.log('test', payment)
     alert('code copied')
   }
-  const {image, type, brand, location, price} = detail.vehicle
-  const navigate = useNavigate()
+  // const {image, type, brand, location, price} = detail.vehicle
+  const {image, type, brand, location, price} = payment.newHistory
+
   const handlePayment = (ev) => {
     ev.preventDefault()
     const token = window.localStorage.getItem('token')
     dispatch(addHistory(token, userData.idUser, id, counter.startDate))
-    navigate('/new-history')
   }
 
   return (
@@ -150,7 +152,7 @@ export default function Payment() {
         </div>
 
         <div className="pay-now mt-5 px-2">
-          <button onClick={handlePayment} className="btn btn-green w-100 mt-3">Finish payment: <span className="text-danger time">59:30</span></button>
+          <button className="btn btn-green w-100 mt-3">Finish payment: <span className="text-danger time">59:30</span></button>
         </div>
       </section>
     </div>

@@ -13,6 +13,7 @@ import History from "./pages/History";
 import Payment from "./pages/Payment";
 import Profile from "./pages/Profile";
 import Search from "./pages/Search";
+import NewHistory from "./pages/NewHistory";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "./redux/actions/auth";
 import { popular } from "./redux/actions/vehicle";
@@ -83,6 +84,9 @@ const App = () => {
         } />
         <Route path={`search`} element={
           <Layout ><Search /></Layout>
+        } />
+        <Route path='new-history' element={
+          <Layout ><NewHistory /></Layout>
         } />
       </Routes>
     </BrowserRouter>

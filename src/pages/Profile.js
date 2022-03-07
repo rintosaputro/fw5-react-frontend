@@ -20,20 +20,21 @@ export default function Profile() {
   return (
     <div className='profile'>
       <header className="container">
-        <h1>Profile</h1>
+        <h1 className='mb-3'>Profile</h1>
         <div className="profle-header">
-        {auth.isLoading && <div className='mx-auto'><LoadingSkeleton count={1} col='col-3 mx-auto text-center' /></div>}
-          <div className="text-center">
-            <div className="image-profile">
-              <img src={image || noImage} alt={name} />
-              <button className="btn-pen badge"><BsFillPenFill /></button>
-            </div>
-            <h2 className="mt-5">{name}</h2>
-            <p className="text-muted">{email}<br/>
-              {phoneNumber} <br/>
-              Has been active since {[...Array(4)].map((data, index) => String(createdAt)[index])}
-            </p>
+        {auth.isLoading ? <div className='mx-auto'><LoadingSkeleton count={1} col='col-4 mx-auto text-center' /></div> :
+        <div className="text-center">
+          <div className="image-profile">
+            <img src={image || noImage} alt={name} />
+            <button className="btn-pen badge"><BsFillPenFill /></button>
           </div>
+          <h2 className="mt-5">{name}</h2>
+          <p className="text-muted">{email}<br/>
+            {phoneNumber} <br/>
+            Has been active since {[...Array(4)].map((data, index) => String(createdAt)[index])}
+          </p>
+        </div>
+        }
         </div>
       </header>
       
