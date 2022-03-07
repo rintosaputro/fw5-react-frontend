@@ -1,12 +1,10 @@
 import { combineReducers } from "redux";
 import vehicleReducer from "./vehicle";
-// import { popular } from "./vehicle";
 import auth from "./auth";
 import counter from "./counter";
-// import history from "./history";
 import { history, detailHistory, deleteHistory } from "./history";
-// import { detailHistory } from "./history";
 import { payment } from "./payment";
+import { updateProfile } from "./user";
 
 const rootReducer = combineReducers({
   vehicleReducer,
@@ -16,6 +14,7 @@ const rootReducer = combineReducers({
   detailHistory,
   deleteHistory,
   payment,
+  updateProfile,
 })
 
 export default rootReducer
