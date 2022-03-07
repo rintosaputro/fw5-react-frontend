@@ -10,6 +10,9 @@ import { useSelector } from 'react-redux'
 
 const NavAfterLogin = () => {
   const {auth} = useSelector(state => state)
+  const {updateProfile} = useSelector(state => state)
+
+  const {image} = (updateProfile.isSuccess ? updateProfile.user['0'] : auth.userData)
   return (
     <div className='nav-main'>
       <nav className="navbar navbar-expand-lg navbar-light bg-white fixed-top">
@@ -25,7 +28,7 @@ const NavAfterLogin = () => {
             <div className="mail-profile ms-xl-5 d-flex align-items-center">
               <Link to='/message' className="ms-lg-3 me-4 message"><span className="text-white badge total-message">0</span><FiMail className='icon-message' /></Link>
               <Link to='/profile' className='profile'>
-                <img src={auth.userData.image || noImage} alt="Photoprofile." />
+                <img src={image || noImage} alt="Photoprofile." />
               </Link>
             </div>
           </div>

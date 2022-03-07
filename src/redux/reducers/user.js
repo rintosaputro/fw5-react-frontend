@@ -1,7 +1,8 @@
 const updateState = {
   isLoading: false,
   isError: false,
-  message: ''
+  message: '',
+  isSuccess: false,
 }
 
 export const updateProfile = (state = updateState, action) => {
@@ -9,6 +10,7 @@ export const updateProfile = (state = updateState, action) => {
     case 'UPDATE_PROFILE_PENDING': {
       state.isLoading = true
       state.isError = false
+      state.isSuccess = false
       return {...state}
     }
     case 'UPDATE_PROFILE_FULFILLED': {
@@ -16,6 +18,7 @@ export const updateProfile = (state = updateState, action) => {
       state.isLoading = false
       state.isError = false
       state.message = data.message
+      state.isSuccess = true
       state.user = {...data.results}
       return {...state}
     }
@@ -23,6 +26,7 @@ export const updateProfile = (state = updateState, action) => {
       const {data} = action.payload
       state.isError = true
       state.message = data.message
+      state.isSuccess = false
       return {...state}
     }
     default: {

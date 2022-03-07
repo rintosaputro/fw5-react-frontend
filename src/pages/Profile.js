@@ -40,11 +40,11 @@ export default function Profile() {
 
   const {
     image, name, username, email, createdAt, phoneNumber, address, birthdate, gender
-  } = (updateProfile.user['0'].name === auth.userData.name ? updateProfile.user['0'] : auth.userData)
+  } = (updateProfile.isSuccess ? updateProfile.user['0'] : auth.userData)
 
   const fileChange = () => {
     let data = {}
-    const imageChange = document.getElementById('image').value
+    const imageChange = document.getElementById('image').files[0]
     const genderChange = getGender()
     const emailChange = document.getElementById('email').value
     const addressChange = document.getElementById('address').value
@@ -52,6 +52,9 @@ export default function Profile() {
     const usernameChange = document.getElementById('username').value
     const birthdateChange = document.getElementById('birthdate').value
     const resBirthdate = new Date(birthdateChange).toLocaleDateString('en-CA')
+    if (imageChange) {
+      data = {...data, image: imageChange}
+    }
     if (genderChange !== gender) {
       data = {...data, gender: genderChange}
     }
