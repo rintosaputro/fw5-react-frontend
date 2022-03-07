@@ -4,7 +4,7 @@ import vehicleReducer from "./vehicle";
 import auth from "./auth";
 import counter from "./counter";
 import history from "./history";
-import payment from "./payment";
+import { payment } from "./payment";
 
 const rootReducer = combineReducers({
   vehicleReducer,

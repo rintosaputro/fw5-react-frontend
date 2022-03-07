@@ -4,7 +4,7 @@ const historyState = {
   isError: false,
 }
 
-const payment = (state = historyState, action) => {
+export const payment = (state = historyState, action) => {
   switch(action.type) {
     case 'ADD_HISTORY_PENDING': {
       state.isLoading = true
@@ -29,4 +29,6 @@ const payment = (state = historyState, action) => {
   }
 }
 
-export default payment
+
+
+// export default payment

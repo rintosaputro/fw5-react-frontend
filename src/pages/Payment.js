@@ -6,7 +6,8 @@ import activeNav from '../helper/activeNav'
 import { getVehicleDetail } from '../redux/actions/vehicle'
 import { useDispatch, useSelector } from 'react-redux'
 import LoadingSkeleton from '../components/LoadingSkeleton'
-import { addHistory } from '../redux/actions/history'
+// import { addHistory } from '../redux/actions/history'
+import { addHistory } from '../redux/actions/payment'
 
 export default function Payment() {
   const {id} = useParams()

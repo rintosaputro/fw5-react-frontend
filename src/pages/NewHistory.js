@@ -6,7 +6,8 @@ import activeNav from '../helper/activeNav'
 import { getVehicleDetail } from '../redux/actions/vehicle'
 import { useDispatch, useSelector } from 'react-redux'
 import LoadingSkeleton from '../components/LoadingSkeleton'
-import { addHistory } from '../redux/actions/history'
+// import { addHistory } from '../redux/actions/history'
+import { addHistory } from '../redux/actions/payment'
 
 
 export default function NewHistory() {
@@ -20,9 +21,7 @@ export default function NewHistory() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    // dispatch(getVehicleDetail(id))
     activeNav()
-    console.log('test', payment)
   }, [])
 
   const back = () => {
@@ -34,14 +33,8 @@ export default function NewHistory() {
     console.log('test', payment)
     alert('code copied')
   }
-  // const {image, type, brand, location, price} = detail.vehicle
-  const {image, type, brand, location, price} = payment.newHistory
 
-  const handlePayment = (ev) => {
-    ev.preventDefault()
-    const token = window.localStorage.getItem('token')
-    dispatch(addHistory(token, userData.idUser, id, counter.startDate))
-  }
+  const {image, type, brand, location, price} = payment.newHistory
 
   return (
     <div className='vehicle-detail'>
@@ -53,7 +46,7 @@ export default function NewHistory() {
           <span>Payment</span>
         </div>
         <div className="container row pt-5 detail-vehicle">
-          {detail.isLoading && <LoadingSkeleton count={1} col='col-12' />}
+          {payment.isLoading && <LoadingSkeleton count={1} col='col-12' />}
           <div className="col-12 col-sm-5 col-md-5 col-xl-4 img-section overflow-hidden d-flex align-item-center justify-content-center">
             <img src={image} alt={brand} className='img-fluid' />
           </div>
@@ -65,12 +58,12 @@ export default function NewHistory() {
             <div className="status my-3 d-flex flex-column">
               <span className="text-muted fw-bold">No prepayment</span>
             </div>
-            <div className="my-auto mt-4 code-container">
+            {/* <div className="my-auto mt-4 code-container">
               <span className="code" id='bookingCode'>#FG1209878YZS</span>
             </div>
             <div className="mt-3 w-50 copy-contain">
               <button onClick={copyBtn} className="btn btn-green p-1 btn-copy-top">Copy booking code</button>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -132,7 +125,7 @@ export default function NewHistory() {
           </div>
         </div>
 
-        <div className="row align-items-center g-0 mt-4">
+        {/* <div className="row align-items-center g-0 mt-4">
           <div className="col-12 col-sm-3">
             <h2 className="fw-bold">Payment Code:</h2>
           </div>
@@ -153,7 +146,7 @@ export default function NewHistory() {
 
         <div className="pay-now mt-5 px-2">
           <button className="btn btn-green w-100 mt-3">Finish payment: <span className="text-danger time">59:30</span></button>
-        </div>
+        </div> */}
       </section>
     </div>
   )
