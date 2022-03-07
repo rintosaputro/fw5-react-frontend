@@ -15,22 +15,40 @@ const Signup = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [])
+    // dispatch({
+    //   type: 'REGISTER_FULFILLED',
+    //   payload: {
+    //     data: {isRegistered: 'ok'}
+    //   }
+    // })
+    // handleSubmit()
+    const name = document.getElementById('name').value
+  }, [registerUser])
 
   const handleSubmit = (ev) => {
     ev.preventDefault()
-    const name = ev.target.elements['name'].value
-    const username = ev.target.elements['username'].value
-    const email = ev.target.elements['email'].value
-    const password = ev.target.elements['password'].value
+    const name = document.getElementById('name').value
+    const username = document.getElementById('username').value
+    const email = document.getElementById('email').value
+    const password = document.getElementById('password').value
     const data = {name, username, email, password}
     dispatch(register(data))
-    if (registerUser.isError) {
-      alert(`${registerUser.message}`)
-    } else {
-      alert(`${registerUser.message}`)
+    // dispatch({
+    //   type: 'REGISTER_FULFILLED',
+    //   payload: {
+    //     data
+    //   }
+    // })
+    // if (!registerUser.isSuccess) {
+    //   alert(`${registerUser.message}`)
+    // }
+    // if (registerUser.isSuccess) {
+      // alert(`${registerUser.message}`)
       // navigate('/verify')
-    }
+    //   console.log('test', registerUser)
+    // } 
+    navigate('/verify')
+    // console.log(registerUser)
   }
 
   return (
@@ -40,13 +58,13 @@ const Signup = () => {
       </div>
       <div className="col-12 col-sm-7 col-md-6 pt-5 form-section">
         <div className="opacity">
-          <form onSubmit={handleSubmit} className="d-flex flex-column justify-content-center align-items-center">
+          <form className="d-flex flex-column justify-content-center align-items-center">
             <h2 className="my-5 container header-sign">Sign Up</h2>
-            <input type="text" placeholder="Name" name='name' />
-            <input type="text" placeholder="Username" name='username' />
-            <input type="email" placeholder="Email" name='email' />
-            <input type="password" placeholder="Password" name='password'/>
-            <button type='submit' className="btn fw-bold mt-5 signup">Sign Up</button>
+            <input type="text" placeholder="Name" id='name' />
+            <input type="text" placeholder="Username" id='username' />
+            <input type="email" placeholder="Email" id='email' />
+            <input type="password" placeholder="Password" id='password'/>
+            <button onClick={handleSubmit} type='submit' className="btn fw-bold mt-5 signup">Sign Up</button>
             <div className="row d-flex align-items-center another">
               <div className="col"><hr /></div>
               <div className="col-5 text-muted text-center text-another">or try another way</div>

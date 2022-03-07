@@ -16,3 +16,4 @@ export const getUser = (token) => {
     payload: http(token).get('/profile')
   })
 }
+

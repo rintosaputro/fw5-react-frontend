@@ -41,6 +41,17 @@ export const register = (data) => {
 
   return ({
     type: 'REGISTER',
-    payload: http().post('/auth/register', param)
+    payload: http().post('/auth/register', param),
+  })
+}
+
+export const verify = (username, code, password) => {
+  const param = new URLSearchParams()
+  param.append('username', username)
+  param.append('code', code)
+  param.append('password', password)
+  return ({
+    type: 'VERIFY_USER',
+    payload: http().post('/auth/verification', param)
   })
 }

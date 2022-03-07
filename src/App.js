@@ -16,6 +16,7 @@ import Search from "./pages/Search";
 import NewHistory from "./pages/NewHistory";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "./redux/actions/auth";
+import Verify from "./pages/Verify";
 
 const App = () => {
   const {auth} = useSelector(state => state)
@@ -80,6 +81,9 @@ const App = () => {
         } />
         <Route path='history/:id' element={
           <Layout ><NewHistory /></Layout>
+        } />
+        <Route path="verify" element={
+          <Layout noNavbar={true}><Verify /></Layout>
         } />
       </Routes>
     </BrowserRouter>

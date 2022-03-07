@@ -39,7 +39,9 @@ const registerState = {
   results: {},
   message: '',
   isLoading: false,
+  isRegistered: false,
   isError: false,
+  isSuccess: false,
 }
 
 export const registerUser = (state = registerState, action) => {
@@ -47,6 +49,7 @@ export const registerUser = (state = registerState, action) => {
     case 'REGISTER_PENDING': {
       state.isLoading = true
       state.isError = false
+      state.isSuccess = false
       return {...state}
     }
     case 'REGISTER_FULFILLED': {
@@ -54,13 +57,43 @@ export const registerUser = (state = registerState, action) => {
       state.isLoading = false
       state.isError = false
       state.message = data.message
+      state.isSuccess = true
       state.results = {...data.results}
       return {...state}
     }
     case 'REGISTER_REJECTED': {
       const {data} = action.payload
       state.isError = true
-      state.message = data.message
+      state.isSuccess = false
+      // state.message = data.message
+      return {...state}
+    }
+    default: {
+      return {...state}
+    }
+  }
+}
+
+const verifyState = {
+  isLoading: false,
+  isError: false,
+}
+
+export const verifyUser = (state = verifyState, action) => {
+  switch(action.type) {
+    case 'VERIFY_USER_PENDING': {
+      state.isLoading = true
+      state.isError = false
+      return {...state}
+    }
+    case 'VERIFY_USER_FULFILLED': {
+      state.isLoading = false
+      state.isError = false
+      return {...state}
+    }
+    case 'VERIFY_USER_REJECTED': {
+      state.isLoading = false
+      state.isError = true
       return {...state}
     }
     default: {
