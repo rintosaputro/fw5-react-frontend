@@ -9,10 +9,11 @@ import activeNav from '../helper/activeNav'
 import { useDispatch, useSelector } from 'react-redux'
 import { increment, decrement, reservation } from '../redux/actions/counter'
 import { getVehicleDetail } from '../redux/actions/vehicle'
+import LoadingSkeleton from '../components/LoadingSkeleton'
 
 export default function Reservation() {
   const {id} = useParams()
-  const {vehicle} = useSelector(state => state.vehicleReducer.detail)
+  const {detail} = useSelector(state => state.vehicleReducer)
   const {counter} = useSelector(state => state)
 
   const dispatch = useDispatch()
@@ -27,7 +28,7 @@ export default function Reservation() {
     window.history.back()
   }
 
-  const {brand, location, image, payment, price} = vehicle
+  const {brand, location, image, payment, price} = detail.vehicle
   const countPlus = () => {
     const rentStart = document.getElementById('dateReservation').value
     const totalDay = document.getElementById('date').value
@@ -50,7 +51,7 @@ export default function Reservation() {
       navigate(`/payment/${id}`)
     }
   }
-  const formatPrice = new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(counter.totalPrice + vehicle.price)
+  const formatPrice = new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(counter.totalPrice + price)
 
   return (
     <div className='vehicle-detail'>
@@ -61,6 +62,7 @@ export default function Reservation() {
           </div>
           <span>Reservation</span>
         </div>
+        {detail.isLoading ? <LoadingSkeleton count={2} col='col-12 col-lg-6' /> :
         <div className="row pt-5 detail-vehicle">
           <div className="col-12 col-lg-7 img-section overflow-hidden my-auto text-center">
             <img src={image || noImage} alt={brand} className='img-fluid' />
@@ -107,6 +109,8 @@ export default function Reservation() {
             </form>        
           </div>
         </div>
+        }
+        
         <div className="pay-now mt-5 px-2">
           <div onClick={gotoPayment} style={{cursor: 'pointer'}} className="btn btn-green w-100 mt-3">Pay now: Rp.
             <span>

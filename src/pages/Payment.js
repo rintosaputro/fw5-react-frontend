@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import '../assets/css/vehicle-detail.css'
-import {default as axios} from 'axios'
 import { useParams } from 'react-router-dom'
 import {IoChevronBack} from 'react-icons/io5'
 import activeNav from '../helper/activeNav'
 import { getVehicleDetail } from '../redux/actions/vehicle'
 import { useDispatch, useSelector } from 'react-redux'
+import LoadingSkeleton from '../components/LoadingSkeleton'
 
 export default function Payment() {
   const {id} = useParams()
   const dispatch = useDispatch()
 
-  const {vehicle} = useSelector(state => state.vehicleReducer.detail)
+  const {detail} = useSelector(state => state.vehicleReducer)
   const {counter} = useSelector(state => state)
   const {userData} = useSelector(state => state.auth)
 
@@ -30,7 +30,7 @@ export default function Payment() {
     console.log('test', counter)
     alert('code copied')
   }
-  const {image, type, brand, location, price} = vehicle
+  const {image, type, brand, location, price} = detail.vehicle
 
   return (
     <div className='vehicle-detail'>
@@ -42,6 +42,7 @@ export default function Payment() {
           <span>Payment</span>
         </div>
         <div className="container row pt-5 detail-vehicle">
+          {detail.isLoading && <LoadingSkeleton count={1} col='col-12' />}
           <div className="col-12 col-sm-5 col-md-5 col-xl-4 img-section overflow-hidden d-flex align-item-center justify-content-center">
             <img src={image} alt={brand} className='img-fluid' />
           </div>

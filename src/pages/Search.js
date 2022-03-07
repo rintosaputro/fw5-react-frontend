@@ -8,8 +8,9 @@ import searchURL from '../helper/searchURL';
 import { searchVehicle } from '../redux/actions/vehicle';
 import { useDispatch, useSelector } from 'react-redux';
 import { nextSearchVehicle } from '../redux/actions/vehicle';
+import LoadingSkeleton from '../components/LoadingSkeleton';
 
-export default function Search(props) {
+export default function Search() {
   const {search} = useSelector(state => state.vehicleReducer)
   const dispatch = useDispatch()
   // const [vehicle, setVehilcle] = useState([])
@@ -82,6 +83,7 @@ export default function Search(props) {
             </p>}
         </div>
         <div className='row'>
+          {search.isLoading && <LoadingSkeleton count={8} />}
           {search.vehicle.map(data => {
             const props = {image: data.image, location: data.location, brand: data.brand, id: data.idVehicle}
             if (data.qty > 0) return <ProductHighlight key={props.id} props={props} />

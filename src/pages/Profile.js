@@ -5,22 +5,24 @@ import deleteActiveNav from '../helper/deleteActiveNav'
 import { useSelector } from 'react-redux'
 import noImage from '../assets/images/no-pp.jpg'
 import BtnLogout from '../components/BtnLogout'
+import LoadingSkeleton from '../components/LoadingSkeleton'
 
 export default function Profile() {
-  const {userData} = useSelector(state => state.auth)
+  const {auth} = useSelector(state => state)
 
   useEffect(() => {
     window.scrollTo(0, 0)
     deleteActiveNav()
   }, [])
   
-  const {image, name, username, email, createdAt, phoneNumber, address, birthdate} = userData
+  const {image, name, username, email, createdAt, phoneNumber, address, birthdate} = auth.userData
   
   return (
     <div className='profile'>
       <header className="container">
         <h1>Profile</h1>
         <div className="profle-header">
+        {auth.isLoading && <div className='mx-auto'><LoadingSkeleton count={1} col='col-3 mx-auto text-center' /></div>}
           <div className="text-center">
             <div className="image-profile">
               <img src={image || noImage} alt={name} />
