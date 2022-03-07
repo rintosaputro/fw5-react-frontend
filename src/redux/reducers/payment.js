@@ -7,6 +7,7 @@ const historyState = {
 export const payment = (state = historyState, action) => {
   switch(action.type) {
     case 'ADD_HISTORY_PENDING': {
+      // state.newHistory = {}
       state.isLoading = true
       state.isError = false
       return {...state}
@@ -14,6 +15,7 @@ export const payment = (state = historyState, action) => {
     case 'ADD_HISTORY_FULFILLED': {
       const {data} = action.payload
       state.isLoading = false
+      state.newHistory = {}
       // state.newHistory = {...data.results, id: 2}
       Object.assign(state.newHistory, {...data.results})
       state.isError = false

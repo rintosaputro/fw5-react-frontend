@@ -112,11 +112,11 @@ export default function Reservation() {
         }
         
         <div className="pay-now mt-5 px-2">
-          <div onClick={gotoPayment} style={{cursor: 'pointer'}} className="btn btn-green w-100 mt-3">Pay now: Rp.
+          <button onClick={gotoPayment} className="btn btn-green w-100 mt-3">Pay now: Rp.
             <span>
               {formatPrice}
             </span>
-          </div>
+          </button>
         </div>
       </section>
     </div>

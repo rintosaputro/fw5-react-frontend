@@ -1,56 +1,39 @@
 import React, { useEffect } from 'react'
 import '../assets/css/vehicle-detail.css'
-import { Link, useParams } from 'react-router-dom'
-import {IoChevronBack} from 'react-icons/io5'
+import { useParams } from 'react-router-dom'
 import activeNav from '../helper/activeNav'
-import { getVehicleDetail } from '../redux/actions/vehicle'
 import { useDispatch, useSelector } from 'react-redux'
 import LoadingSkeleton from '../components/LoadingSkeleton'
-// import { addHistory } from '../redux/actions/history'
-import { addHistory } from '../redux/actions/payment'
+import { getDetailHistory } from '../redux/actions/history'
 
 
 export default function NewHistory() {
   const {id} = useParams()
   const dispatch = useDispatch()
 
-  const {detail} = useSelector(state => state.vehicleReducer)
   const {counter} = useSelector(state => state)
   const {userData} = useSelector(state => state.auth)
   const {payment} = useSelector(state => state)
+  const {detailHistory} = useSelector(state => state)
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    const token = window.localStorage.getItem('token')
+    dispatch(getDetailHistory(token, id))
     activeNav()
   }, [])
 
-  const back = () => {
-    window.history.back()
-  }
-  const copyBtn = () => {
-    const code = document.getElementById('bookingCode').innerHTML
-    navigator.clipboard.writeText(code)
-    console.log('test', payment)
-    alert('code copied')
-  }
-
-  const {image, type, brand, location, price} = payment.newHistory
+  const {image, type, brand, location, price, rentStartDate} = detailHistory.history
 
   return (
     <div className='vehicle-detail'>
       <section className="container first-section payment">
-        <div className="d-flex flex-row head">
-          <div onClick={back} className="back d-flex mb-5">
-            <IoChevronBack className='me-5 fs-1' />
-          </div>
-          <span>Payment</span>
-        </div>
-        <div className="container row pt-5 detail-vehicle">
+        <div className="container row pt-5 detail-vehicle detail-vehicle-history">
           {payment.isLoading && <LoadingSkeleton count={1} col='col-12' />}
-          <div className="col-12 col-sm-5 col-md-5 col-xl-4 img-section overflow-hidden d-flex align-item-center justify-content-center">
+          <div className="col-12 col-md-5 col-xl-4 img-section overflow-hidden d-flex align-item-center justify-content-center">
             <img src={image} alt={brand} className='img-fluid' />
           </div>
-          <div className="col-12 col-sm-7 col-md-7 col-xl-8 description-section">
+          <div className="col-12 col-md-7 col-xl-8 description-section">
             <div className="description">
               <h2 className="fw-bold">{brand}</h2>
               <p>{location}</p>
@@ -58,12 +41,6 @@ export default function NewHistory() {
             <div className="status my-3 d-flex flex-column">
               <span className="text-muted fw-bold">No prepayment</span>
             </div>
-            {/* <div className="my-auto mt-4 code-container">
-              <span className="code" id='bookingCode'>#FG1209878YZS</span>
-            </div>
-            <div className="mt-3 w-50 copy-contain">
-              <button onClick={copyBtn} className="btn btn-green p-1 btn-copy-top">Copy booking code</button>
-            </div> */}
           </div>
         </div>
 
@@ -75,7 +52,7 @@ export default function NewHistory() {
             <div className="second-col">
               <div className="border border-dark w-100">
                 <span className="reservation-date fw-bold">Reservation Date: </span>
-                <span>{new Date(counter.startDate).toDateString()}  ({counter.totalDay} day)</span></div>
+                <span>{new Date(rentStartDate).toDateString()}  ({counter.totalDay} day)</span></div>
             </div>
           </div>
 
@@ -124,29 +101,6 @@ export default function NewHistory() {
             </div>
           </div>
         </div>
-
-        {/* <div className="row align-items-center g-0 mt-4">
-          <div className="col-12 col-sm-3">
-            <h2 className="fw-bold">Payment Code:</h2>
-          </div>
-          <div className="col-12 col-sm-4 code-section">
-            <div className="d-flex flex-row border justify-content-between align-items-center border-dark payment-code">
-              <span className="code">#FG1209878YZS</span>
-              <button onClick={copyBtn} className="btn btn-black btn-copy">Copy</button>
-            </div>
-          </div>
-          <div className="col-12 col-sm-auto">
-            <select className="form-select">
-              <option className="d-none">Select payment method</option>
-              <option>Cash</option>
-              <option>Transfer</option>
-            </select>
-          </div>
-        </div>
-
-        <div className="pay-now mt-5 px-2">
-          <button className="btn btn-green w-100 mt-3">Finish payment: <span className="text-danger time">59:30</span></button>
-        </div> */}
       </section>
     </div>
   )

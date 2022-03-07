@@ -217,6 +217,10 @@ body {
 }
 
 /* payment */
+
+.vehicle-detail .detail-vehicle.detail-vehicle-history {
+  height: 365px !important;
+}
 .vehicle-detail .payment .img-section {
   position: relative;
   border-radius: 10px;
@@ -474,6 +478,9 @@ body {
   }
 } 
 @media all and (max-width: 575px) {
+  .vehicle-detail .detail-vehicle.detail-vehicle-history {
+    height: auto !important;
+  }
   .vehicle-detail .img-section {
     height: 100%;
   }

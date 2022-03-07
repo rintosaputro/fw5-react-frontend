@@ -6,7 +6,7 @@ import {IoChevronForward} from 'react-icons/io5'
 import { Link, useNavigate } from 'react-router-dom';
 import searchURL from '../helper/searchURL';
 import { useDispatch, useSelector } from 'react-redux';
-// import { category } from '../redux/actions/vehicle';
+import { category, popular as popularVehicle } from '../redux/actions/vehicle';
 import LoadingSkeleton from '../components/LoadingSkeleton';
 
 const VehicleType = () => {
@@ -16,12 +16,17 @@ const VehicleType = () => {
   const {bike} = useSelector(state => state.vehicleReducer)
   const {pickup} = useSelector(state => state.vehicleReducer)
 
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   const navigate = useNavigate()
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    dispatch(popularVehicle())
+    dispatch(category('CARS', 'cars'))
+    dispatch(category('MOTORBIKE', 'motorbike'))
+    dispatch(category('BIKE', 'bike'))
+    dispatch(category('PICKUP', 'pickup'))
   },[])
   
   const handleSubmit = (ev) => {

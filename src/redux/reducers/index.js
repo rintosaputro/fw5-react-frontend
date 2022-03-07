@@ -4,7 +4,8 @@ import vehicleReducer from "./vehicle";
 import auth from "./auth";
 import counter from "./counter";
 // import history from "./history";
-import { history } from "./history";
+import { history, detailHistory, deleteHistory } from "./history";
+// import { detailHistory } from "./history";
 import { payment } from "./payment";
 
 const rootReducer = combineReducers({
@@ -12,6 +13,8 @@ const rootReducer = combineReducers({
   auth,
   counter,
   history,
+  detailHistory,
+  deleteHistory,
   payment,
 })
 

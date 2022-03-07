@@ -16,6 +16,7 @@ export default function History() {
   const {userData} = useSelector(state => state.auth)
   const {newVehicle} = useSelector(state => state.vehicleReducer)
   const {auth} = useSelector(state => state)
+  const {deleteHistory: deletedRes} = useSelector(state => state)
 
   const dispatch = useDispatch()
   
@@ -24,17 +25,19 @@ export default function History() {
     dispatch(getHistory(userData.username))
     dispatch(getNewVehicle())
     deleteActiveNav()
-  }, [dispatch, userData.username])
+  }, [dispatch, deletedRes.message, userData.username])
 
   const nextPage = (ev) => {
     ev.preventDefault()
     dispatch(getNextHistory(userData.username, history.pageInfo.currentPage + 1))
   }
-
-  const handleDelete = (id) => {
-    // ev.preventDefault()
-    const token = window.localStorage.getItem('token')
+  
+  const token = window.localStorage.getItem('token')
+  const handleDelete = (ev, id) => {
+    ev.preventDefault()
     dispatch(deleteHistory(token, id))
+    alert(`${deletedRes.message}`)
+    console.log('test', deletedRes)
   }
 
   const bgImage = (props) => {
@@ -58,7 +61,7 @@ export default function History() {
           </div> 
         </div>
         <div className="btn-delete d-none">
-          <button  className="btn btn-green">Delete</button>
+          <button onClick={(ev)=> handleDelete(ev, idHistory)} className="btn btn-green">Delete</button>
         </div>
       </div>
     )
@@ -66,7 +69,7 @@ export default function History() {
 
   return (
     <div className='history'>
-      {auth.token === null && <Navigate to='/login' />}
+      {token === null && <Navigate to='/login' />}
       <main className="row main-section">
         <section className="col-12 col-md -8 ps-5">
           <div className="row container form-section">
@@ -103,10 +106,11 @@ export default function History() {
           <div className="container weekly-history">
             <div className="text-muted head-weekly">A week ago</div>
             {history.isLoading && <LoadingSkeleton count={history.history.length} />}
-            {history.history.length > 0 ?(history.history.map((data) => {
+            {history.history.length === 0 ? <p className='pt-5'>No history yet</p> :
+            (history.history.map((data) => {
               const props = {idHistory: data.idHistory, idUser: data.idUser, name: data.name, image: data.image, brand: data.brand, prepayment: data.prepayment, status: data.status, rentStartDate: data.rentStartDate, rentEndDate: data.rentEndDate }
               return bgImage(props)
-            })) : <p className='pt-5'>No history yet</p>}
+            }))}
             {history.pageInfo.next && <button onClick={nextPage} className='btn btn-green w-50 mt-5'>next</button>}
           </div>
         </section>

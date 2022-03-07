@@ -75,4 +75,35 @@ export const deleteHistory = (state = deleteState, action) => {
   }
 }
 
+const detailState = {
+  history: {},
+  isLoading: false,
+  isError: false,
+}
+
+export const detailHistory = (state = detailState, action) => {
+  switch(action.type) {
+    case 'GET_DETAIL_HISTORY_PENDING': {
+      state.isLoading = true
+      state.isError = false
+      return {...state}
+    }
+    case 'GET_DETAIL_HISTORY_FULFILLED': {
+      const {data} = action.payload
+      state.isLoading = false
+      state.isError = false
+      // state.history = data.results
+      Object.assign(state.history, {...data.results})
+      return {...state}
+    }
+    case 'GET_DETAIL_HISTORY_REJECTED': {
+      state.isError = true
+      return {...state}
+    }
+    default: {
+      return {...state}
+    }
+  }
+}
+
 // export default history

@@ -21,6 +21,13 @@ export const deleteHistory = (token, id) => {
   })
 }
 
+export const getDetailHistory = (token,id) => {
+  return ({
+    type: 'GET_DETAIL_HISTORY',
+    payload: http(token).get(`histories/${id}`)
+  })
+}
+
 // export const addHistory = (token, id_user, id_vehicle, rent_start_date, rent_end_date) => {
 //   const param = new URLSearchParams()
 //   param.append('id_user', id_user)

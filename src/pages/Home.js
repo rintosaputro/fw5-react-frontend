@@ -7,15 +7,18 @@ import ProductHighlight from '../components/ProductHighlight';
 import { Link, useNavigate } from 'react-router-dom';
 import {IoChevronForward} from 'react-icons/io5'
 import Layout from '../components/Layout';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import LoadingSkeleton from '../components/LoadingSkeleton';
+import {popular} from '../redux/actions/vehicle'
 
 const Home = () => {
   const vehiclePopular = useSelector(state => state.vehicleReducer.popular)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    dispatch(popular())
   }, [])
 
   const handleSubmit = (ev) => {
@@ -43,7 +46,7 @@ const Home = () => {
             <div className="row">
               <div className="col-12 col-md-6">
                 <select id='location' className="option-form">
-                  <option className='d-none'>Location</option>
+                  <option value='' className='d-none'>Location</option>
                   <option value='Jakarta'>Jakarta</option>
                   <option value='Bandung'>Bandung</option>
                   <option value='Yogyakarta'>Yogyakarta</option>
