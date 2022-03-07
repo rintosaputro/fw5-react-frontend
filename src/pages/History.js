@@ -99,7 +99,7 @@ export default function History() {
               const props = {idHistory: data.idHistory, idUser: data.idUser, name: data.name, image: data.image, brand: data.brand, prepayment: data.prepayment, status: data.status, rentStartDate: data.rentStartDate, rentEndDate: data.rentEndDate }
               return bgImage(props)
             })) : <p className='pt-5'>No history yet</p>}
-            {history.history.length > 0 && <button onClick={nextPage} className='btn btn-green w-50 mt-5'>next</button>}
+            {history.pageInfo.next && <button onClick={nextPage} className='btn btn-green w-50 mt-5'>next</button>}
           </div>
         </section>
       
