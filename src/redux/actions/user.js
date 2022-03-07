@@ -30,3 +30,17 @@ export const updateProfile = (token, data) => {
     payload: http(token).patch('/users', formData)
   })
 }
+
+export const register = (data) => {
+  const {name, username, email, password} = data
+  const param = new URLSearchParams()
+  param.append('name', name)
+  param.append('username', username)
+  param.append('email', email)
+  param.append('password', password)
+
+  return ({
+    type: 'REGISTER',
+    payload: http().post('/auth/register', param)
+  })
+}
