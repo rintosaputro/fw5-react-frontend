@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getHistory, getNextHistory } from '../redux/actions/history'
 import { getNewVehicle } from '../redux/actions/vehicle'
 import LoadingSkeleton from '../components/LoadingSkeleton';
+import { deleteHistory } from '../redux/actions/history'
 
 export default function History() {
   const {history} = useSelector(state => state)
@@ -25,8 +26,15 @@ export default function History() {
     deleteActiveNav()
   }, [dispatch, userData.username])
 
-  const nextPage = () => {
+  const nextPage = (ev) => {
+    ev.preventDefault()
     dispatch(getNextHistory(userData.username, history.pageInfo.currentPage + 1))
+  }
+
+  const handleDelete = (id) => {
+    // ev.preventDefault()
+    const token = window.localStorage.getItem('token')
+    dispatch(deleteHistory(token, id))
   }
 
   const bgImage = (props) => {
@@ -50,7 +58,7 @@ export default function History() {
           </div> 
         </div>
         <div className="btn-delete d-none">
-          <button className="btn btn-green">Delete</button>
+          <button  className="btn btn-green">Delete</button>
         </div>
       </div>
     )

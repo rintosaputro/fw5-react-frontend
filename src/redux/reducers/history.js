@@ -5,7 +5,7 @@ const historyState = {
   isError: false,
 }
 
-const history = (state = historyState, action) => {
+export const history = (state = historyState, action) => {
   switch(action.type) {
     case 'GET_HISTORY_PENDING': {
       state.isLoading = true
@@ -45,4 +45,34 @@ const history = (state = historyState, action) => {
   }
 }
 
-export default history
+const deleteState = {
+  message: '',
+  isLoading: false,
+  isError: false
+}
+
+export const deleteHistory = (state = deleteState, action) => {
+  switch(action.type) {
+    case 'DELETE_HISTORY_PENDING': {
+      state.isLoading = true
+      state.isError = false
+      return {...state}
+    }
+    case 'DELETE_HISTORY_FULFILLED': {
+      const {data} = action.payload
+      state.message = data.message
+      state.isLoading = false
+      state.isError = false
+      return {...state}
+    }
+    case 'DELETE_HISTORY_REJECTED': {
+      state.isError = true
+      return {...state}
+    }
+    default : {
+      return {...state}
+    }
+  }
+}
+
+// export default history

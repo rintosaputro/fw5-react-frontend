@@ -14,6 +14,13 @@ export const getNextHistory = (username, page) => {
   })
 }
 
+export const deleteHistory = (token, id) => {
+  return ({
+    type: 'DELETE_HISTORY',
+    payload: http(token).delete(`/histories/${id}`)
+  })
+}
+
 // export const addHistory = (token, id_user, id_vehicle, rent_start_date, rent_end_date) => {
 //   const param = new URLSearchParams()
 //   param.append('id_user', id_user)
