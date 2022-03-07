@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import '../assets/css/vehicle-detail.css'
-import {default as axios} from 'axios'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import {BiMinus, BiPlus} from 'react-icons/bi'
 import {IoChevronBack} from 'react-icons/io5'
 import noImage from '../assets/images/no-image.jpg'
@@ -88,19 +87,7 @@ export default function Reservation() {
             <form>
               <h4 className="fw-bold mt-5">Reservation Date:</h4>
               <input type="date" placeholder="Select date" id='dateReservation' className="form-control" />
-              {/* <div className="dropdown mt-3">
-                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  Day
-                </button>
-                <ul className="dropdown-menu w-100" aria-labelledby="dropdownMenuButton1">
-                  <li><button onClick={totalDay(1)} style={{cursor: 'pointer'}} className='dropdown-item'>1 Day</button></li>
-                  <li><button onClick={totalDay(2)} style={{cursor: 'pointer'}} className='dropdown-item'>2 Day</button></li>
-                  <li><button onClick={totalDay(3)} style={{cursor: 'pointer'}} className='dropdown-item'>3 Day</button></li>
-                  <li><button onClick={totalDay(3)} style={{cursor: 'pointer'}} className='dropdown-item'>4 Day</button></li>
-                </ul>
-              </div> */}
               <select name="date" id="date" className="form-select mt-3">
-                <option className='d-none'>{counter.totalDay} Day</option>
                 <option value="1">1 Day</option>
                 <option value="2">2 Day</option>
                 <option value="3">3 Day</option>

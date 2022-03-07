@@ -16,7 +16,6 @@ export default function Payment() {
   const {counter} = useSelector(state => state)
   const {userData} = useSelector(state => state.auth)
   const {payment} = useSelector(state => state)
-  // const {newHistory} = useSelector(state => state.payment)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -37,9 +36,6 @@ export default function Payment() {
   const navigate = useNavigate()
 
   const rentEnd = (date, total) => {
-    // let myDate = new Date(date)
-    // myDate.setDate(myDate.getDate() + 2)
-    // return myDate
     var currentdate = new Date(date);
     currentdate.setDate(currentdate.getDate() + (Number(total)));
     var tomorrow = currentdate.toJSON().slice(0,10);
@@ -49,15 +45,10 @@ export default function Payment() {
   const handlePayment = (ev) => {
     ev.preventDefault()
     const token = window.localStorage.getItem('token')
-    // dispatch(addHistory(token, userData.idUser, id, counter.startDate))
     dispatch(addHistory(token, userData.idUser, id, counter.startDate, rentEnd(counter.startDate, counter.totalDay)))
     console.log('test payment', payment.newHistory.idHistory)
     navigate(`/history/${payment.newHistory.idHistory + 1}`)
   }
-
-  // const rentEnd = new Date(counter.startDate)
-  // rentEnd.setData(rentEnd.getDate() + 2)
-
 
   return (
     <div className='vehicle-detail'>
@@ -66,7 +57,7 @@ export default function Payment() {
           <div onClick={back} className="back d-flex mb-5">
             <IoChevronBack className='me-5 fs-1' />
           </div>
-          <span>Payment</span> <span>{counter.startDate} {rentEnd(counter.startDate, counter.totalDay)}</span>
+          <span>Payment</span>
         </div>
         <div className="container row pt-5 detail-vehicle">
           {detail.isLoading && <LoadingSkeleton count={1} col='col-12' />}

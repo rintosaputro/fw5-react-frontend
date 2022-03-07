@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import '../assets/css/vehicle-detail.css'
 import {BiMinus, BiPlus} from 'react-icons/bi'
 import {GrFormPrevious, GrFormNext} from 'react-icons/gr'

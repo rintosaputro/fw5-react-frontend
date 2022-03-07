@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import '../assets/css/vehicle-type.css'
 import ProductHighlight from '../components/ProductHighlight'
-import {default as axios} from 'axios';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import {BiSearchAlt2} from 'react-icons/bi'
 import searchURL from '../helper/searchURL';
@@ -13,8 +12,6 @@ import LoadingSkeleton from '../components/LoadingSkeleton';
 export default function Search() {
   const {search} = useSelector(state => state.vehicleReducer)
   const dispatch = useDispatch()
-  // const [vehicle, setVehilcle] = useState([])
-  const [page, setPage] = useState({})
   
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
@@ -26,26 +23,11 @@ export default function Search() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    // let url = `http://localhost:5000/vehicles/category/?limit=8&search=${key}&location=${location}&minimum=${min}&maximum=${max}`
-    // getVehicle(url)
     dispatch(searchVehicle(key, location, min, max))
   }, [searchParams])
 
-  const getVehicle = async (url) => {
-    const {data} = await axios.get(url)
-    // setVehilcle(data.results) 
-    setPage(data.pageInfo) 
-  }
-
   const nextPage = () => {
     dispatch(nextSearchVehicle(key, location, min, max, search.pageInfo.currentPage + 1))
-    // try {
-    //   const {data} = await axios.get(page.next)
-    //   // setVehilcle([...vehicle, ...data.results])
-    //   setPage(data.pageInfo)
-    // } catch (err) {
-    //   console.log(err.message)
-    // }
   }
   const handleSubmit = (ev) => {
     ev.preventDefault()
