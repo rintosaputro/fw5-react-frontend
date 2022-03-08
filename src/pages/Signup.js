@@ -15,14 +15,6 @@ const Signup = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    // dispatch({
-    //   type: 'REGISTER_FULFILLED',
-    //   payload: {
-    //     data: {isRegistered: 'ok'}
-    //   }
-    // })
-    // handleSubmit()
-    const name = document.getElementById('name').value
   }, [registerUser])
 
   const handleSubmit = (ev) => {
@@ -33,22 +25,7 @@ const Signup = () => {
     const password = document.getElementById('password').value
     const data = {name, username, email, password}
     dispatch(register(data))
-    // dispatch({
-    //   type: 'REGISTER_FULFILLED',
-    //   payload: {
-    //     data
-    //   }
-    // })
-    // if (!registerUser.isSuccess) {
-    //   alert(`${registerUser.message}`)
-    // }
-    // if (registerUser.isSuccess) {
-      // alert(`${registerUser.message}`)
-      // navigate('/verify')
-    //   console.log('test', registerUser)
-    // } 
-    navigate('/verify')
-    // console.log(registerUser)
+    navigate('/verify/register')
   }
 
   return (

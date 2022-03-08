@@ -82,7 +82,7 @@ const App = () => {
         <Route path='history/:id' element={
           <Layout ><NewHistory /></Layout>
         } />
-        <Route path="verify" element={
+        <Route path="verify/:type" element={
           <Layout noNavbar={true}><Verify /></Layout>
         } />
       </Routes>

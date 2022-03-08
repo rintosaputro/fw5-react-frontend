@@ -7,6 +7,7 @@ import noImage from '../assets/images/no-pp.jpg'
 import BtnLogout from '../components/BtnLogout'
 import LoadingSkeleton from '../components/LoadingSkeleton'
 import { updateProfile as updated } from '../redux/actions/user'
+import { Link } from 'react-router-dom'
 
 export default function Profile() {
   const {auth} = useSelector(state => state)
@@ -148,7 +149,7 @@ export default function Profile() {
               <button onClick={handleSave} className="my-3 w-100 btn btn-save">Save Changes</button>
             </div>
             <div className="col-lg-6 text-center">
-              <button className="my-3 w-100 btn btn-edit">Edit Password</button>
+              <Link to='/forgot-password' className="my-3 w-100 btn btn-edit">Edit Password</Link>
             </div>
             <div className="col-lg-6 text-center">
               <button className="my-3 w-100 btn btn-cancel">Cancel</button>

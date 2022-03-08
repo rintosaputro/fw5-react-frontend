@@ -101,3 +101,57 @@ export const verifyUser = (state = verifyState, action) => {
     }
   }
 }
+
+const changePwdState = {
+  isLoading: false,
+  isError: false,
+}
+
+export const changePwd = (state = changePwdState, action) => {
+  switch(action.type) {
+    case 'CHANGE_PASSWORD_PENDING': {
+      state.isError = false
+      return {...state}
+    }
+    case 'CHANGE_PASSWORD_FULFILLED': {
+      state.isLoading = false
+      state.isError = false
+      return {...state}
+    }
+    case 'CHANGE_PASSWORD_REJECTED': {
+      state.isLoading = false
+      state.isError = true
+      return {...state}
+    }
+    default: {
+      return {...state}
+    }
+  }
+}
+
+const verifyPwdState = {
+  isLoading: false,
+  isError: false,
+}
+
+export const verifyPwd = (state = verifyPwdState, action) => {
+  switch(action.type) {
+    case 'VERIFY_PASSWORD_PENDING': {
+      state.isError = false
+      return {...state}
+    }
+    case 'VERIFY_PASSWORD_FULFILLED': {
+      state.isLoading = false
+      state.isError = false
+      return {...state}
+    }
+    case 'VERIFY_PASSWORD_REJECTED': {
+      state.isLoading = false
+      state.isError = true
+      return {...state}
+    }
+    default: {
+      return {...state}
+    }
+  }
+}

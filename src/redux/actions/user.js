@@ -55,3 +55,24 @@ export const verify = (username, code, password) => {
     payload: http().post('/auth/verification', param)
   })
 }
+
+export const changePassword = (email) => {
+  const param = new URLSearchParams()
+  param.append('email', email)
+  return ({
+    type: 'CHANGE_PASSWORD',
+    payload: http().post('/auth/forgotPassword', param)
+  })
+}
+
+export const verifyPassword = (email, code, password, confirmPassword) => {
+  const param = new URLSearchParams()
+  param.append('email', email)
+  param.append('code', code)
+  param.append('password', password)
+  param.append('confirmPassword', confirmPassword)
+  return ({
+    type: 'VERIFY_PASSWORD',
+    payload: http().post('/auth/forgotPassword', param)
+  })
+}
