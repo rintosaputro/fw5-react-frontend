@@ -7,12 +7,12 @@ import noImage from '../assets/images/no-pp.jpg'
 import BtnLogout from '../components/BtnLogout'
 import LoadingSkeleton from '../components/LoadingSkeleton'
 import { updateProfile as updated } from '../redux/actions/user'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function Profile() {
   const {auth} = useSelector(state => state)
   const {updateProfile} = useSelector(state => state)
-  const [data, setData] = useState({})
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -84,7 +84,14 @@ export default function Profile() {
     } else {
       alert('Profile Successfully Updated')
     }
+  }
 
+  const handlePassword = (ev) => {
+    ev.preventDefault()
+    dispatch({
+      type: 'AUTH_LOGOUT'
+    })
+    navigate('/forgot-password')
   }
   
   return (
@@ -149,7 +156,7 @@ export default function Profile() {
               <button onClick={handleSave} className="my-3 w-100 btn btn-save">Save Changes</button>
             </div>
             <div className="col-lg-6 text-center">
-              <Link to='/forgot-password' className="my-3 w-100 btn btn-edit">Edit Password</Link>
+              <button onClick={handlePassword} className="my-3 w-100 btn btn-edit">Edit Password</button>
             </div>
             <div className="col-lg-6 text-center">
               <button className="my-3 w-100 btn btn-cancel">Cancel</button>
