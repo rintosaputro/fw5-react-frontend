@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import '../assets/css/profile.css'
 import {BsFillPenFill} from 'react-icons/bs'
 import deleteActiveNav from '../helper/deleteActiveNav'
@@ -7,7 +7,7 @@ import noImage from '../assets/images/no-pp.jpg'
 import BtnLogout from '../components/BtnLogout'
 import LoadingSkeleton from '../components/LoadingSkeleton'
 import { updateProfile as updated } from '../redux/actions/user'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function Profile() {
   const {auth} = useSelector(state => state)

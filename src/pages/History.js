@@ -36,7 +36,7 @@ export default function History() {
   const handleDelete = (ev, id) => {
     ev.preventDefault()
     dispatch(deleteHistory(token, id))
-    alert(`${deletedRes.message}`)
+    alert(`History deleted`)
     console.log('test', deletedRes)
   }
 

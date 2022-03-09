@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import '../assets/css/vehicle-detail.css'
 import { useParams } from 'react-router-dom'
-import activeNav from '../helper/activeNav'
 import { useDispatch, useSelector } from 'react-redux'
 import LoadingSkeleton from '../components/LoadingSkeleton'
 import { getDetailHistory } from '../redux/actions/history'
@@ -20,7 +19,8 @@ export default function NewHistory() {
     window.scrollTo(0, 0)
     const token = window.localStorage.getItem('token')
     dispatch(getDetailHistory(token, id))
-    activeNav()
+    const navList = document.getElementById('vehicleType')
+    navList.classList.remove('active')
   }, [])
 
   const {image, type, brand, location, price, rentStartDate} = detailHistory.history

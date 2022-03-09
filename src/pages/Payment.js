@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
 import '../assets/css/vehicle-detail.css'
-import {  useNavigate, useParams } from 'react-router-dom'
+import {  Navigate, useNavigate, useParams } from 'react-router-dom'
 import {IoChevronBack} from 'react-icons/io5'
 import activeNav from '../helper/activeNav'
 import { getVehicleDetail } from '../redux/actions/vehicle'
 import { useDispatch, useSelector } from 'react-redux'
 import LoadingSkeleton from '../components/LoadingSkeleton'
 import { addHistory } from '../redux/actions/payment'
+import deleteActiveNav from '../helper/deleteActiveNav'
 
 export default function Payment() {
   const {id} = useParams()
@@ -20,6 +21,9 @@ export default function Payment() {
   useEffect(() => {
     window.scrollTo(0, 0)
     dispatch(getVehicleDetail(id))
+    dispatch({
+      type: 'DELETE_NEW_HISTORY_DATA'
+    })
     activeNav()
   }, [payment.newHistory.idHistory])
 
@@ -29,7 +33,6 @@ export default function Payment() {
   const copyBtn = () => {
     const code = document.getElementById('bookingCode').innerHTML
     navigator.clipboard.writeText(code)
-    console.log('test', counter)
     alert('code copied')
   }
   const {image, type, brand, location, price} = detail.vehicle
@@ -46,11 +49,13 @@ export default function Payment() {
     ev.preventDefault()
     const token = window.localStorage.getItem('token')
     dispatch(addHistory(token, userData.idUser, id, counter.startDate, rentEnd(counter.startDate, counter.totalDay)))
-    console.log('test payment', payment.newHistory.idHistory)
-    navigate(`/history/${payment.newHistory.idHistory + 1}`)
+    console.log('test payment', payment.newHistory)
+    deleteActiveNav()
+    // navigate(`/history/${payment.newHistory.idHistory + 1}`)
   }
 
   return (
+    <>
     <div className='vehicle-detail'>
       <section className="container first-section payment">
         <div className="d-flex flex-row head">
@@ -90,7 +95,7 @@ export default function Payment() {
               <div className="border border-dark w-100">
                 <span className="reservation-date fw-bold">Reservation Date: </span>
                 {/* <span>{new Date(counter.startDate).toDateString()}-{new Date(rentEnd(counter.startDate)).toDateString()}</span></div> */}
-                <span>{new Date(counter.startDate).toDateString()} ({counter.totalDay} {counter.totalDay > 1 ? 'days' : 'day'})</span></div>
+                <span>{new Date(counter.startDate).toDateString()} - {new Date(rentEnd(counter.startDate, counter.totalDay)).toDateString()}</span></div>
             </div>
           </div>
 
@@ -164,5 +169,7 @@ export default function Payment() {
         </div>
       </section>
     </div>
+    {payment.finishPayment && <Navigate to={`/history/${payment.newHistory.idHistory}`} />}
+    </>
   )
 }
