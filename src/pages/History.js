@@ -36,14 +36,29 @@ export default function History() {
   const handleDelete = (ev, id) => {
     ev.preventDefault()
     dispatch(deleteHistory(token, id))
-    alert(`History deleted`)
-    console.log('test', deletedRes)
+    document.getElementById('modal').setAttribute('class', 'd-block')
+    setTimeout(() => {
+    document.getElementById('modal').setAttribute('class', 'd-none')
+    }, 3000)
+    // alert(`History deleted`)
+    // console.log('test', deletedRes)
   }
+  const hoverDelete = (ev) => {
+    ev.preventDefault()
+  } 
 
   const bgImage = (props) => {
     const {image, brand, prepayment, status, idHistory, rentStartDate, rentEndDate} = props
     const bgImg = image || noImage
     return (
+      <>
+      {/* <div className='position-relative'>
+        <div  id='modal' style={{backgroundColor: '#EBEFD0', right: '0', zIndex: '2'}} className='alert text-center my-auto position-absolute mt-5 w-50 d-block' role='alert'>{auth.errorMessage}
+          <p className=''>Are you sure you want to delete it</p>
+          <button onClick={(ev)=> handleDelete(ev, idHistory)} className='btn btn-danger me-2'>Ok</button>
+          <button className='btn btn-green'>Cancel</button>
+        </div>
+      </div> */}
       <div className="d-flex align-items-center history-contain" key={idHistory}>
         <div className="row history-data">
           <div className="col-3">
@@ -64,6 +79,7 @@ export default function History() {
           <button onClick={(ev)=> handleDelete(ev, idHistory)} className="btn btn-green">Delete</button>
         </div>
       </div>
+      </>
     )
   }
 
@@ -105,6 +121,9 @@ export default function History() {
           </div>
           <div className="container weekly-history">
             <div className="text-muted head-weekly">A week ago</div>
+            <div  id='modal' style={{backgroundColor: 'teal', right: '0', zIndex: '2', padding: '50px'}} className='alert text-center my-auto mt-5 w-50 d-none' role='alert'>{auth.errorMessage}
+              <p className='fw-bold text-white pt-3'>History deleted</p>
+            </div>
             {history.isLoading && <LoadingSkeleton count={history.history.length} />}
             {history.history.length === 0 ? <p className='pt-5'>No history yet</p> :
             (history.history.map((data) => {

@@ -77,6 +77,14 @@ nav form .search-icon:hover {
 .history form, .history .form-select, .history button {
   height: 62px;
 }
+.history .btn-danger {
+  height: 44px;
+  padding: 0 58px;
+  border-radius: 8px;
+}
+.history .btn-danger:hover {
+  background-color: #085F63 !important;
+}
 .history .form-section {
   padding: 0;
   margin: auto;
