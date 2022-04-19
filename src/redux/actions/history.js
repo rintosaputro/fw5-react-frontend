@@ -1,32 +1,24 @@
-import http from "../../helper/http"
+import http from '../../helper/http';
 
-export const getHistory = (username) => {
-  return ({
-    type: 'GET_HISTORY',
-    payload: http().get(`/histories/?limit=3&search=${username}`)
-  })
-}
+export const getHistory = (username) => ({
+  type: 'GET_HISTORY',
+  payload: http().get(`/histories/?limit=3&search=${username}`),
+});
 
-export const getNextHistory = (username, page) => {
-  return ({
-    type: 'GET_NEXT_HISTORY',
-    payload: http().get(`/histories/?limit=3&search=${username}&page=${page}`)
-  })
-}
+export const getNextHistory = (username, page) => ({
+  type: 'GET_NEXT_HISTORY',
+  payload: http().get(`/histories/?limit=3&search=${username}&page=${page}`),
+});
 
-export const deleteHistory = (token, id) => {
-  return ({
-    type: 'DELETE_HISTORY',
-    payload: http(token).delete(`/histories/${id}`)
-  })
-}
+export const deleteHistory = (token, id) => ({
+  type: 'DELETE_HISTORY',
+  payload: http(token).delete(`/histories/${id}`),
+});
 
-export const getDetailHistory = (token,id) => {
-  return ({
-    type: 'GET_DETAIL_HISTORY',
-    payload: http(token).get(`histories/${id}`)
-  })
-}
+export const getDetailHistory = (token, id) => ({
+  type: 'GET_DETAIL_HISTORY',
+  payload: http(token).get(`histories/${id}`),
+});
 
 // export const addHistory = (token, id_user, id_vehicle, rent_start_date, rent_end_date) => {
 //   const param = new URLSearchParams()

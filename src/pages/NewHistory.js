@@ -1,37 +1,39 @@
-import React, { useEffect } from 'react'
-import '../assets/css/vehicle-detail.css'
-import { useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import LoadingSkeleton from '../components/LoadingSkeleton'
-import { getDetailHistory } from '../redux/actions/history'
-
+/* eslint-disable react/no-array-index-key */
+import React, { useEffect } from 'react';
+import '../assets/css/vehicle-detail.css';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import LoadingSkeleton from '../components/LoadingSkeleton';
+import { getDetailHistory } from '../redux/actions/history';
 
 export default function NewHistory() {
-  const {id} = useParams()
-  const dispatch = useDispatch()
+  const { id } = useParams();
+  const dispatch = useDispatch();
 
-  const {counter} = useSelector(state => state)
-  const {userData} = useSelector(state => state.auth)
-  const {payment} = useSelector(state => state)
-  const {detailHistory} = useSelector(state => state)
+  const { counter } = useSelector((state) => state);
+  const { userData } = useSelector((state) => state.auth);
+  const { payment } = useSelector((state) => state);
+  const { detailHistory } = useSelector((state) => state);
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-    const token = window.localStorage.getItem('token')
-    dispatch(getDetailHistory(token, id))
-    const navList = document.getElementById('vehicleType')
-    navList.classList.remove('active')
-  }, [])
+    window.scrollTo(0, 0);
+    const token = window.localStorage.getItem('token');
+    dispatch(getDetailHistory(token, id));
+    const navList = document.getElementById('vehicleType');
+    navList.classList.remove('active');
+  }, []);
 
-  const {image, type, brand, location, price, rentStartDate} = detailHistory.history
+  const {
+    image, type, brand, location, price, rentStartDate,
+  } = detailHistory.history;
 
   return (
-    <div className='vehicle-detail'>
+    <div className="vehicle-detail">
       <section className="container first-section payment">
         <div className="container row pt-5 detail-vehicle detail-vehicle-history">
-          {payment.isLoading && <LoadingSkeleton count={1} col='col-12' />}
+          {payment.isLoading && <LoadingSkeleton count={1} col="col-12" />}
           <div className="col-12 col-md-5 col-xl-4 img-section overflow-hidden d-flex align-item-center justify-content-center">
-            <img src={image} alt={brand} className='img-fluid' />
+            <img src={image} alt={brand} className="img-fluid" />
           </div>
           <div className="col-12 col-md-7 col-xl-8 description-section">
             <div className="description">
@@ -47,12 +49,27 @@ export default function NewHistory() {
         <div className="rent-data">
           <div className="d-flex flex-row data-item">
             <div className="first-col">
-              <div className="border border-dark w-100 fw-bold">Quantity: {counter.totalItem} bikes</div>
+              <div className="border border-dark w-100 fw-bold">
+                Quantity:
+                {' '}
+                {counter.totalItem}
+                {' '}
+                bikes
+              </div>
             </div>
             <div className="second-col">
               <div className="border border-dark w-100">
                 <span className="reservation-date fw-bold">Reservation Date: </span>
-                <span>{new Date(rentStartDate).toDateString()}  ({counter.totalDay} day)</span></div>
+                <span>
+                  {new Date(rentStartDate).toDateString()}
+                  {' '}
+                  (
+                  {counter.totalDay}
+                  {' '}
+                  day)
+                </span>
+
+              </div>
             </div>
           </div>
 
@@ -66,19 +83,31 @@ export default function NewHistory() {
                     </tr>
                   </thead>
                   <tbody>
-                    {[...Array(Number(counter.totalItem))].map((data, index) => {
-                      return (
+                    {[...Array(Number(counter.totalItem))].map((data, index) => (
                       <tr key={index}>
-                        <td>1 {type}: Rp.{new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(price)} ({counter.totalDay} day)</td>
+                        <td>
+                          1
+                          {type}
+                          : Rp.
+                          {new Intl.NumberFormat('id-ID', { maximumSignificantDigits: 3 }).format(price)}
+                          {' '}
+                          (
+                          {counter.totalDay}
+                          {' '}
+                          day)
+                        </td>
                       </tr>
-                      )
-                    })}
+                    ))}
                     <tr>
-                      <td className="fw-bold pt-2">Total: {new Intl.NumberFormat('id-ID', {maximumSignificantDigits: 3}).format(price * counter.totalItem * counter.totalDay)}</td>
+                      <td className="fw-bold pt-2">
+                        Total:
+                        {' '}
+                        {new Intl.NumberFormat('id-ID', { maximumSignificantDigits: 3 }).format(price * counter.totalItem * counter.totalDay)}
+                      </td>
                     </tr>
                   </tbody>
                 </table>
-              </div>          
+              </div>
             </div>
             <div className="second-col">
               <div className="border border-dark w-100  second-row identity">
@@ -90,7 +119,12 @@ export default function NewHistory() {
                   </thead>
                   <tbody>
                     <tr>
-                      <td>{userData.name}({userData.phoneNumber})</td>
+                      <td>
+                        {userData.name}
+                        (
+                        {userData.phoneNumber}
+                        )
+                      </td>
                     </tr>
                     <tr>
                       <td>{userData.email}</td>
@@ -103,5 +137,5 @@ export default function NewHistory() {
         </div>
       </section>
     </div>
-  )
+  );
 }

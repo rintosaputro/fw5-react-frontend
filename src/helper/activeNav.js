@@ -1,6 +1,6 @@
 const activeNav = () => {
-  const navList = document.getElementById('vehicleType')
-  navList.classList.add('active')
+  const navList = document.getElementById('vehicleType');
+  navList.classList.add('active');
   // navList.classList.remove('active')
-}
-export default activeNav
+};
+export default activeNav;

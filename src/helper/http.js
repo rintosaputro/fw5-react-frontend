@@ -1,16 +1,17 @@
-import axios from 'axios'
-const {REACT_APP_API} = process.env
+import axios from 'axios';
+
+const { REACT_APP_API } = process.env;
 
 const http = (token) => {
-  const headers = {}
+  const headers = {};
   if (token) {
-    headers['Authorization'] = `Bearer ${token}`
+    headers.Authorization = `Bearer ${token}`;
     // console.log('test', headers)
   }
   return axios.create({
     baseURL: REACT_APP_API,
-    headers
-  })
-}
+    headers,
+  });
+};
 
-export default http
+export default http;
