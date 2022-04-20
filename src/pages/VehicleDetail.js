@@ -4,7 +4,7 @@ import { BiMinus, BiPlus } from 'react-icons/bi';
 import { GrFormPrevious, GrFormNext } from 'react-icons/gr';
 import { IoChevronBack } from 'react-icons/io5';
 import { IoMdHeart } from 'react-icons/io';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import noImage from '../assets/images/no-image.jpg';
 import activeNav from '../helper/activeNav';
@@ -15,7 +15,7 @@ import LoadingSkeleton from '../components/LoadingSkeleton';
 function VehicleDetail() {
   const { id } = useParams();
   const vehicleDetail = useSelector((state) => state.vehicleReducer.detail);
-  const { counter } = useSelector((state) => state);
+  const { counter, auth } = useSelector((state) => state);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -25,7 +25,6 @@ function VehicleDetail() {
     window.scrollTo(0, 0);
     dispatch(getVehicleDetail(id));
     activeNav();
-    console.log('test', counter);
   }, []);
 
   const dataVehicle = vehicleDetail.vehicle;
@@ -120,28 +119,31 @@ function VehicleDetail() {
         )}
 
       <section className="container form-section mt-5">
-        <form className="row">
-          <div className="col-12 col-md">
-            <button className="btn btn-black" type="button">Chat Admin</button>
-          </div>
-          <div className="col-12 col-md text-center btn-reservation">
-            <button onClick={toReservation} className="btn btn-green" type="button">Reservation</button>
-          </div>
-          <div className="col-12 col-md-3 text-end">
-            <button className="btn btn-black" type="button">
-              <IoMdHeart />
-              <span className="ps-2">Like</span>
-            </button>
-          </div>
-        </form>
+        {auth?.token ? (
+          <form className="row">
+            <div className="col-12 col-md">
+              <button className="btn btn-black" type="button">Chat Admin</button>
+            </div>
+            <div className="col-12 col-md text-center btn-reservation">
+              <button onClick={toReservation} className="btn btn-green" type="button">Reservation</button>
+            </div>
+            <div className="col-12 col-md-3 text-end">
+              <button className="btn btn-black" type="button">
+                <IoMdHeart />
+                <span className="ps-2">Like</span>
+              </button>
+            </div>
+          </form>
+        )
+          : (
+            <div className="d-flex justify-content-center align-items-center flex-column">
+              <p className="h2 text-center mb-5">Before making reservation, please login first</p>
+              <Link to="/login" className="btn btn-green w-75">Go to login</Link>
+            </div>
+          )}
       </section>
     </div>
   );
 }
-// import { increment } from '../redux/actions/counter'
 
-// const mapStateToProps = (state) => ({vehicleDetail: state.vehicleDetail})
-// const mapDispatchToProps = {getVehicleDetail}
-
-// export default connect(mapStateToProps, mapDispatchToProps)(VehicleDetail)
 export default VehicleDetail;
