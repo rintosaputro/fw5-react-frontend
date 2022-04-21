@@ -7,6 +7,7 @@ import NavList from './NavList';
 import '../../assets/css/nav-main.css';
 import logo from '../../assets/images/logo.png';
 import noImage from '../../assets/images/no-pp.jpg';
+import handleImg from '../../assets/images/defaultPict.png';
 
 function NavAfterLogin() {
   const { auth } = useSelector((state) => state);
@@ -31,7 +32,9 @@ function NavAfterLogin() {
                 <FiMail className="icon-message" />
               </Link>
               <Link to="/profile" className="profile">
-                <img src={image || noImage} alt="Photoprofile." />
+                {image
+                  ? <img src={image} onError={(e) => { e.target.src = handleImg; }} alt="Photoprofile." />
+                  : <img src={noImage} alt="Photoprofile." />}
               </Link>
             </div>
           </div>

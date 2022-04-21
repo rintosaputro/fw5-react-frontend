@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import LoadingSkeleton from '../components/LoadingSkeleton';
 import { getDetailHistory } from '../redux/actions/history';
+import defaultImg from '../assets/images/no-image.jpg';
+import handleImg from '../assets/images/defaultItem.jpg';
 
 export default function NewHistory() {
   const { id } = useParams();
@@ -34,7 +36,9 @@ export default function NewHistory() {
         <div className="container row pt-5 detail-vehicle detail-vehicle-history">
           {payment.isLoading && <LoadingSkeleton count={1} col="col-12" />}
           <div className="col-12 col-md-5 col-xl-4 img-section overflow-hidden d-flex align-item-center justify-content-center">
-            <img src={image} alt={brand} className="img-fluid" />
+            {image
+              ? <img src={image} onError={(e) => { e.target.src = handleImg; }} alt={brand} className="img-fluid" />
+              : <img src={defaultImg} alt={brand} className="img-fluid" />}
           </div>
           <div className="col-12 col-md-7 col-xl-8 description-section">
             <div className="description">

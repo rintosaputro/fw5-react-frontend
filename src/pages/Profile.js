@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import deleteActiveNav from '../helper/deleteActiveNav';
 import noImage from '../assets/images/no-pp.jpg';
+import handleImg from '../assets/images/defaultPict.png';
 import BtnLogout from '../components/BtnLogout';
 import LoadingSkeleton from '../components/LoadingSkeleton';
 import { updateProfile as updated } from '../redux/actions/user';
@@ -105,7 +106,9 @@ export default function Profile() {
             : (
               <div className="text-center">
                 <div className="image-profile">
-                  <img src={image || noImage} alt={name} />
+                  {image
+                    ? <img src={image} onError={(e) => { e.target.src = handleImg; }} alt={name} />
+                    : <img src={noImage} alt={name} />}
                   <button className="btn-pen badge" type="button">
                     <BsFillPenFill />
                     <input

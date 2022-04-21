@@ -10,6 +10,8 @@ import { getVehicleDetail } from '../redux/actions/vehicle';
 import LoadingSkeleton from '../components/LoadingSkeleton';
 import { addHistory } from '../redux/actions/payment';
 import deleteActiveNav from '../helper/deleteActiveNav';
+import defaultImg from '../assets/images/no-image.jpg';
+import handleImg from '../assets/images/defaultItem.jpg';
 
 export default function Payment() {
   const { id } = useParams();
@@ -72,7 +74,9 @@ export default function Payment() {
           <div className="container row pt-5 detail-vehicle">
             {detail.isLoading && <LoadingSkeleton count={1} col="col-12" />}
             <div className="col-12 col-sm-5 col-md-5 col-xl-4 img-section overflow-hidden d-flex align-item-center justify-content-center">
-              <img src={image} alt={brand} className="img-fluid" />
+              {image
+                ? <img src={image} onError={(e) => { e.target.src = handleImg; }} alt={brand} className="img-fluid" />
+                : <img src={defaultImg} alt={brand} className="img-fluid" />}
             </div>
             <div className="col-12 col-sm-7 col-md-7 col-xl-8 description-section">
               <div className="description">

@@ -7,6 +7,7 @@ import { IoMdHeart } from 'react-icons/io';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import noImage from '../assets/images/no-image.jpg';
+import handleImg from '../assets/images/defaultItem.jpg';
 import activeNav from '../helper/activeNav';
 import { getVehicleDetail } from '../redux/actions/vehicle';
 import { empty, increment, decrement } from '../redux/actions/counter';
@@ -14,6 +15,7 @@ import LoadingSkeleton from '../components/LoadingSkeleton';
 
 function VehicleDetail() {
   const { id } = useParams();
+  // const [imgErr, setImgErr] = useState();
   const vehicleDetail = useSelector((state) => state.vehicleReducer.detail);
   const { counter, auth } = useSelector((state) => state);
 
@@ -54,7 +56,9 @@ function VehicleDetail() {
               </div>
               <div className="col-12 col-lg-6 img-section">
                 <div className="cover-image overflow-hidden text-center">
-                  <img src={dataVehicle.image || noImage} alt={dataVehicle.brand} className="img-fluid" />
+                  {dataVehicle.image
+                    ? <img src={dataVehicle.image} onError={(e) => { e.target.src = handleImg; }} alt={dataVehicle.brand} className="img-fluid" />
+                    : <img src={noImage} alt={dataVehicle.brand} className="img-fluid" />}
                 </div>
                 <div className="row carousel d-flex align-items-center mt-4">
                   <button className="col-1 btn" aria-label="previous button" type="button">

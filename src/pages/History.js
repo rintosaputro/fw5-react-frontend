@@ -8,6 +8,7 @@ import { BsChevronDown, BsChevronRight } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import deleteActiveNav from '../helper/deleteActiveNav';
 import noImage from '../assets/images/no-image.jpg';
+import handleImg from '../assets/images/defaultItem.jpg';
 import { getHistory, getNextHistory, deleteHistory } from '../redux/actions/history';
 import { getNewVehicle } from '../redux/actions/vehicle';
 import LoadingSkeleton from '../components/LoadingSkeleton';
@@ -51,17 +52,10 @@ export default function History() {
     const bgImg = image || noImage;
     return (
       <div key={idHistory}>
-        {/* <div className='position-relative'>
-        <div  id='modal' style={{backgroundColor: '#EBEFD0', right: '0', zIndex: '2'}} className='alert text-center my-auto position-absolute mt-5 w-50 d-block' role='alert'>{auth.errorMessage}
-          <p className=''>Are you sure you want to delete it</p>
-          <button onClick={(ev)=> handleDelete(ev, idHistory)} className='btn btn-danger me-2'>Ok</button>
-          <button className='btn btn-green'>Cancel</button>
-        </div>
-      </div> */}
         <div className="d-flex align-items-center history-contain" key={idHistory}>
           <div className="row history-data">
             <div className="col-3">
-              <div className="vehicle-image1" style={{ backgroundImage: `url(${bgImg})` }} />
+              <div className="vehicle-image1" style={{ backgroundImage: `url(${bgImg}), url(${handleImg})` }} />
             </div>
             <div className="col">
               <div className="detail-1">
@@ -163,7 +157,9 @@ export default function History() {
               {newVehicle.vehicle.map((data) => (
                 <div className="new-arival" key={data.idVehicle}>
                   <Link to={`/vehicle/${data.idVehicle}`}>
-                    <div className="bg-vehicle-1" style={{ backgroundImage: `url(${data.image || noImage})` }} />
+                    {data.image
+                      ? <div className="bg-vehicle-1" style={{ backgroundImage: `url(${data.image}), url(${handleImg})` }} />
+                      : <div className="bg-vehicle-1" style={{ backgroundImage: `url(${noImage})` }} />}
                     <div className="highlight">
                       <h6 className="fw-bold">{data.brand}</h6>
                       <span className="text-muted">{data.location}</span>

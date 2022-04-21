@@ -5,6 +5,7 @@ import { BiMinus, BiPlus } from 'react-icons/bi';
 import { IoChevronBack } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
 import noImage from '../assets/images/no-image.jpg';
+import handleImg from '../assets/images/defaultItem.jpg';
 import activeNav from '../helper/activeNav';
 import { increment, decrement, reservation } from '../redux/actions/counter';
 import { getVehicleDetail } from '../redux/actions/vehicle';
@@ -67,7 +68,9 @@ export default function Reservation() {
           : (
             <div className="row pt-5 detail-vehicle">
               <div className="col-12 col-lg-7 img-section overflow-hidden my-auto text-center">
-                <img src={image || noImage} alt={brand} className="img-fluid" />
+                {image
+                  ? <img src={image} onError={(e) => { e.target.src = handleImg; }} alt={brand} className="img-fluid" />
+                  : <img src={noImage} alt={brand} className="img-fluid" />}
                 <div className="cover-image overflow-hidden" />
               </div>
               <div className="col-12 col-lg-5 description-section">
