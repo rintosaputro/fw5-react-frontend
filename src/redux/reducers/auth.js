@@ -20,7 +20,7 @@ const auth = (state = intialState, action) => {
       state.token = data.results.token;
       state.isLoading = false;
       state.isError = false;
-      window.localStorage.setItem('token', state.token);
+      // window.localStorage.setItem('token', state.token);
       return { ...state };
     }
     case 'AUTH_LOGIN_REJECTED': {
@@ -50,7 +50,7 @@ const auth = (state = intialState, action) => {
     case 'AUTH_LOGOUT': {
       state.token = null;
       state.userData = {};
-      window.localStorage.removeItem('token');
+      // window.localStorage.removeItem('token');
       return { ...state };
     }
     default: {

@@ -78,7 +78,8 @@ export default function Profile() {
 
   const handleSave = (ev) => {
     ev.preventDefault();
-    const token = window.localStorage.getItem('token');
+    // const token = window.localStorage.getItem('token');
+    const { token } = auth;
     dispatch(updated(token, fileChange()));
     if (updateProfile.isError) {
       alert(updateProfile.message);

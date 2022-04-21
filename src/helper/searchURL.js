@@ -12,7 +12,11 @@ const searchURL = (ev) => {
   let resUrl = '/search?';
   dataSearch.forEach((data) => {
     if (data.input) {
-      resUrl += `&${data.param}=${data.input}`;
+      if (resUrl[8]) {
+        resUrl += `&${data.param}=${data.input}`;
+      } else {
+        resUrl += `${data.param}=${data.input}`;
+      }
     }
   });
 

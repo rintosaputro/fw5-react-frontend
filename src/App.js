@@ -23,9 +23,8 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token = window.localStorage.getItem('token');
-    // console.log(token)
-    if (token) {
+    if (auth.token) {
+      const { token } = auth;
       dispatch({
         type: 'AUTH_LOGIN_FULFILLED',
         payload: {
@@ -36,7 +35,7 @@ function App() {
           },
         },
       });
-      dispatch(getUser(token));
+      dispatch(getUser(auth.token));
     }
   }, [dispatch, auth.token]);
 

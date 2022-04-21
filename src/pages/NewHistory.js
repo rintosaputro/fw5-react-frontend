@@ -13,11 +13,12 @@ export default function NewHistory() {
   const { counter } = useSelector((state) => state);
   const { userData } = useSelector((state) => state.auth);
   const { payment } = useSelector((state) => state);
-  const { detailHistory } = useSelector((state) => state);
+  const { detailHistory, auth } = useSelector((state) => state);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const token = window.localStorage.getItem('token');
+    // const token = window.localStorage.getItem('token');
+    const { token } = auth;
     dispatch(getDetailHistory(token, id));
     const navList = document.getElementById('vehicleType');
     navList.classList.remove('active');

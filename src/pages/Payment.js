@@ -18,7 +18,7 @@ export default function Payment() {
   const { detail } = useSelector((state) => state.vehicleReducer);
   const { counter } = useSelector((state) => state);
   const { userData } = useSelector((state) => state.auth);
-  const { payment } = useSelector((state) => state);
+  const { payment, auth } = useSelector((state) => state);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -50,11 +50,11 @@ export default function Payment() {
 
   const handlePayment = (ev) => {
     ev.preventDefault();
-    const token = window.localStorage.getItem('token');
+    // const token = window.localStorage.getItem('token');
+    const { token } = auth;
     dispatch(
       addHistory(token, userData.idUser, id, counter.startDate, rentEnd(counter.startDate, counter.totalDay)),
     );
-    console.log('test payment', payment.newHistory);
     deleteActiveNav();
     // navigate(`/history/${payment.newHistory.idHistory + 1}`)
   };

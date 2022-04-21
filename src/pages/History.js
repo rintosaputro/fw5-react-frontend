@@ -33,7 +33,8 @@ export default function History() {
     dispatch(getNextHistory(userData.username, history.pageInfo.currentPage + 1));
   };
 
-  const token = window.localStorage.getItem('token');
+  // const token = window.localStorage.getItem('token');
+  const { token } = auth;
   const handleDelete = (ev, id) => {
     ev.preventDefault();
     dispatch(deleteHistory(token, id));
@@ -41,17 +42,15 @@ export default function History() {
     setTimeout(() => {
       document.getElementById('modal').setAttribute('class', 'd-none');
     }, 3000);
-    // alert(`History deleted`)
-    // console.log('test', deletedRes)
   };
 
-  const bgImage = (props) => {
+  function BgImage(props) {
     const {
       image, brand, prepayment, status, idHistory, rentStartDate, rentEndDate,
     } = props;
     const bgImg = image || noImage;
     return (
-      <>
+      <div key={idHistory}>
         {/* <div className='position-relative'>
         <div  id='modal' style={{backgroundColor: '#EBEFD0', right: '0', zIndex: '2'}} className='alert text-center my-auto position-absolute mt-5 w-50 d-block' role='alert'>{auth.errorMessage}
           <p className=''>Are you sure you want to delete it</p>
@@ -91,9 +90,9 @@ export default function History() {
             </button>
           </div>
         </div>
-      </>
+      </div>
     );
-  };
+  }
 
   return (
     <div className="history">
@@ -150,7 +149,7 @@ export default function History() {
                 const props = {
                   idHistory: data.idHistory, idUser: data.idUser, name: data.name, image: data.image, brand: data.brand, prepayment: data.prepayment, status: data.status, rentStartDate: data.rentStartDate, rentEndDate: data.rentEndDate,
                 };
-                return bgImage(props);
+                return BgImage(props);
               }))}
             {history.pageInfo.next && <button onClick={nextPage} className="btn btn-green w-50 mt-5" type="button">next</button>}
           </div>
