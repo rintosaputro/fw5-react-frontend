@@ -48,10 +48,10 @@ const auth = (state = intialState, action) => {
       return { ...state };
     }
     case 'AUTH_LOGOUT': {
-      state.token = null;
-      state.userData = {};
+      // state.token = null;
+      // state.userData = {};
       // window.localStorage.removeItem('token');
-      return { ...state };
+      return { ...intialState };
     }
     default: {
       return { ...state };

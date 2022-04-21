@@ -6,7 +6,9 @@ import auth from './auth';
 import counter from './counter';
 import { history, detailHistory, deleteHistory } from './history';
 import { payment } from './payment';
-import { updateProfile, registerUser, changePwd } from './user';
+import {
+  updateProfile, registerUser, verifyUser, changePwd,
+} from './user';
 
 const persistConfig = {
   key: 'auth',
@@ -23,6 +25,7 @@ const rootReducer = combineReducers({
   payment,
   updateProfile,
   registerUser,
+  verifyUser,
   changePwd,
 });
 

@@ -65,8 +65,9 @@ export const registerUser = (state = registerState, action) => {
     }
     case 'REGISTER_REJECTED': {
       state.isError = true;
+      state.isLoading = false;
       state.isSuccess = false;
-      // state.message = data.message
+      state.message = action.payload.response.data.message;
       return { ...state };
     }
     default: {
@@ -78,6 +79,8 @@ export const registerUser = (state = registerState, action) => {
 const verifyState = {
   isLoading: false,
   isError: false,
+  isSuccess: false,
+  errMessage: '',
 };
 
 export const verifyUser = (state = verifyState, action) => {
@@ -85,17 +88,26 @@ export const verifyUser = (state = verifyState, action) => {
     case 'VERIFY_USER_PENDING': {
       state.isLoading = true;
       state.isError = false;
+      state.isSuccess = false;
+      state.errMessage = '';
       return { ...state };
     }
     case 'VERIFY_USER_FULFILLED': {
       state.isLoading = false;
       state.isError = false;
+      state.isSuccess = true;
+      state.errMessage = '';
       return { ...state };
     }
     case 'VERIFY_USER_REJECTED': {
       state.isLoading = false;
       state.isError = true;
+      state.isSuccess = false;
+      state.errMessage = action.payload.response.data.message;
       return { ...state };
+    }
+    case 'VERIFY_USER_CLEAR': {
+      return { ...verifyState };
     }
     default: {
       return { ...state };

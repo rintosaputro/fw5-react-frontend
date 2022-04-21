@@ -5,7 +5,7 @@ import '../assets/css/signup.css';
 import {
   FaTwitter, FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube,
 } from 'react-icons/fa';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import logo from '../assets/images/logo.png';
 import google from '../assets/images/google.png';
@@ -15,7 +15,7 @@ function Signup() {
   const dispatch = useDispatch();
   const { auth } = useSelector((state) => state);
   const { registerUser } = useSelector((state) => state);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -31,12 +31,13 @@ function Signup() {
       name, username, email, password,
     };
     dispatch(register(data));
-    navigate('/verify/register');
+    // navigate('/verify/register');
   };
 
   return (
     <main className="row signup-page">
       {auth.token !== null && <Navigate to="/profile" />}
+      {registerUser.isSuccess && <Navigate to="/verify/register" />}
       <div className="col col-sm-5 col-md-6 img-section" />
       <div className="col-12 col-sm-7 col-md-6 pt-5 form-section">
         <div className="opacity">
@@ -46,7 +47,10 @@ function Signup() {
             <input type="text" placeholder="Username" id="username" />
             <input type="email" placeholder="Email" id="email" />
             <input type="password" placeholder="Password" id="password" />
-            <button onClick={handleSubmit} type="submit" className="btn fw-bold mt-5 signup">Sign Up</button>
+            {registerUser.isError && registerUser.message && <div className="mx-5 text-center text-danger h4 mt-3">{registerUser.message}</div>}
+            {registerUser.isLoading
+              ? <div className="spinner-border mt-5" role="status" />
+              : <button onClick={handleSubmit} type="submit" className="btn fw-bold mt-5 signup">Sign Up</button>}
             <div className="row d-flex align-items-center another">
               <div className="col"><hr /></div>
               <div className="col-5 text-muted text-center text-another">or try another way</div>

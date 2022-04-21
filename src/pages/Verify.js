@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
 import '../assets/css/forgot-password.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { verify, verifyPassword, changePassword } from '../redux/actions/user';
 
 function Verify() {
   const { type } = useParams();
-  const { registerUser } = useSelector((state) => state);
+  const { registerUser, verifyUser } = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    dispatch({ type: 'VERIFY_USER_CLEAR' });
   }, []);
 
   const handleSubmit = (ev) => {
@@ -21,7 +22,7 @@ function Verify() {
       const password = ev.target.elements.password.value;
       const code = ev.target.elements.code.value;
       dispatch(verify(username, code, password));
-      navigate('/login');
+      // navigate('/login');
     }
     if (type === 'password') {
       const email = document.getElementById('email').value;
@@ -52,10 +53,14 @@ function Verify() {
             {type === 'register'
             && (
             <form onSubmit={handleSubmit} className="text-center form">
+              {verifyUser.isSuccess && <Navigate to="/login" />}
               <input name="username" type="text" placeholder="Enter your username" />
               <input name="code" type="text" placeholder="Enter your code" />
               <input name="password" type="password" placeholder="Enter your password" />
-              <button type="submit" className="btn send-link">Send</button>
+              {verifyUser.isError && verifyUser.errMessage && <div className="mx-5 text-center text-danger h4 mt-3 bg-white py-2 px-5 fw-bold">{verifyUser.errMessage}</div>}
+              {verifyUser.isLoading
+                ? <div className="spinner-border mt-5" role="status" />
+                : <button type="submit" className="btn send-link">Send</button>}
             </form>
             )}
             {type === 'password'
