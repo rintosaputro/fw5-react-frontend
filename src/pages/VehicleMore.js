@@ -35,7 +35,7 @@ export default function VehicleMore() {
           <p className="text-muted text-center">Click item to see details and reservation</p>
         </div>
         <div className="row">
-          {data[state].vehicle.map((data) => {
+          {data[state].vehicle?.map((data) => {
             const props = {
               image: data.image, location: data.location, brand: data.brand, id: data.idVehicle,
             };

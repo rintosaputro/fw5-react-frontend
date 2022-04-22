@@ -70,7 +70,7 @@ export default function Search() {
         </div>
         <div className="row">
           {search.isLoading && <LoadingSkeleton count={8} />}
-          {search.vehicle.map((data) => {
+          {search.vehicle?.map((data) => {
             const props = {
               image: data.image, location: data.location, brand: data.brand, id: data.idVehicle,
             };

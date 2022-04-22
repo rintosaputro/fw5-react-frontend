@@ -45,7 +45,7 @@ function VehicleType() {
       </div>
       <div className="row">
         {state.isLoading && <LoadingSkeleton count="4" />}
-        {state.vehicle.map((data, index) => {
+        {state.vehicle?.map((data, index) => {
           const props = {
             image: data.image, location: data.location, brand: data.brand, id: data.idVehicle,
           };

@@ -139,7 +139,7 @@ export default function History() {
             </div>
             {history.isLoading && <LoadingSkeleton count={history.history.length} />}
             {history.history.length === 0 ? <p className="pt-5">No history yet</p>
-              : (history.history.map((data) => {
+              : (history.history?.map((data) => {
                 const props = {
                   idHistory: data.idHistory, idUser: data.idUser, name: data.name, image: data.image, brand: data.brand, prepayment: data.prepayment, status: data.status, rentStartDate: data.rentStartDate, rentEndDate: data.rentEndDate,
                 };
@@ -154,7 +154,7 @@ export default function History() {
             <h5 className="fw-bold">New Arrival</h5>
             <div className="main-aside">
               {newVehicle.isLoading && <div className="new-arival"><LoadingSkeleton count={1} col="col-12" /></div>}
-              {newVehicle.vehicle.map((data) => (
+              {newVehicle.vehicle?.map((data) => (
                 <div className="new-arival" key={data.idVehicle}>
                   <Link to={`/vehicle/${data.idVehicle}`}>
                     {data.image
