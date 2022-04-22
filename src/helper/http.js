@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-// const { REACT_APP_API } = process.env;
-const REACT_APP_API = 'https://isi-rent.herokuapp.com';
+const { REACT_APP_API } = process.env;
 
 const http = (token) => {
   const headers = {};

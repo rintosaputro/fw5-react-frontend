@@ -34,26 +34,28 @@ function VehicleType() {
     navigate(searchURL(ev));
   };
 
-  const product = (head, state, type) => (
-    <section className="container" id="parrent">
-      <div className="d-flex justify-content-between head">
-        <h2>{head}</h2>
-        <Link to={type ? `/vehicle?type=${type}` : '/vehicle'} className="view-all">
-          View all
-          <IoChevronForward />
-        </Link>
-      </div>
-      <div className="row">
-        {state.isLoading && <LoadingSkeleton count="4" />}
-        {state.vehicle?.map((data, index) => {
-          const props = {
-            image: data.image, location: data.location, brand: data.brand, id: data.idVehicle,
-          };
-          return (index < 4 && <ProductHighlight key={props.id} props={props} />);
-        })}
-      </div>
-    </section>
-  );
+  function Product({ head, state, type }) {
+    return (
+      <section className="container" id="parrent">
+        <div className="d-flex justify-content-between head">
+          <h2>{head}</h2>
+          <Link to={type ? `/vehicle?type=${type}` : '/vehicle'} className="view-all">
+            View all
+            <IoChevronForward />
+          </Link>
+        </div>
+        <div className="row">
+          {state.isLoading && <LoadingSkeleton count="4" />}
+          {state.vehicle?.map((data, index) => {
+            const props = {
+              image: data.image, location: data.location, brand: data.brand, id: data.idVehicle,
+            };
+            return (index < 4 && <ProductHighlight key={props.id} props={props} />);
+          })}
+        </div>
+      </section>
+    );
+  }
 
   return (
     <div className="vehicle-type">
@@ -78,11 +80,11 @@ function VehicleType() {
           </button>
         </form>
       </section>
-      {product('Popular in town', popular)}
-      {product('Cars', cars, 'cars')}
-      {product('Motorbike', motorbike, 'motorbike')}
-      {product('Bike', bike, 'bike')}
-      {product('Pick Up', pickup, 'pickup')}
+      <Product head="Popular in town" state={popular} />
+      <Product head="Cars" state={cars} type="cars" />
+      <Product head="Motorbike" state={motorbike} type="motorbike" />
+      <Product head="Bike" state={bike} type="bike" />
+      <Product head="Pick Up" state={pickup} type="pickup" />
     </div>
   );
 }
