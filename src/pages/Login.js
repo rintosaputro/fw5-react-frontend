@@ -57,23 +57,29 @@ function Login() {
                   <input name="password" type="password" placeholder="Password" />
                   {' '}
                   <br />
-                  <div>
-                    <Link to="/forgot-password" className="forgot">Forgot password?</Link>
-                    {' '}
-                    <br />
-                  </div>
-                  <button type="submit" className="btn login">Login</button>
-                  <Link to="#" className="btn google">
-                    <img src={google} alt="google" />
-                    {' '}
-                    Login With Google
-                  </Link>
-                  <div className="reverse-bottom d-none g-0">
-                    <Link to="#" className="dont-have">Don’t have account?</Link>
-                    {' '}
-                    <br />
-                    <Link to="/signup" className="btn btn-signup">Sign Up</Link>
-                  </div>
+                  {auth.isLoading
+                    ? <div className="spinner-border mx-auto mt-5" role="status" />
+                    : (
+                      <>
+                        <div>
+                          <Link to="/forgot-password" className="forgot">Forgot password?</Link>
+                          {' '}
+                          <br />
+                        </div>
+                        <button type="submit" className="btn login">Login</button>
+                        <Link to="#" className="btn google">
+                          <img src={google} alt="google" />
+                          {' '}
+                          Login With Google
+                        </Link>
+                        <div className="reverse-bottom d-none g-0">
+                          <Link to="#" className="dont-have">Don’t have account?</Link>
+                          {' '}
+                          <br />
+                          <Link to="/signup" className="btn btn-signup">Sign Up</Link>
+                        </div>
+                      </>
+                    )}
                 </form>
               </div>
             </div>

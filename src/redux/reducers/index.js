@@ -7,7 +7,7 @@ import counter from './counter';
 import { history, detailHistory, deleteHistory } from './history';
 import { payment } from './payment';
 import {
-  updateProfile, registerUser, verifyUser, changePwd,
+  updateProfile, registerUser, verifyUser, changePwd, verifyPwd,
 } from './user';
 
 const persistConfig = {
@@ -27,6 +27,7 @@ const rootReducer = combineReducers({
   registerUser,
   verifyUser,
   changePwd,
+  verifyPwd,
 });
 
 export default rootReducer;
