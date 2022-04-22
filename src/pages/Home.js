@@ -87,7 +87,7 @@ function Home() {
           <div className="row position-relative">
             {vehiclePopular.isLoading
             && <LoadingSkeleton count="4" />}
-            {vehiclePopular.vehicle.map((data, index) => {
+            {vehiclePopular.vehicle?.map((data, index) => {
               const props = {
                 image: data.image, location: data.location, brand: data.brand, id: data.idVehicle,
               };
