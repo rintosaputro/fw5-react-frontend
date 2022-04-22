@@ -65,10 +65,14 @@ function VehicleDetail() {
                     <GrFormPrevious className="prev" />
                   </button>
                   <div className="col-5 overflow-hidden rounded text-center">
-                    <img src={dataVehicle.image || noImage} alt={dataVehicle.brand} className="rounded img-fluid" />
+                    {dataVehicle.image
+                      ? <img src={dataVehicle.image} onError={(e) => { e.target.src = handleImg; }} alt={dataVehicle.brand} className="rounded img-fluid" />
+                      : <img src={noImage} alt={dataVehicle.brand} className="rounded img-fluid" />}
                   </div>
                   <div className="col-5 overflow-hidden rounded text-center">
-                    <img src={dataVehicle.image || noImage} alt={dataVehicle.brand} className="rounded img-fluid" />
+                    {dataVehicle.image
+                      ? <img src={dataVehicle.image} onError={(e) => { e.target.src = handleImg; }} alt={dataVehicle.brand} className="rounded img-fluid" />
+                      : <img src={noImage} alt={dataVehicle.brand} className="rounded img-fluid" />}
                   </div>
                   <button className="col-1 btn" aria-label="next button" type="button">
                     <GrFormNext className="next" />
