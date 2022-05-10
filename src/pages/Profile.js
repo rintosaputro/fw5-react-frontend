@@ -52,7 +52,7 @@ export default function Profile() {
 
   const {
     image, name, username, email, createdAt, phoneNumber, address, birthdate, gender,
-  } = (updateProfile.isSuccess ? updateProfile.user['0'] : auth.userData);
+  } = (updateProfile.isSuccess ? updateProfile.user : auth.userData);
 
   const fileChange = () => {
     let data = {};

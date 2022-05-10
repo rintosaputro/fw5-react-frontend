@@ -13,7 +13,7 @@ function NavAfterLogin() {
   const { auth } = useSelector((state) => state);
   const { updateProfile } = useSelector((state) => state);
 
-  const { image } = (updateProfile.isSuccess ? updateProfile.user['0'] : auth.userData);
+  const { image } = (updateProfile.isSuccess ? updateProfile.user : auth.userData);
   return (
     <div className="nav-main">
       <nav className="navbar navbar-expand-lg navbar-light bg-white fixed-top">
