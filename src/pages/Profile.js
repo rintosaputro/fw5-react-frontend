@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable camelcase */
 import React, { useEffect, useState } from 'react';
@@ -66,7 +67,7 @@ export default function Profile() {
     const usernameChange = document.getElementById('username').value;
     const birthdateChange = document.getElementById('birthdate').value;
     const resBirthdate = new Date(birthdateChange).toLocaleDateString('en-CA');
-    if (imageChange && imageChange.size <= 2000000) {
+    if (imageChange && imageChange.size <= 2000000 && imageChange.type.split('/')[0] === 'image') {
       data = { ...data, image: imageChange };
     }
     if (genderChange !== gender && genderChange) {
@@ -130,7 +131,8 @@ export default function Profile() {
                       }}
                       className="position-absolute"
                       type="file"
-                      onChange={() => (document.getElementById('image').files[0].size >= 2000000 && setErrmessage('File size must be under 2mb'))}
+                      onChange={() => ((document.getElementById('image').files[0].size >= 2000000 && setErrmessage('File size must be under 2mb'))
+                      || (document.getElementById('image').files[0].type.split('/')[0] !== 'image' && setErrmessage('File must be image')))}
                     />
                   </button>
                 </div>
