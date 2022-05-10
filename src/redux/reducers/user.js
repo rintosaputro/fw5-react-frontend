@@ -25,10 +25,17 @@ export const updateProfile = (state = updateState, action) => {
       return { ...state };
     }
     case 'UPDATE_PROFILE_REJECTED': {
-      const { data } = action.payload;
+      const { data } = action.payload.response;
       state.isError = true;
       state.message = data.message;
       state.isSuccess = false;
+      return { ...state };
+    }
+    case 'UPDATE_PROFILE_CLEAR': {
+      state.isError = false;
+      state.message = '';
+      state.isSuccess = false;
+      state.user = false;
       return { ...state };
     }
     default: {

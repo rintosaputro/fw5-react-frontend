@@ -12,9 +12,12 @@ import BtnLogout from '../components/BtnLogout';
 import LoadingSkeleton from '../components/LoadingSkeleton';
 import { updateProfile as updated } from '../redux/actions/user';
 import { getUser } from '../redux/actions/auth';
+import { checkEmail, checkPhone } from '../helper/check';
 
 export default function Profile() {
   const [checked, setChecked] = useState();
+  const [errMessage, setErrmessage] = useState(null);
+
   const { auth } = useSelector((state) => state);
   const { updateProfile } = useSelector((state) => state);
   const navigate = useNavigate();
@@ -31,32 +34,30 @@ export default function Profile() {
     if (auth.userData.gender === 'Male') {
       male.setAttribute('checked', true);
     }
-  }, [auth.userData.gender, updateProfile]);
+  }, [auth.userData.gender]);
 
   useEffect(() => {
-    if (updateProfile.user) {
+    if (updateProfile.user && updateProfile.isSuccess) {
+      window.scrollTo(0, 0);
       dispatch(getUser(auth.token));
+      dispatch({ type: 'UPDATE_PROFILE_CLEAR' });
+      alert('Update profile successfully!');
+    } else if (updateProfile.isError) {
+      alert(updateProfile.message);
     }
   }, [updateProfile.user]);
 
-  // const getGender = () => {
-  //   let gender = '';
-  //   const male = document.getElementById('male').getAttribute('checked');
-  //   if (male) {
-  //     gender = 'male';
-  //   } else {
-  //     gender = 'female';
-  //   }
-  //   return gender;
-  // };
-
+  // const {
+  //   image, name, username, email, createdAt, phoneNumber, address, birthdate, gender,
+  // } = (updateProfile.isSuccess ? updateProfile.user : auth.userData);
   const {
     image, name, username, email, createdAt, phoneNumber, address, birthdate, gender,
-  } = (updateProfile.isSuccess ? updateProfile.user : auth.userData);
+  } = auth.userData;
 
   const fileChange = () => {
     let data = {};
     const imageChange = document.getElementById('image').files[0];
+    // const imageChange = imgChange;
     // const genderChange = getGender();
     const genderChange = checked;
     const emailChange = document.getElementById('email').value;
@@ -65,17 +66,19 @@ export default function Profile() {
     const usernameChange = document.getElementById('username').value;
     const birthdateChange = document.getElementById('birthdate').value;
     const resBirthdate = new Date(birthdateChange).toLocaleDateString('en-CA');
-    if (imageChange) {
+    if (imageChange && imageChange.size <= 2000000) {
       data = { ...data, image: imageChange };
     }
     if (genderChange !== gender && genderChange) {
       data = { ...data, gender: genderChange };
     }
-    if (emailChange !== email) {
+    if (emailChange !== email && checkEmail(emailChange)) {
       data = { ...data, email: emailChange };
-    } if (addressChange !== address) {
+    }
+    if (addressChange !== address) {
       data = { ...data, address: addressChange };
-    } if (phone_numberChange !== phoneNumber) {
+    }
+    if (phone_numberChange !== phoneNumber && checkPhone(phone_numberChange)) {
       data = { ...data, phone_number: phone_numberChange };
     }
     if (usernameChange !== username) {
@@ -89,12 +92,12 @@ export default function Profile() {
 
   const handleSave = (ev) => {
     ev.preventDefault();
-    const { token } = auth;
-    dispatch(updated(token, fileChange()));
-    if (updateProfile.isError) {
-      alert(updateProfile.message);
-    } else {
-      alert('Profile Successfully Updated');
+    if (errMessage) {
+      alert(errMessage);
+      setErrmessage(null);
+    } else if (Object.keys(fileChange()).length > 0) {
+      const { token } = auth;
+      dispatch(updated(token, fileChange()));
     }
   };
 
@@ -127,6 +130,7 @@ export default function Profile() {
                       }}
                       className="position-absolute"
                       type="file"
+                      onChange={() => (document.getElementById('image').files[0].size >= 2000000 && setErrmessage('File size must be under 2mb'))}
                     />
                   </button>
                 </div>
@@ -158,7 +162,7 @@ export default function Profile() {
           <div className="row-cols-12 contact">
             <div className="col mt-4">
               <label>Email Adress:</label>
-              <input id="email" className="form-control form-contact" type="email" defaultValue={email} />
+              <input id="email" className="form-control form-contact" type="email" defaultValue={email} onChange={() => !checkEmail(document.getElementById('email').value) && setErrmessage('Email not valid')} />
             </div>
             <div className="col mt-4">
               <label>Adress:</label>
@@ -166,7 +170,7 @@ export default function Profile() {
             </div>
             <div className="col mt-4">
               <label>Mobile number:</label>
-              <input id="phone" className="form-control form-contact" type="text" defaultValue={phoneNumber} />
+              <input id="phone" className="form-control form-contact" type="text" defaultValue={phoneNumber} onChange={() => !checkPhone(document.getElementById('phone').value) && setErrmessage('Phone number not valid')} />
             </div>
           </div>
           <h4 className="mt-5">Identity</h4>
@@ -184,20 +188,24 @@ export default function Profile() {
               <input id="birthdate" className="form-control form-contact" type="text" defaultValue={new Date(birthdate).toLocaleDateString('en-CA')} />
             </div>
           </div>
-          <div className="row btn-group d-flex flex-row justify-content-between">
-            <div className="col-lg-6 text-center">
-              <button onClick={handleSave} className="my-3 w-100 btn btn-save" type="button">Save Changes</button>
-            </div>
-            <div className="col-lg-6 text-center">
-              <button onClick={handlePassword} className="my-3 w-100 btn btn-edit" type="button">Edit Password</button>
-            </div>
-            <div className="col-lg-6 text-center">
-              <button className="my-3 w-100 btn btn-cancel" type="button">Cancel</button>
-            </div>
-            <div className="col-lg-6 text-center">
-              <BtnLogout className="my-3 w-100" />
-            </div>
-          </div>
+          {updateProfile.isLoading
+            ? <div className="spinner-border mx-auto text-center d-flex mt-5" role="status" />
+            : (
+              <div className="row btn-group d-flex flex-row justify-content-between">
+                <div className="col-lg-6 text-center">
+                  <button onClick={handleSave} className="my-3 w-100 btn btn-save" type="button">Save Changes</button>
+                </div>
+                <div className="col-lg-6 text-center">
+                  <button onClick={handlePassword} className="my-3 w-100 btn btn-edit" type="button">Edit Password</button>
+                </div>
+                <div className="col-lg-6 text-center">
+                  <button className="my-3 w-100 btn btn-cancel" type="button">Cancel</button>
+                </div>
+                <div className="col-lg-6 text-center">
+                  <BtnLogout className="my-3 w-100" />
+                </div>
+              </div>
+            )}
         </form>
       </section>
     </div>
