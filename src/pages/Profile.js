@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable camelcase */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../assets/css/profile.css';
 import { BsFillPenFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,8 +11,10 @@ import handleImg from '../assets/images/defaultPict.png';
 import BtnLogout from '../components/BtnLogout';
 import LoadingSkeleton from '../components/LoadingSkeleton';
 import { updateProfile as updated } from '../redux/actions/user';
+import { getUser } from '../redux/actions/auth';
 
 export default function Profile() {
+  const [checked, setChecked] = useState();
   const { auth } = useSelector((state) => state);
   const { updateProfile } = useSelector((state) => state);
   const navigate = useNavigate();
@@ -25,21 +27,28 @@ export default function Profile() {
     const female = document.getElementById('female');
     if (auth.userData.gender === 'Female') {
       female.setAttribute('checked', true);
-    } else {
+    }
+    if (auth.userData.gender === 'Male') {
       male.setAttribute('checked', true);
     }
   }, [auth.userData.gender, updateProfile]);
 
-  const getGender = () => {
-    let gender = '';
-    const male = document.getElementById('male').getAttribute('checked');
-    if (male) {
-      gender = 'male';
-    } else {
-      gender = 'female';
+  useEffect(() => {
+    if (updateProfile.user) {
+      dispatch(getUser(auth.token));
     }
-    return gender;
-  };
+  }, [updateProfile.user]);
+
+  // const getGender = () => {
+  //   let gender = '';
+  //   const male = document.getElementById('male').getAttribute('checked');
+  //   if (male) {
+  //     gender = 'male';
+  //   } else {
+  //     gender = 'female';
+  //   }
+  //   return gender;
+  // };
 
   const {
     image, name, username, email, createdAt, phoneNumber, address, birthdate, gender,
@@ -48,7 +57,8 @@ export default function Profile() {
   const fileChange = () => {
     let data = {};
     const imageChange = document.getElementById('image').files[0];
-    const genderChange = getGender();
+    // const genderChange = getGender();
+    const genderChange = checked;
     const emailChange = document.getElementById('email').value;
     const addressChange = document.getElementById('address').value;
     const phone_numberChange = document.getElementById('phone').value;
@@ -58,7 +68,7 @@ export default function Profile() {
     if (imageChange) {
       data = { ...data, image: imageChange };
     }
-    if (genderChange !== gender) {
+    if (genderChange !== gender && genderChange) {
       data = { ...data, gender: genderChange };
     }
     if (emailChange !== email) {
@@ -79,7 +89,6 @@ export default function Profile() {
 
   const handleSave = (ev) => {
     ev.preventDefault();
-    // const token = window.localStorage.getItem('token');
     const { token } = auth;
     dispatch(updated(token, fileChange()));
     if (updateProfile.isError) {
@@ -140,9 +149,9 @@ export default function Profile() {
       <section className="container mb-5">
         <form>
           <div className="gender mb-5">
-            <input type="radio" className="form-check-input" id="male" name="gender" value="male" />
+            <input type="radio" className="form-check-input" id="male" name="gender" value="male" onChange={() => setChecked('male')} />
             <label htmlFor="male" className="me-5 text-muted">Male</label>
-            <input type="radio" className="form-check-input ms-5" id="female" name="gender" value="female" />
+            <input type="radio" className="form-check-input ms-5" id="female" name="gender" value="female" onChange={() => setChecked('female')} />
             <label htmlFor="female">Female</label>
           </div>
           <h4>Contact</h4>
